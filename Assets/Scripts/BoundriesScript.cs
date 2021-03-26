@@ -24,4 +24,6 @@ public class BoundriesScript : MonoBehaviour
         viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + objectHeight, screenBounds.y - objectHeight);
         transform.position = viewPos;
     }
+
+    //Comment by Kevin to test branch merge
 }
