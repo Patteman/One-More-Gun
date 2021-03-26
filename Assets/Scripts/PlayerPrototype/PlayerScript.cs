@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        
+        //BEPA BEEEEEEEEEEEEEEEEEEEEEP
     }
     
     void Update()
