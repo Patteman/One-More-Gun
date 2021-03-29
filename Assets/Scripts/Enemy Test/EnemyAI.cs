@@ -15,14 +15,18 @@ public class EnemyAI : MonoBehaviour
 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
-    private float speed;
+    private float currentSpeed;
+    private float roamSpeed;
+    private float chaseSpeed;
     public Transform target;
 
     private void Start()
     {
         startingPosition = transform.position;
         roamPosition = GetRoamingPosition();
-        speed = 2;
+        roamSpeed = 1f;
+        chaseSpeed = 2f;
+        currentSpeed = roamSpeed;
         currentState = State.Roaming;
     }
 
@@ -35,7 +39,7 @@ public class EnemyAI : MonoBehaviour
             case State.Roaming:
                 //Move to target
                 Vector3 direction = roamPosition - transform.position;
-                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+                transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);
 
                 float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
@@ -47,7 +51,9 @@ public class EnemyAI : MonoBehaviour
             case State.ChaseTarget:
                 //Move to target (player)
                 Vector3 targetdirection = target.transform.position - transform.position;
-                transform.Translate(targetdirection.normalized * speed * Time.deltaTime, Space.World);
+                transform.Translate(targetdirection.normalized * currentSpeed * Time.deltaTime, Space.World);
+
+                DropTarget();
 
                 float attackRange = 2f; //use weapon range here
                 if (Vector3.Distance(transform.position, target.transform.position) < attackRange) //Player in weapon range, switch state
@@ -78,6 +84,18 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, target.transform.position) < targetRange)
         {
             currentState = State.ChaseTarget;
+            currentSpeed = chaseSpeed;
+        }
+    }
+
+    private void DropTarget() //Checks if it's target (player) is within range, switches state
+    {
+        float dropRange = 10f;
+        if (Vector3.Distance(transform.position, target.transform.position) > dropRange)
+        {
+            GetRoamingPosition();
+            currentSpeed = roamSpeed;
+            currentState = State.Roaming;
         }
     }
 }

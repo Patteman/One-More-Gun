@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        speed = 2.5f;
+        speed = 5f;
     }
 
     void Update()
