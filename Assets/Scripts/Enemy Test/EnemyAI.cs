@@ -15,6 +15,8 @@ public class EnemyAI : MonoBehaviour
 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
+    private Vector3 lookAt;
+
     private float currentSpeed;
     private float roamSpeed;
     private float chaseSpeed;
@@ -32,7 +34,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        FindTarget();
+        var dir = lookAt - transform.position;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         switch (currentState)
         {
             default:
@@ -40,6 +45,9 @@ public class EnemyAI : MonoBehaviour
                 //Move to target
                 Vector3 direction = roamPosition - transform.position;
                 transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);
+
+                lookAt = roamPosition;
+                FindTarget();
 
                 float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
@@ -53,6 +61,7 @@ public class EnemyAI : MonoBehaviour
                 Vector3 targetdirection = target.transform.position - transform.position;
                 transform.Translate(targetdirection.normalized * currentSpeed * Time.deltaTime, Space.World);
 
+                lookAt = target.transform.position;
                 DropTarget();
 
                 float attackRange = 2f; //use weapon range here
@@ -63,7 +72,8 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.AttackTarget:
-                //attack the target
+                lookAt = target.transform.position;
+                //Attack with weapon
             break;
         }
     }
