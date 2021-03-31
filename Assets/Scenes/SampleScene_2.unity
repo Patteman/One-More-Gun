@@ -371,7 +371,7 @@ MonoBehaviour:
   - {fileID: 2527535997836823214, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
   - {fileID: 29865436204410495, guid: a43f1ee68af742d4da1e35d152cc773b, type: 3}
   - {fileID: 6724128488300940219, guid: 49f8da27a80e18145849790273056c2f, type: 3}
-  - {fileID: 2349774049816696396, guid: 1d5b1d7379db3e942a5f7cb766a96e55, type: 3}
+  - {fileID: 6997962232989692276, guid: 5ef3bab227b94044ea39b69402d25089, type: 3}
   - {fileID: 2671860496830171444, guid: a46c09bfa6b25da46ad60cb06bac10f8, type: 3}
   weaponPos: {fileID: 493921543}
 --- !u!4 &674009683
