@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoundriesScript : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
     public Camera MainCamera;
     private Vector2 screenBounds;
@@ -25,5 +25,16 @@ public class BoundriesScript : MonoBehaviour
         transform.position = viewPos;
     }
 
-    //Comment by Kevin to test branch merge
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Finish")
+        {
+            Debug.Log("You reached the goal!");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+         
+    }
 }
