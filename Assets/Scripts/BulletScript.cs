@@ -15,7 +15,8 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        lifetime = 0f;
+        lifetime = 0f;       //Changed by Kevin
+        maxLifeTime = 1f;    //Changed by Kevin
     }
     
     public void Setup(Vector3 dir)
@@ -25,7 +26,7 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
-        float speed = 20f; //FIX
+        float speed = 10f; //FIX     //Changed by Kevin to test
         //transform.position += direction * speed * Time.deltaTime; //the position changes
         rb.velocity = direction * speed;
         lifetime+=Time.deltaTime;

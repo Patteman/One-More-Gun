@@ -15,27 +15,44 @@ public class EnemyAI : MonoBehaviour
 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
-    private float speed;
+    private Vector3 lookAt;
+
+    private float currentSpeed;
+    private float roamSpeed;
+    private float chaseSpeed;
     public Transform target;
+    public Transform firePoint;
+
+    public EnemyGunScript enemyGunScript;
+    public float fireRate = 1f;
+    private float fireCooldown = 0f;
 
     private void Start()
     {
         startingPosition = transform.position;
         roamPosition = GetRoamingPosition();
-        speed = 2;
+        roamSpeed = 1f;
+        chaseSpeed = 2f;
+        currentSpeed = roamSpeed;
         currentState = State.Roaming;
     }
 
     private void Update()
     {
-        FindTarget();
+        var dir = lookAt - transform.position;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         switch (currentState)
         {
             default:
             case State.Roaming:
                 //Move to target
                 Vector3 direction = roamPosition - transform.position;
-                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+                transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);
+
+                lookAt = roamPosition;
+                FindTarget();
 
                 float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
@@ -47,9 +64,12 @@ public class EnemyAI : MonoBehaviour
             case State.ChaseTarget:
                 //Move to target (player)
                 Vector3 targetdirection = target.transform.position - transform.position;
-                transform.Translate(targetdirection.normalized * speed * Time.deltaTime, Space.World);
+                transform.Translate(targetdirection.normalized * currentSpeed * Time.deltaTime, Space.World);
 
-                float attackRange = 2f; //use weapon range here
+                lookAt = target.transform.position;
+                DropTarget();
+
+                float attackRange = 3f; //use weapon range here
                 if (Vector3.Distance(transform.position, target.transform.position) < attackRange) //Player in weapon range, switch state
                 {
                     currentState = State.AttackTarget;
@@ -57,8 +77,22 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case State.AttackTarget:
-                //attack the target
-            break;
+                lookAt = target.transform.position;
+
+                if (fireCooldown <= 0f)
+                {
+                    enemyGunScript.Shoot(target, firePoint);
+                    fireCooldown = 1f / fireRate;
+                }
+                fireCooldown -= Time.deltaTime;
+
+                float shootRange = 4.5f;
+                if (Vector3.Distance(transform.position, target.transform.position) > shootRange) //Player outside weapon range, chase again
+                {
+                    currentState = State.ChaseTarget;
+                }
+
+                break;
         }
     }
     
@@ -78,6 +112,18 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, target.transform.position) < targetRange)
         {
             currentState = State.ChaseTarget;
+            currentSpeed = chaseSpeed;
+        }
+    }
+
+    private void DropTarget() //Checks if it's target (player) is within range, switches state
+    {
+        float dropRange = 10f;
+        if (Vector3.Distance(transform.position, target.transform.position) > dropRange)
+        {
+            GetRoamingPosition();
+            currentSpeed = roamSpeed;
+            currentState = State.Roaming;
         }
     }
 }

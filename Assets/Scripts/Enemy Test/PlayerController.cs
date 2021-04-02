@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        speed = 2.5f;
+        speed = 5f;
     }
 
     void Update()
@@ -29,5 +29,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
         }
+
+        var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
