@@ -10,6 +10,7 @@ public class BulletScript : MonoBehaviour
     public float maxLifeTime;
     public typeOfBullet type;
     public Rigidbody2D rb;
+    public int damageAmount;
     Vector3 direction;
     public GameObject explosionEffect;
 

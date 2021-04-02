@@ -100,6 +100,7 @@ MonoBehaviour:
   maxLifeTime: 1.5
   type: 0
   rb: {fileID: -5139022914739419840}
+  damageAmount: 10
   explosionEffect: {fileID: 5543081865606710270, guid: bb3a30f09c835814780a64c9e91323d7,
     type: 3}
 --- !u!58 &6807808599920825506
