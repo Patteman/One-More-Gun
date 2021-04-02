@@ -37,7 +37,7 @@ public class BulletScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TARGET")
+        if (collision.gameObject.tag == "TARGET" || collision.gameObject.tag == "Player")
         {
             if (type == typeOfBullet.rocket)
             {
@@ -46,6 +46,8 @@ public class BulletScript : MonoBehaviour
                 
             Destroy(gameObject);
         }
+
+        Debug.Log("Collision");
     }
 
 }
