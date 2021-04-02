@@ -47,5 +47,21 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Walls")
+        {
+            Destroy(gameObject); // <- For now. Projectile / Timer until it's destroyed. -> Ricochet-effect or something like that.
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "BasicProtection")
+        {
+            Destroy(gameObject);
+        }
+    }
 
 }
