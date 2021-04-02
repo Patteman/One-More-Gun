@@ -6,13 +6,15 @@ public class PlayerScript : MonoBehaviour
 {
     public float movementSpeed;
 
+    public bool onSpawn;
+
     public Rigidbody2D rb;
     Vector2 movement;
 
 
     void Start()
     {
-        
+        onSpawn = true;
     }
     
     void Update()
@@ -28,5 +30,19 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Respawn")
+        {
+            Debug.Log("You've left the spawn!");
+            onSpawn = false;
+        }
     }
 }
