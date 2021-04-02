@@ -7,6 +7,9 @@ public class Shotgun : MonoBehaviour
     public Transform spawnpoint;
     public GameObject impact;
 
+    private int nrOfShots;
+    public int maxShots;
+
     Camera mainCam;
     float distance;
 
@@ -15,7 +18,8 @@ public class Shotgun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        distance = 15f;
+        nrOfShots = 0;
+        distance = 5f;
         mainCam = Camera.main;
     }
 
@@ -24,9 +28,13 @@ public class Shotgun : MonoBehaviour
     {
         direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         direction.Normalize();
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
+        }
+        if (nrOfShots >= maxShots)
+        {
+            Destroy(gameObject);
         }
     }
     void Shoot()
@@ -34,14 +42,16 @@ public class Shotgun : MonoBehaviour
         RaycastHit2D hit=Physics2D.Raycast(transform.position, direction, distance);
         if (hit)
         {
-            Debug.Log("Bruh mannen");
+            Debug.Log("Hit Target");
         }
+        nrOfShots++;
+        Debug.Log(nrOfShots);
         //Debug.DrawRay(transform.position, direction, Color.red);
         //RaycastHit2D hit2;
     }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(transform.position, Input.mousePosition);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.cyan;
+    //    Gizmos.DrawRay(transform.position, Input.mousePosition);
+    //}
 }
