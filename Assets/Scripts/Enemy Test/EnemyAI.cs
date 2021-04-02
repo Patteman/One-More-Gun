@@ -21,6 +21,11 @@ public class EnemyAI : MonoBehaviour
     private float roamSpeed;
     private float chaseSpeed;
     public Transform target;
+    public Transform firePoint;
+
+    public EnemyGunScript enemyGunScript;
+    public float fireRate = 1f;
+    private float fireCooldown = 0f;
 
     private void Start()
     {
@@ -64,7 +69,7 @@ public class EnemyAI : MonoBehaviour
                 lookAt = target.transform.position;
                 DropTarget();
 
-                float attackRange = 2f; //use weapon range here
+                float attackRange = 3f; //use weapon range here
                 if (Vector3.Distance(transform.position, target.transform.position) < attackRange) //Player in weapon range, switch state
                 {
                     currentState = State.AttackTarget;
@@ -73,8 +78,21 @@ public class EnemyAI : MonoBehaviour
 
             case State.AttackTarget:
                 lookAt = target.transform.position;
-                //Attack with weapon
-            break;
+
+                if (fireCooldown <= 0f)
+                {
+                    enemyGunScript.Shoot(target, firePoint);
+                    fireCooldown = 1f / fireRate;
+                }
+                fireCooldown -= Time.deltaTime;
+
+                float shootRange = 4.5f;
+                if (Vector3.Distance(transform.position, target.transform.position) > shootRange) //Player outside weapon range, chase again
+                {
+                    currentState = State.ChaseTarget;
+                }
+
+                break;
         }
     }
     
