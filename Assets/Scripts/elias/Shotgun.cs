@@ -26,12 +26,16 @@ public class Shotgun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Converts the mouse position to a world position and thus allows you to aim.
         direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         direction.Normalize();
+
+        //If you click, you will fire the weapon (as with every other weapon).
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
+        //if the amount of shots you've fired exceeds the maximum amount, the object will (should) be removed from your inventory.
         if (nrOfShots >= maxShots)
         {
             Destroy(gameObject);
@@ -39,6 +43,7 @@ public class Shotgun : MonoBehaviour
     }
     void Shoot()
     {
+        //makes a RayCastHit from your position, the mouse position, and the maximum distance your "bullet" can travel.
         RaycastHit2D hit=Physics2D.Raycast(transform.position, direction, distance);
         if (hit)
         {
@@ -46,12 +51,6 @@ public class Shotgun : MonoBehaviour
         }
         nrOfShots++;
         Debug.Log(nrOfShots);
-        //Debug.DrawRay(transform.position, direction, Color.red);
-        //RaycastHit2D hit2;
     }
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.cyan;
-    //    Gizmos.DrawRay(transform.position, Input.mousePosition);
-    //}
 }
+//Special thanks to CodeMonkey, FPS Builders, Anfractuous Dev for ideas and help in regards to Raycast

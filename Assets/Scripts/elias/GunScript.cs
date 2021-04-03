@@ -30,14 +30,18 @@ public class GunScript : MonoBehaviour
 
     void Shoot()
     {
-        GameObject tempBullet = (GameObject)Instantiate(bullet, position, Quaternion.identity); //spawns a bullet
-        BulletScript bs = tempBullet.GetComponent<BulletScript>(); //obtains the script from the spawned bullet
-        Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position; //SHOULD BE the direction the gun is pointed in
+        //Instantiates a bullet, obtains its script and sets the direction
+        GameObject tempBullet = Instantiate(bullet, position, Quaternion.identity);
+        BulletScript bs = tempBullet.GetComponent<BulletScript>();
+        //direction is towards where you click
+        Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position;
         direction.Normalize();
 
         if (bs != null)
         {
+            //aims bullet at mouse position
             bs.Setup(direction);
+            //counts amount of bullets fired, if it's above the maximum, the gun disappears
             bulletCounter++;
             if (bulletCounter >= ammunitionAmount)
             {

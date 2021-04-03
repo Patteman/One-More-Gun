@@ -13,7 +13,7 @@ public class Flamethrower : MonoBehaviour
     //ParticleSystemRenderer partRend;
     void Start()
     {
-        mainCam = Camera.main;
+        mainCam = Camera.main; //The main camera is needed to get the world position of the mouse.
         //flameStartPos = new Vector3(transform.position.x + 0.46f, transform.position.y, transform.position.z);
         //flame2.Pause();
         //partRend = flameEffect.GetComponent<ParticleSystemRenderer>();
@@ -46,11 +46,12 @@ public class Flamethrower : MonoBehaviour
         //flameEffect.SetActive(true);
         //bb
         /*Vector3 screenPoint = mainCam.WorldToScreenPoint(transform.localPosition);*/ //player position in screen space
-        Vector3 mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition); //World position of mouse.
         //Vector2 distance = Input.mousePosition-screenPoint; //distance between mouse and player
         //distance.Normalize();
         //float angle = Mathf.Atan2(distance.y, distance.x) * Mathf.Rad2Deg; //the angle, in degrees
-        flame = Instantiate(flameEffect.gameObject, flameStartPos.position, Quaternion.identity);
-        flame.transform.LookAt(mouseCameraPos);
+        flame = Instantiate(flameEffect.gameObject, flameStartPos.position, Quaternion.identity); //Instantiates effect.
+        flame.transform.LookAt(mouseCameraPos); //Makes effect point towards where you click.
     }
 }
+//Special thanks to David Täljsten

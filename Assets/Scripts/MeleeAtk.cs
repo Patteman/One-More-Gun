@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//I am very unsure on what to do here. I just have a simple thing that flips the "knife" and says to attack. 
+// I think ideally this should be done with animation and colliders in final product.
 public class MeleeAtk : MonoBehaviour
 {
     bool isAttacking;

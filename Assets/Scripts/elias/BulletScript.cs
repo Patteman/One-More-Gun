@@ -37,6 +37,7 @@ public class BulletScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //If you hit a target the bullet should realistically not keep travelling.
         if (collision.gameObject.tag == "TARGET")
         {
             if (type == typeOfBullet.rocket)
