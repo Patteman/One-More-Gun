@@ -121,6 +121,33 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &516559651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9002544749593336170, guid: a89faab469ea7464fa5861301c628a61,
+    type: 3}
+  m_PrefabInstance: {fileID: 2043212446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &516559652
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516559651}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,6 +319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6323776300721075339, guid: 842686568c2841d47b34d650ee97c973,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 842686568c2841d47b34d650ee97c973, type: 3}
 --- !u!1 &2035312039
@@ -416,7 +448,7 @@ PrefabInstance:
     - target: {fileID: 4934047648325088467, guid: a89faab469ea7464fa5861301c628a61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.607
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4934047648325088467, guid: a89faab469ea7464fa5861301c628a61,
         type: 3}
@@ -458,7 +490,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Gun Test
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7527229149578590497, guid: a89faab469ea7464fa5861301c628a61, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a89faab469ea7464fa5861301c628a61, type: 3}
 --- !u!1001 &8113466312396333515
 PrefabInstance:
