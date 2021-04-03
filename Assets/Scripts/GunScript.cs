@@ -28,7 +28,7 @@ public class GunScript : MonoBehaviour
         }
     }
 
-    void Shoot()
+    public void Shoot()
     {
         GameObject tempBullet = (GameObject)Instantiate(bullet, position, Quaternion.identity); //spawns a bullet
         BulletScript bs = tempBullet.GetComponent<BulletScript>(); //obtains the script from the spawned bullet
