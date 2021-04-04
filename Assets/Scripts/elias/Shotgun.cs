@@ -9,6 +9,7 @@ public class Shotgun : MonoBehaviour
 
     private int nrOfShots;
     public int maxShots;
+    public int damageAmount;
 
     Camera mainCam;
     float distance;
@@ -45,9 +46,13 @@ public class Shotgun : MonoBehaviour
     {
         //makes a RayCastHit from your position, the mouse position, and the maximum distance your "bullet" can travel.
         RaycastHit2D hit=Physics2D.Raycast(transform.position, direction, distance);
-        if (hit)
+
+        //This has been made with the test targets in my stage in mind.
+        //In the future this should be replaced with the health of the enemies
+        if (hit && hit.transform.gameObject.tag=="TARGET")
         {
-            Debug.Log("Hit Target");
+            TargetHealthAndStuff tHealth = hit.transform.gameObject.GetComponent<TargetHealthAndStuff>();
+            tHealth.health -= damageAmount;
         }
         nrOfShots++;
         Debug.Log(nrOfShots);
