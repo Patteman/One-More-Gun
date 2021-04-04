@@ -15,8 +15,8 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        lifetime = 0f;       //Changed by Kevin
-        maxLifeTime = 1f;    //Changed by Kevin
+        lifetime = 0f;       
+        maxLifeTime = 1f;    
     }
     
     public void Setup(Vector3 dir)
@@ -26,7 +26,7 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
-        float speed = 10f; //FIX     //Changed by Kevin to test
+        float speed = 10f; //FIX
         //transform.position += direction * speed * Time.deltaTime; //the position changes
         rb.velocity = direction * speed;
         lifetime+=Time.deltaTime;
@@ -43,8 +43,10 @@ public class BulletScript : MonoBehaviour
             {
                 GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             }
-                
+
             Destroy(gameObject);
+
+            //Call collision target's take dmg function
         }
 
         Debug.Log("Collision");
