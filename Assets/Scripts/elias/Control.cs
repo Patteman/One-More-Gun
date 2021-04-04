@@ -28,6 +28,7 @@ public class Control : MonoBehaviour
         //{
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            //scrolls through the list of weapons. This list is mainly a test thing so far.
             index++;
             if (index == weapons.Length)
                 index = 0;
@@ -56,4 +57,4 @@ public class Control : MonoBehaviour
     }
 }
 //Special thanks to GamesPlusJames for help on movement and rotation.
-//Special thanks to Sebastian Lague for help on switching weapons.
+//Special thanks to Sebastian Lague and David Täljsten for help on switching weapons.

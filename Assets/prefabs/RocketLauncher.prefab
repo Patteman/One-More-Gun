@@ -91,8 +91,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6724128488300940219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b72bdb1dbd9e0bc418f66325005db06f, type: 3}
+  m_Script: {fileID: 11500000, guid: dd261bb42712c1f4097e7b291d0750ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6949186392122410642, guid: 945885859e983c049a9fac65dc7643a4, type: 3}
-  ammunitionAmount: 5
+  ammunitionAmount: 3
