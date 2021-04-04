@@ -9,6 +9,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (PlayerController.isDead)
+        {
+            return;
+        }
+        
         //Follow player
         transform.position = new Vector3(target.transform.position.x, target.transform.position.y, transform.position.z);
 
@@ -24,8 +29,5 @@ public class CameraController : MonoBehaviour
             zoomSize += 1;
         }
         GetComponent<Camera>().orthographicSize = zoomSize;
-
     }
-
-
 }
