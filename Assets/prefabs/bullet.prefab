@@ -100,7 +100,6 @@ MonoBehaviour:
   maxLifeTime: 1.5
   type: 0
   rb: {fileID: -5139022914739419840}
-  damageAmount: 10
   explosionEffect: {fileID: 5543081865606710270, guid: bb3a30f09c835814780a64c9e91323d7,
     type: 3}
 --- !u!58 &6807808599920825506
@@ -113,7 +112,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

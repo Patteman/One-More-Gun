@@ -11,7 +11,6 @@ public class Explosive : MonoBehaviour
     void Start()
     {
         //Bomb should not be activated, nor count down, unless it has been set off.
-        setOff = false;
         timer = 0;
     }
 

@@ -22,7 +22,7 @@ public class GunScript : MonoBehaviour
     void Update()
     {
         position = transform.position; //the position should be the position of the gun
-        if (Input.GetMouseButtonDown(0)) //if you press space it should spawn and shoot a bullet
+        if (Input.GetMouseButtonDown(0)) //if you click the left mouse button it should spawn and shoot a bullet
         {
             Shoot();
         }
@@ -34,7 +34,8 @@ public class GunScript : MonoBehaviour
         GameObject tempBullet = Instantiate(bullet, position, Quaternion.identity);
         BulletScript bs = tempBullet.GetComponent<BulletScript>();
         //direction is towards where you click
-        Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position;
+        Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-position;
+        direction.z = 0;
         direction.Normalize();
 
         if (bs != null)
