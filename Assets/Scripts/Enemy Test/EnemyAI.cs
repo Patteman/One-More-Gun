@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    //Create states for the enemy
+    //States for enemy behavior
     private enum State
     {
         Roaming,
@@ -20,43 +20,55 @@ public class EnemyAI : MonoBehaviour
     private float currentSpeed;
     private float roamSpeed;
     private float chaseSpeed;
+
     public Transform target;
     public Transform firePoint;
-
     public EnemyGunScript enemyGunScript;
+
+    [Header("Stats")]
+    public float maxHealth = 100;
+    public float health;
     public float fireRate = 1f;
     private float fireCooldown = 0f;
+
 
     private void Start()
     {
         startingPosition = transform.position;
         roamPosition = GetRoamingPosition();
+
         roamSpeed = 1f;
         chaseSpeed = 2f;
         currentSpeed = roamSpeed;
+
         currentState = State.Roaming;
+
+        health = maxHealth;
     }
 
     private void Update()
     {
-        if (PlayerController.isDead)
+        if (PlayerController.isDead) //Stop update if player is dead (stops errors/exceptions)
         {
             return;
         }
         
+        //Turns so enemy looks as target
         var dir = lookAt - transform.position;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
+        //State machine
         switch (currentState)
         {
             default:
             case State.Roaming:
-                //Move to target
+                //Move to target (roamPos)
                 Vector3 direction = roamPosition - transform.position;
                 transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);
 
                 lookAt = roamPosition;
+                //Checks if player is in range
                 FindTarget();
 
                 float reachedPositionDistance = 1f;
@@ -72,6 +84,7 @@ public class EnemyAI : MonoBehaviour
                 transform.Translate(targetdirection.normalized * currentSpeed * Time.deltaTime, Space.World);
 
                 lookAt = target.transform.position;
+                //Check if target is out of range
                 DropTarget();
 
                 float attackRange = 3f; //use weapon range here
@@ -84,6 +97,7 @@ public class EnemyAI : MonoBehaviour
             case State.AttackTarget:
                 lookAt = target.transform.position;
 
+                //Shoots every second
                 if (fireCooldown <= 0f)
                 {
                     enemyGunScript.Shoot(target, firePoint);
@@ -91,12 +105,12 @@ public class EnemyAI : MonoBehaviour
                 }
                 fireCooldown -= Time.deltaTime;
 
+                //Checks if player is out of shooting range, then chases again
                 float shootRange = 4.5f;
                 if (Vector3.Distance(transform.position, target.transform.position) > shootRange) //Player outside weapon range, chase again
                 {
                     currentState = State.ChaseTarget;
                 }
-
                 break;
         }
     }
@@ -131,4 +145,21 @@ public class EnemyAI : MonoBehaviour
             currentState = State.Roaming;
         }
     }
+
+    public void TakeDamage(float dmg) //Method gets called when enemy is hit by attack
+    {
+        health -= dmg;
+        if (health <= 0)
+        {
+            health = 0;
+            Die();
+        }
+    }
+
+    private void Die() //Method gets called when the enemy has to die
+    {
+        Destroy(gameObject);
+        //Other stuff than just destroy
+    }
+
 }

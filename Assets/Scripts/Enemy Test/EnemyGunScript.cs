@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyGunScript : MonoBehaviour
 {
+    //Maybe use standard gun script in future so the weapons can be different.
+    
     public GameObject bullet;
     int bulletCounter;
     public int ammunitionAmount;
