@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private FieldOfView fieldOfView; //Use this on enemy instead
+    
     private float speed;
     public float maxHealth = 100;
     public float health;
@@ -38,6 +40,10 @@ public class PlayerController : MonoBehaviour
         var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        //Vector3 aimDir = (Input.mousePosition - transform.position).normalized;
+        fieldOfView.SetAimDirection(dir);            //Use for enemies
+        fieldOfView.SetOrigin(transform.position);   //Use for enemies
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 495003142}
   - component: {fileID: 495003141}
   - component: {fileID: 495003143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,6 +327,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1547922562 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5775167233331644989, guid: 701291643719d4340a4bba6ef4a050d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1794355379}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 278071e67ae054844b1d538a651e4b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1794355379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -398,6 +410,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775167233331644989, guid: 701291643719d4340a4bba6ef4a050d7,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 701291643719d4340a4bba6ef4a050d7, type: 3}
@@ -505,6 +522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9021336709062605479, guid: ea7b3ab0ddadfdb4a8eb706c61c7940b,
+        type: 3}
+      propertyPath: fieldOfView
+      value: 
+      objectReference: {fileID: 1547922562}
     - target: {fileID: 9021336710800872212, guid: ea7b3ab0ddadfdb4a8eb706c61c7940b,
         type: 3}
       propertyPath: m_RootOrder
