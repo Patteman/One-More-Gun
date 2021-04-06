@@ -150,8 +150,36 @@ public class EnemyAI : MonoBehaviour
             var dir = lookAt - transform.position;
             if (Vector3.Angle(dir, dirToPlayer) < fov / 2f)
             {
-                currentState = State.ChaseTarget;
-                currentSpeed = chaseSpeed;
+
+                //currentState = State.ChaseTarget;
+                //currentSpeed = chaseSpeed;
+
+
+                //-----------------------  USE ONLY THIS IF YOU DO NOT WANT VISIBLE FOV -----------------//
+                RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, dirToPlayer, viewDistance);
+                if(raycastHit2D.collider != null)
+                {
+                    //Something was hit
+
+                    //currentState = State.ChaseTarget;
+                    //currentSpeed = chaseSpeed;
+
+
+                    //Doesn't work for some reason (tried get component, gameobject == target gameobject, and tags)
+                    if (raycastHit2D.collider.gameObject.GetComponent<PlayerController>() != null) //Checks if the object hit has the player script
+                    {
+                        //Player hit
+
+                        Debug.Log("Player hit");
+
+                        //currentState = State.ChaseTarget;
+                        //currentSpeed = chaseSpeed;
+                    }
+                    else
+                    {
+                        //Hit something else
+                    }
+                }
             }
         }
     }
