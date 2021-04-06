@@ -25,6 +25,11 @@ public class EnemyAI : MonoBehaviour
     public Transform firePoint;
     public EnemyGunScript enemyGunScript;
 
+    [SerializeField] private Transform fovPrefab;
+    [SerializeField] private float fov;
+    [SerializeField] private float viewDistance;
+    private FieldOfView fieldOfView;
+
     [Header("Stats")]
     public float maxHealth = 100;
     public float health;
@@ -44,6 +49,14 @@ public class EnemyAI : MonoBehaviour
         currentState = State.Roaming;
 
         health = maxHealth;
+
+        fov = 90f;
+        viewDistance = 5f;
+
+        //Instansiates the field of view, with fov and view distance
+        fieldOfView = Instantiate(fovPrefab, null).GetComponent<FieldOfView>();
+        fieldOfView.SetFOV(fov);
+        fieldOfView.SetViewDistance(viewDistance);
     }
 
     private void Update()
@@ -113,6 +126,9 @@ public class EnemyAI : MonoBehaviour
                 }
                 break;
         }
+
+        fieldOfView.SetAimDirection(dir);  //Makes fov aim where the enemy is aiming
+        fieldOfView.SetOrigin(transform.position);  //Makes fov follow enemy
     }
     
     private Vector3 GetRoamingPosition() //Gets random position to roam to
@@ -127,11 +143,16 @@ public class EnemyAI : MonoBehaviour
 
     private void FindTarget() //Checks if it's target (player) is within range, switches state
     {
-        float targetRange = 6f;
-        if (Vector3.Distance(transform.position, target.transform.position) < targetRange)
+        if (Vector3.Distance(transform.position, target.transform.position) < viewDistance)
         {
-            currentState = State.ChaseTarget;
-            currentSpeed = chaseSpeed;
+            //Player is inside view distance, check if inside view angle
+            Vector3 dirToPlayer = (target.transform.position - transform.position).normalized;
+            var dir = lookAt - transform.position;
+            if (Vector3.Angle(dir, dirToPlayer) < fov / 2f)
+            {
+                currentState = State.ChaseTarget;
+                currentSpeed = chaseSpeed;
+            }
         }
     }
 

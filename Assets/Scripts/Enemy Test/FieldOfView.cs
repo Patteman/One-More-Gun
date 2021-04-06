@@ -7,6 +7,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     private Mesh mesh;
     private float fov;
+    private float viewDistance;
     private Vector3 origin = Vector3.zero;
     private float startingAngle;
 
@@ -15,7 +16,7 @@ public class FieldOfView : MonoBehaviour
         //Create a new mesh for the raycast
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
-        fov = 90f;
+
         origin = Vector3.zero;
     }
 
@@ -24,7 +25,6 @@ public class FieldOfView : MonoBehaviour
         int rayCount = 50;
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 5;
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
@@ -67,6 +67,9 @@ public class FieldOfView : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
+
+        //Makes it so the fov doesn't dissapear when moving away form the origin
+        mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
     }
 
     private Vector3 GetVectorFromAngle(float angle)
@@ -96,5 +99,17 @@ public class FieldOfView : MonoBehaviour
         }
 
         return n;
+    }
+
+    //Called in enemy start method
+    public void SetFOV(float fov)
+    {
+        this.fov = fov;
+    }
+
+    //Called in enemy start method
+    public void SetViewDistance(float viewDistance)
+    {
+        this.viewDistance = viewDistance;
     }
 }
