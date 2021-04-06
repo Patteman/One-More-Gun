@@ -55,13 +55,8 @@ public class BulletScript : MonoBehaviour
             //In the future this should be replaced with the health of the enemies
             TargetHealthAndStuff tHealth = collision.gameObject.GetComponent<TargetHealthAndStuff>();
             tHealth.health -= damageAmount;
-            if (type != typeOfBullet.dart)
-                Destroy(gameObject);
-            else if (type == typeOfBullet.dart)
-            {
-                rb.velocity = Vector2.zero;
-                rb.isKinematic = true;
-            }
+            Destroy(gameObject);
+            
         }
     }
 
