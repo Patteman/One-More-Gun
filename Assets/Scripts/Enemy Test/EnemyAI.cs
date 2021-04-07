@@ -36,6 +36,7 @@ public class EnemyAI : MonoBehaviour
     public float fireRate = 1f;
     private float fireCooldown = 0f;
 
+    [SerializeField] public LayerMask layerMask;
 
     private void Start()
     {
@@ -143,6 +144,7 @@ public class EnemyAI : MonoBehaviour
 
     private void FindTarget() //Checks if it's target (player) is within range, switches state
     {
+        //-----------------------  USE ONLY THIS IF YOU DO NOT WANT VISIBLE FOV ----------------------//
         if (Vector3.Distance(transform.position, target.transform.position) < viewDistance)
         {
             //Player is inside view distance, check if inside view angle
@@ -150,34 +152,16 @@ public class EnemyAI : MonoBehaviour
             var dir = lookAt - transform.position;
             if (Vector3.Angle(dir, dirToPlayer) < fov / 2f)
             {
-
-                //currentState = State.ChaseTarget;
-                //currentSpeed = chaseSpeed;
-
-
-                //-----------------------  USE ONLY THIS IF YOU DO NOT WANT VISIBLE FOV -----------------//
-                RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, dirToPlayer, viewDistance);
+                RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, dirToPlayer, viewDistance, layerMask);
                 if(raycastHit2D.collider != null)
                 {
-                    //Something was hit
+                    Debug.Log(raycastHit2D.collider.tag);
 
-                    //currentState = State.ChaseTarget;
-                    //currentSpeed = chaseSpeed;
-
-
-                    //Doesn't work for some reason (tried get component, gameobject == target gameobject, and tags)
-                    if (raycastHit2D.collider.gameObject.GetComponent<PlayerController>() != null) //Checks if the object hit has the player script
+                    if (raycastHit2D.collider.tag == "Player")
                     {
                         //Player hit
-
-                        Debug.Log("Player hit");
-
-                        //currentState = State.ChaseTarget;
-                        //currentSpeed = chaseSpeed;
-                    }
-                    else
-                    {
-                        //Hit something else
+                        currentState = State.ChaseTarget;
+                        currentSpeed = chaseSpeed;
                     }
                 }
             }
