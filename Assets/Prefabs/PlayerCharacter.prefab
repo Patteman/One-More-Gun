@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1016602996466354933}
   - component: {fileID: 1016602996466354922}
   - component: {fileID: 796092515071658176}
+  - component: {fileID: 8645225046737465358}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -32,6 +33,7 @@ Transform:
   m_LocalScale: {x: 80, y: 80, z: 0}
   m_Children:
   - {fileID: 1483240286210376050}
+  - {fileID: 1540500770050896644}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -102,6 +104,12 @@ MonoBehaviour:
   maxHealth: 100
   hpSlider: {fileID: 0}
   testText: {fileID: 0}
+  inventorySlots: 0
+  moveWeaponsBy: 0
+  playerHand: {fileID: 0}
+  inventoryGameObject: {fileID: 0}
+  invTestArr: 
+  gs: []
 --- !u!50 &1016602996466354922
 Rigidbody2D:
   serializedVersion: 4
@@ -149,6 +157,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.01}
   m_EdgeRadius: 0
+--- !u!114 &8645225046737465358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016602996466354923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5287371e0bd5444b6bbf6ab25cd737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySlots: 0
+  moveWeaponsBy: 0
+  playerHand: {fileID: 7921958950901473726}
+  inventoryGameObject: {fileID: 4776886780354274289}
+  testyListyyInt: 
+--- !u!1 &4776886780354274289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1540500770050896644}
+  m_Layer: 0
+  m_Name: InventoryObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1540500770050896644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776886780354274289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1000, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1016602996466354935}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7921958950901473726
 GameObject:
   m_ObjectHideFlags: 0

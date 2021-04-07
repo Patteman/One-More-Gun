@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,15 @@ public class PlayerScript : MonoBehaviour
     public Slider hpSlider;
     public Text testText;
 
+    [Header("Weapons and Inventory")]
+    public int inventorySlots;
+    public float moveWeaponsBy;
+    public GameObject playerHand;
+    public GameObject inventoryGameObject;
+    private int inventoryIndex;
+    private List<GameObject> inventory;
+    public int[] invTestArr;
+
     //Private
     private Vector2 movement;
 
@@ -23,9 +33,12 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        
+        inventory = new List<GameObject>();
+        inventoryIndex = inventory.Count;
     }
 
+    
+    
     private void ManageHealth()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -44,37 +57,23 @@ public class PlayerScript : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         ManageHealth();
-
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            IncreaseHealth();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            DecreaseHealth();
-        }
-
+        
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gs = gameObject.GetComponentsInChildren<GunScript>();
-
-           
-
-            GunScript daGunScript = GetComponentInChildren<GunScript>();
+            
+            GunScript daGunScript = playerHand.GetComponent<GunScript>();
 
             if(daGunScript != null)
             {
-                Debug.Log("YEEEEEEEEEEEEEEEEEE");
                 daGunScript.Shoot();
             }
             else if(daGunScript == null)
             {
-                Debug.Log("Ah, piss");
             }
-            
         }
-
+        
     }
 
     private void IncreaseHealth()
@@ -82,9 +81,9 @@ public class PlayerScript : MonoBehaviour
         currentHealth += 10;
     }
 
-    private void DecreaseHealth()
+    private void DecreaseHealth(float damageTaken)
     {
-        currentHealth -= 10;
+        currentHealth -= damageTaken;
     }
 
     private void FixedUpdate()
