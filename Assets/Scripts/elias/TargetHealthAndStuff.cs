@@ -7,11 +7,12 @@ public class TargetHealthAndStuff : MonoBehaviour
 {
     public int health;
     public bool poisoned;
+    float poisonInterval;
     float poisonTimer;
 
     void Start()
     {
-
+        poisonInterval = 5;
     }
 
     // Update is called once per frame
@@ -33,19 +34,19 @@ public class TargetHealthAndStuff : MonoBehaviour
     }
     private void HealthDrain()
     {
-        poisonTimer += Time.deltaTime;
-        StartCoroutine(DrainHealth());
-        if (poisonTimer >= 5)
+        poisonInterval += Time.deltaTime;
+        
+        if (poisonInterval >= 0.3)
+        {
+            poisonInterval = 0;
+            health--;
+        }
+        poisonTimer+=Time.deltaTime;
+        if (poisonTimer >= 10)
         {
             poisonTimer = 0;
             poisoned = false;
         }
-        Debug.Log(Time.deltaTime);
     }
-
-    IEnumerator DrainHealth()
-    {
-        health -= 1;
-        yield return new WaitForSeconds(3f);
-    }
-}
+    
+}//Thanks to David Täljsten for helping me figure out the health drainage system

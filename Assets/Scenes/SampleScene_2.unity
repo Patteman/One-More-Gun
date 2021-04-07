@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 434788878}
   m_Layer: 0
   m_Name: Wall3
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 526925511}
   m_Layer: 0
   m_Name: 'Wall4 '
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -740,6 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  poisoned: 0
 --- !u!50 &678501562
 Rigidbody2D:
   serializedVersion: 4
@@ -774,7 +775,7 @@ GameObject:
   - component: {fileID: 680023853}
   m_Layer: 0
   m_Name: Wall1
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1063,6 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  poisoned: 0
 --- !u!50 &1097142546
 Rigidbody2D:
   serializedVersion: 4
@@ -1097,7 +1099,7 @@ GameObject:
   - component: {fileID: 1514920395}
   m_Layer: 0
   m_Name: Wall2
-  m_TagString: Untagged
+  m_TagString: WALL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1371,6 +1373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  poisoned: 0
 --- !u!50 &1658138157
 Rigidbody2D:
   serializedVersion: 4
@@ -1505,6 +1508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  poisoned: 0
 --- !u!50 &1779542454
 Rigidbody2D:
   serializedVersion: 4
