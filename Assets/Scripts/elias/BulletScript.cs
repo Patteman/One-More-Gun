@@ -15,7 +15,8 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        lifetime = 0f;
+        lifetime = 0f;       
+        maxLifeTime = 1f;    
     }
     
     public void Setup(Vector3 dir)
@@ -25,7 +26,7 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
-        float speed = 20f; //FIX
+        float speed = 10f; //FIX
         //transform.position += direction * speed * Time.deltaTime; //the position changes
         rb.velocity = direction * speed;
         lifetime+=Time.deltaTime;
@@ -36,15 +37,19 @@ public class BulletScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "TARGET")
+        if (collision.gameObject.tag == "TARGET" || collision.gameObject.tag == "Player")
         {
             if (type == typeOfBullet.rocket)
             {
                 GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             }
-                
+
             Destroy(gameObject);
+
+            //Call collision target's take dmg function
         }
+
+        Debug.Log("Collision");
     }
     
     private void OnTriggerEnter2D(Collider2D other)
