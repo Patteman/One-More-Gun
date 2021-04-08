@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int nrOfAttacks;
+    public int maxNrOfAttacks;
+
+    protected virtual void Start()
     {
-        
+        nrOfAttacks = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
         }
+        if (nrOfAttacks >= maxNrOfAttacks)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public virtual void Attack()
     {
-
+        nrOfAttacks++;
     }
 }

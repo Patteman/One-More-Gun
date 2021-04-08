@@ -94,5 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd261bb42712c1f4097e7b291d0750ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nrOfAttacks: 0
+  maxNrOfAttacks: 50
   bullet: {fileID: 8211641499035916651, guid: 338d58a739fbc01489a3939ce5c22284, type: 3}
-  ammunitionAmount: 50
