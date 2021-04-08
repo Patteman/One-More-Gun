@@ -16,14 +16,19 @@ public class PlayerScript : MonoBehaviour
     public Slider hpSlider;
     public Text testText;
 
+    public GameObject playerHand;
+
+    /*
     [Header("Weapons and Inventory")]
     public int inventorySlots;
     public float moveWeaponsBy;
-    public GameObject playerHand;
+    
     public GameObject inventoryGameObject;
     private int inventoryIndex;
     private List<GameObject> inventory;
     public int[] invTestArr;
+
+    */
 
     //Private
     private Vector2 movement;
@@ -33,8 +38,8 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        inventory = new List<GameObject>();
-        inventoryIndex = inventory.Count;
+        //inventory = new List<GameObject>();
+        //inventoryIndex = inventory.Count;
     }
 
     
@@ -61,16 +66,19 @@ public class PlayerScript : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            gs = gameObject.GetComponentsInChildren<GunScript>();
-            
-            GunScript daGunScript = playerHand.GetComponent<GunScript>();
-
+            //gs = gameObject.GetComponentsInChildren<GunScript>();
+            Debug.Log("Space pressed");
+            Debug.Log(playerHand.name);
+            GunScript daGunScript = playerHand.GetComponentInChildren<GunScript>();
+           
             if(daGunScript != null)
             {
                 daGunScript.Shoot();
+                Debug.Log("Shoot");
             }
             else if(daGunScript == null)
             {
+                Debug.Log("Gun script not found");
             }
         }
         
