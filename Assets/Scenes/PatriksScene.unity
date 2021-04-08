@@ -363,32 +363,32 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1018508836}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0035100752
+      value: 0.35100752
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0015268872
+      value: 0.11451654
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.000054922104
+      value: -9.009
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0066420427
+      value: 5.841847
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
@@ -466,12 +466,6 @@ MonoBehaviour:
 --- !u!1 &1018508832 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8529860568965291734, guid: c78fb8d707d4d044f80d21db41758847,
-    type: 3}
-  m_PrefabInstance: {fileID: 680688234}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1018508836 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8529860568965291738, guid: c78fb8d707d4d044f80d21db41758847,
     type: 3}
   m_PrefabInstance: {fileID: 680688234}
   m_PrefabAsset: {fileID: 0}
