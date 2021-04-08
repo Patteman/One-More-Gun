@@ -28,7 +28,7 @@ public class GunScript : MonoBehaviour
         }
     }
 
-    void Shoot()
+    public void Shoot()
     {
         //Instantiates a bullet, obtains its script and sets the direction
         GameObject tempBullet = Instantiate(bullet, position, Quaternion.identity);
