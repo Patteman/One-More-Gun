@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     private float objectWidth;
     private float objectHeight;
 
-    public float movementSpeed;
+    //public float movementSpeed;
 
     public bool onSpawn;
 
