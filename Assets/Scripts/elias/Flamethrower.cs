@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flamethrower : MonoBehaviour
+public class Flamethrower : Weapon
 {
     public ParticleSystem flameEffect;
     public Transform flameStartPos;
@@ -11,8 +11,9 @@ public class Flamethrower : MonoBehaviour
     Camera mainCam;
     GameObject flame;
     //ParticleSystemRenderer partRend;
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         mainCam = Camera.main; //The main camera is needed to get the world position of the mouse.
         //flameStartPos = new Vector3(transform.position.x + 0.46f, transform.position.y, transform.position.z);
         //flame2.Pause();
@@ -20,26 +21,29 @@ public class Flamethrower : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         position = transform.position;
         //flame2.transform.position = position;
         //flame2.transform.rotation = Quaternion.Euler(0, 0, angle);
         //flameEffect.transform.position = transform.position;
         //flameEffect.transform.rotation = transform.rotation;
-        if (Input.GetMouseButtonDown(0))
-        {
-            //partRend.enabled = true;
-            Fire();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    //partRend.enabled = true;
+        //    Fire();
+        //}
         //else if (Input.GetMouseButtonUp(0))
         //{
         //    flameEffect.Stop(true);
         //}
 
     }
-    void Fire()
+    public override void Attack()
     {
+        base.Attack();
         //Vector3 direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         //direction.Normalize();
         //flame2.Play();

@@ -113,6 +113,11 @@ PrefabInstance:
       propertyPath: flameStartPos
       value: 
       objectReference: {fileID: 814518695250914694}
+    - target: {fileID: 7776414256830619639, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
+        type: 3}
+      propertyPath: maxNrOfAttacks
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d5b1d7379db3e942a5f7cb766a96e55, type: 3}
 --- !u!4 &4907771718191845999 stripped
