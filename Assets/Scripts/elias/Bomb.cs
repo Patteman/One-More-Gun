@@ -13,7 +13,8 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         currentAmount = 0;
-        maxAmount = 5;
+        maxAmount=5;
+        //This script reference is needed because it contains a bool which determines if the bomb has been activated or not.
     }
 
     // Update is called once per frame
@@ -35,10 +36,7 @@ public class Bomb : MonoBehaviour
     {
         //puts out a bomb which gets activated.
         GameObject explosive = Instantiate(objectToDropOrThrow, transform.position, Quaternion.identity);
-
-        //This script reference is needed because it contains a bool which determines if the bomb has been activated or not.
         eScript = explosive.GetComponent<Explosive>();
         eScript.setOff = true;
-        Debug.Log(eScript.setOff);
     }
 }

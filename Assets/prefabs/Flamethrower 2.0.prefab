@@ -97,6 +97,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flamethrower 2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 2349774049816696396, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
+        type: 3}
+      propertyPath: m_TagString
+      value: WEAPON
+      objectReference: {fileID: 0}
     - target: {fileID: 7776414256830619639, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
         type: 3}
       propertyPath: flameEffect
