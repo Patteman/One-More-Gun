@@ -128,6 +128,10 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("You've reached the goal!");
         }
 
+        if (other.gameObject.tag == "Weapon")
+        {
+            Debug.Log("Within range of weapon on ground");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

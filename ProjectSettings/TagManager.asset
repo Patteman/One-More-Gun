@@ -7,6 +7,7 @@ TagManager:
   - BasicProjectiles
   - BasicProtection
   - Walls
+  - Weapon
   layers:
   - Default
   - TransparentFX
