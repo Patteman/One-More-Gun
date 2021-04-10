@@ -25,18 +25,11 @@ public class GunScript : Weapon
     {
         base.Update();
         position = transform.position; //the position should be the position of the gun
-<<<<<<< Updated upstream
-        if (Input.GetMouseButtonDown(0)) //if you press space it should spawn and shoot a bullet
-        {
-            Shoot();
-        }
-=======
-
-        //if (Input.GetMouseButtonDown(0)) //if you click the left mouse button it should spawn and shoot a bullet
+        //if (Input.GetMouseButtonDown(0)) //if you press space it should spawn and shoot a bullet
         //{
-        //    Shoot();
+        //    Attack();
         //}
->>>>>>> Stashed changes
+
     }
 
     public override void Attack()
@@ -54,14 +47,6 @@ public class GunScript : Weapon
         {
             //aims bullet at mouse position
             bs.Setup(direction);
-
-            //counts amount of bullets fired, if it's above the maximum, the gun disappears
-            //bulletCounter++;
-            //if (bulletCounter >= ammunitionAmount)
-            //{
-            //    Destroy(gameObject);
-            //    bulletCounter = 0;
-            //}
         }
     }
 }

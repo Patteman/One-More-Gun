@@ -34,7 +34,6 @@ public class BulletScript : MonoBehaviour
         float speed = 20f;
         rb.velocity = direction * speed;
 
-
         lifetime += Time.deltaTime;
         if (lifetime >= maxLifeTime)
         {

@@ -102,6 +102,22 @@ PrefabInstance:
       propertyPath: m_TagString
       value: WEAPON
       objectReference: {fileID: 0}
+    - target: {fileID: 4647312665838018378, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9ae68a2ced623ea4fa230cdbbf169306,
+        type: 3}
+    - target: {fileID: 4647312665838018378, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647312665838018378, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7776414256830619639, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
         type: 3}
       propertyPath: flameEffect
