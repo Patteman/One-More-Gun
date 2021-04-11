@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAgentTest : MonoBehaviour
 {
     //States for enemy behavior
     private enum State
@@ -30,13 +31,17 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float viewDistance;
     private FieldOfView fieldOfView;
 
+    [SerializeField] public LayerMask layerMask;
+
     [Header("Stats")]
     public float maxHealth = 100;
     public float health;
     public float fireRate = 1f;
     private float fireCooldown = 0f;
 
-    [SerializeField] public LayerMask layerMask;
+    private NavMeshAgent agent;
+
+    private float turnSpeed;                //New
 
     private void Start()
     {
@@ -44,7 +49,7 @@ public class EnemyAI : MonoBehaviour
         roamPosition = GetRoamingPosition();
 
         roamSpeed = 1f;
-        chaseSpeed = 2f;
+        chaseSpeed = 3.5f;
         currentSpeed = roamSpeed;
 
         currentState = State.Roaming;
@@ -58,6 +63,13 @@ public class EnemyAI : MonoBehaviour
         fieldOfView = Instantiate(fovPrefab, null).GetComponent<FieldOfView>();
         fieldOfView.SetFOV(fov);
         fieldOfView.SetViewDistance(viewDistance);
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        //Rotation
+        turnSpeed = 150f;     //NEW
     }
 
     private void Update()
@@ -66,22 +78,41 @@ public class EnemyAI : MonoBehaviour
         {
             return;
         }
-        
+
+        agent.speed = currentSpeed;
+
         //Turns so enemy looks as target
         var dir = lookAt - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;                //NEW COMMETNED
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);    //NEW COMMENTED
+
+
+
+
+        //Dette virker for modellen, men FOV'en er independent               //NEW
+        //Vector3 myLocation = transform.position;
+        //Vector3 targetLocation = roamPosition;
+        //targetLocation.z = myLocation.z;
+
+        //Vector3 vectorToTarget = targetLocation - myLocation;
+        //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
+
+        //Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        //    From                  To                    Speed
+
 
         //State machine
         switch (currentState)
         {
             default:
             case State.Roaming:
-                //Move to target (roamPos)
-                Vector3 direction = roamPosition - transform.position;
-                transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);
+                //Move to target using the agent component(roamPos)
+                agent.SetDestination(roamPosition);
 
-                lookAt = roamPosition;
+                lookAt = roamPosition;    
+                //lookAt = agent.nextPosition;   //NEW
+
                 //Checks if player is in range
                 FindTarget();
 
@@ -94,10 +125,10 @@ public class EnemyAI : MonoBehaviour
 
             case State.ChaseTarget:
                 //Move to target (player)
-                Vector3 targetdirection = target.transform.position - transform.position;
-                transform.Translate(targetdirection.normalized * currentSpeed * Time.deltaTime, Space.World);
+                agent.SetDestination(target.position);
 
                 lookAt = target.transform.position;
+
                 //Check if target is out of range
                 DropTarget();
 
@@ -174,8 +205,8 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, target.transform.position) > dropRange)
         {
             GetRoamingPosition();
-            currentSpeed = roamSpeed;
             currentState = State.Roaming;
+            currentSpeed = roamSpeed;
         }
     }
 
