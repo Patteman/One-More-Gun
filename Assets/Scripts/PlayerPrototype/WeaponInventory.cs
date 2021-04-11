@@ -7,19 +7,15 @@ public class WeaponInventory : MonoBehaviour
 {
 
     [Header("Weapons and Inventory")]
-    public int inventorySlots;
-    public float moveWeaponsBy;
     public GameObject playerHand;
-    public GameObject inventoryGameObject;
-    private int inventoryIndex;
 
-    private List<GameObject> inventory;
+    private List<GameObject> inventoryList;
 
     public int selectedWeapon = 0;
     
     void Start()
     {
-        inventory = new List<GameObject>();//old_code
+        inventoryList = new List<GameObject>();
 
         SelectWeapon();
     }
@@ -55,7 +51,20 @@ public class WeaponInventory : MonoBehaviour
         {
             SelectWeapon();
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+
+        }
+
+    }
+
+    private void DropWeapon()
+    {
+        foreach(Transform weapon in playerHand.transform)
+        {
+
+        }
     }
 
     private void SelectWeapon()
@@ -86,21 +95,18 @@ public class WeaponInventory : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
                
-        if (col.transform.tag == "Gun" && !inventory.Contains(col.transform.gameObject))
+        if (col.transform.tag == "Gun" && !inventoryList.Contains(col.transform.gameObject))
         {
-            if (inventory.Count == 0)
-            {
-                col.gameObject.transform.parent = playerHand.transform;
-                col.gameObject.transform.position = playerHand.transform.position;
-                col.gameObject.transform.rotation = playerHand.transform.rotation;                
-            }
-            else
-            {
-                col.gameObject.transform.parent =inventoryGameObject.transform;
-                col.gameObject.transform.position = inventoryGameObject.transform.position + new Vector3(100*inventory.Count, 0, 0);
-            }
-            inventory.Add(col.gameObject);
+            col.gameObject.transform.parent = playerHand.transform;
+            col.gameObject.transform.position = playerHand.transform.position;
+            col.gameObject.transform.rotation = playerHand.transform.rotation;                
+          
+            inventoryList.Add(col.gameObject);
 
+            SetWeaponPosition(col.transform);
+            SelectWeapon();
         }
+
+        Debug.Log(col.gameObject.name);
     }    
 }
