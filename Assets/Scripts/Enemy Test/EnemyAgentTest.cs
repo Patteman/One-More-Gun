@@ -31,15 +31,17 @@ public class EnemyAgentTest : MonoBehaviour
     [SerializeField] private float viewDistance;
     private FieldOfView fieldOfView;
 
+    [SerializeField] public LayerMask layerMask;
+
     [Header("Stats")]
     public float maxHealth = 100;
     public float health;
     public float fireRate = 1f;
     private float fireCooldown = 0f;
 
-    [SerializeField] public LayerMask layerMask;
-
     private NavMeshAgent agent;
+
+    private float turnSpeed;                //New
 
     private void Start()
     {
@@ -65,6 +67,9 @@ public class EnemyAgentTest : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        //Rotation
+        turnSpeed = 150f;     //NEW
     }
 
     private void Update()
@@ -74,25 +79,36 @@ public class EnemyAgentTest : MonoBehaviour
             return;
         }
 
-        agent.speed = currentSpeed; //NEW
+        agent.speed = currentSpeed;
 
         //Turns so enemy looks as target
         var dir = lookAt - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;                //NEW COMMETNED
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);    //NEW COMMENTED
+
+
+
+
+        //Dette virker for modellen, men FOV'en er independent               //NEW
+        //Vector3 myLocation = transform.position;
+        //Vector3 targetLocation = roamPosition;
+        //targetLocation.z = myLocation.z;
+
+        //Vector3 vectorToTarget = targetLocation - myLocation;
+        //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
+
+        //Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        //    From                  To                    Speed
+
 
         //State machine
         switch (currentState)
         {
             default:
             case State.Roaming:
-                //Move to target (roamPos)
-                //Vector3 direction = roamPosition - transform.position;                                         //NEW COMMENTED
-                //transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);        //NEW COMMENTED
-
-                agent.SetDestination(roamPosition);          //NEW
-
-
+                //Move to target using the agent component(roamPos)
+                agent.SetDestination(roamPosition);
 
                 lookAt = roamPosition;    
                 //lookAt = agent.nextPosition;   //NEW
@@ -109,10 +125,7 @@ public class EnemyAgentTest : MonoBehaviour
 
             case State.ChaseTarget:
                 //Move to target (player)
-                //Vector3 targetdirection = target.transform.position - transform.position;                           //NEW COMMENTED
-                //transform.Translate(targetdirection.normalized * currentSpeed * Time.deltaTime, Space.World);       //NEW COMMENTED
-
-                agent.SetDestination(target.position);                //NEW
+                agent.SetDestination(target.position);
 
                 lookAt = target.transform.position;
 
