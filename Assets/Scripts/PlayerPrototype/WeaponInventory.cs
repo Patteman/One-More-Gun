@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponInventory : MonoBehaviour
 {
@@ -13,64 +14,75 @@ public class WeaponInventory : MonoBehaviour
     private int inventoryIndex;
 
     private List<GameObject> inventory;
-    public List<int> testyListyyInt;
+
+    public int selectedWeapon = 0;
     
     void Start()
     {
-        inventory = new List<GameObject>();
-        inventory.Clear();
+        inventory = new List<GameObject>();//old_code
+
+        SelectWeapon();
     }
 
     void Update()
     {
-        Update_Inventory();
-    }
+        int previousSelectedWeapon = selectedWeapon;
 
-    private void Update_Inventory()
-    {
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (selectedWeapon >= playerHand.transform.childCount - 1)
+            {
+                selectedWeapon = 0;
+            }
+            else
+            {
+                selectedWeapon++;
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (inventoryIndex == 0)
-            {                
-                inventoryIndex = inventory.Count;
+            if (selectedWeapon <= 0)
+            {
+                selectedWeapon = playerHand.transform.childCount - 1;
             }
             else
             {
-                inventoryIndex -= 1;
+                selectedWeapon--;
             }
-            Debug.Log("Q"+inventoryIndex+"##"+inventory.Count);
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+
+        if(previousSelectedWeapon != selectedWeapon)
         {
-           
-            if (inventoryIndex == inventory.Count)
+            SelectWeapon();
+        }
+        
+    }
+
+    private void SelectWeapon()
+    {
+        int i = 0;
+        foreach(Transform weapon in playerHand.transform)
+        {
+            if (i == selectedWeapon)
             {
-                inventoryIndex = 0;
+                weapon.gameObject.SetActive(true);
+                SetWeaponPosition(weapon);
             }
             else
             {
-                inventoryIndex += 1;
+                weapon.gameObject.SetActive(false);
             }
 
-            Debug.Log("E"+inventoryIndex + "##" + inventory.Count);
-        }
-        /*
-        foreach (GameObject weapon in inventory)
-        {
-            if (weapon != inventory[inventoryIndex])
-            {
-                weapon.transform.position = inventoryGameObject.transform.position;
-            }
-        }*/
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            PrintTestArr();
-            //GetInventoryPositions();
+            i++;
         }
     }
 
+    private void SetWeaponPosition(Transform weaponTransform)
+    {
+        weaponTransform.position = new Vector3(playerHand.transform.position.x , playerHand.transform.position.y , playerHand.transform.position.z);
+        weaponTransform.rotation = playerHand.transform.rotation;
+    }
+    
     void OnTriggerEnter2D(Collider2D col)
     {
                
@@ -90,37 +102,5 @@ public class WeaponInventory : MonoBehaviour
             inventory.Add(col.gameObject);
 
         }
-        //PrintTestArr();
-       
-    }
-
-    private void GetInventoryPositions()
-    {
-        /*
-        foreach(GameObject wep in inventory)
-        {
-            Debug.Log(wep.transform.position);
-        }*/
-
-
-        for(int i =1; i<= inventory.Count; i++)
-        {
-            BoxCollider2D rb = inventory[i].GetComponent<BoxCollider2D>();
-            //rb.
-        }
-
-    }
-
-    private void PrintTestArr()
-    {
-        string outPut = "";
-
-        foreach (GameObject varInt in inventory)
-        {
-            outPut = outPut + " " + varInt.name;
-        }
-        Debug.Log(outPut+" "+inventory.Count);
-    }
-
-
+    }    
 }
