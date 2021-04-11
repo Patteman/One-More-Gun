@@ -25,10 +25,11 @@ public class GunScript : Weapon
     {
         base.Update();
         position = transform.position; //the position should be the position of the gun
-        if (Input.GetMouseButtonDown(0)) //if you press space it should spawn and shoot a bullet
-        {
-            Attack();
-        }
+        //if (Input.GetMouseButtonDown(0)) //if you press space it should spawn and shoot a bullet
+        //{
+        //    Attack();
+        //}
+
     }
 
     public override void Attack()
@@ -46,7 +47,6 @@ public class GunScript : Weapon
         {
             //aims bullet at mouse position
             bs.Setup(direction);
-            
         }
     }
 }
