@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2671860496830171445}
   m_Layer: 0
   m_Name: Shotgun
-  m_TagString: Untagged
+  m_TagString: WEAPON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,6 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0260e6d3cb0252d4f8f5f77e0c9b1dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnpoint: {fileID: 0}
-  impact: {fileID: 0}
-  maxShots: 5
+  nrOfAttacks: 0
+  maxNrOfAttacks: 6
+  damageAmount: 15

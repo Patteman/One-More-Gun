@@ -141,4 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878069e014713bf4e96994232d9b29e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nrOfAttacks: 0
+  maxNrOfAttacks: 5
   objectToDropOrThrow: {fileID: 2485085966112309011}

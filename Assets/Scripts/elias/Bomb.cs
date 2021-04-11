@@ -2,43 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Bomb : Weapon
 {
     public GameObject objectToDropOrThrow;
     Explosive eScript;
 
-    int maxAmount;
-    int currentAmount;
+    //int maxAmount;
+    //int currentAmount;
 
-    void Start()
+    protected override void Start()
     {
-        currentAmount = 0;
-        maxAmount = 5;
+        base.Start();
+        //currentAmount = 0;
+        //maxAmount=5;
+        //This script reference is needed because it contains a bool which determines if the bomb has been activated or not.
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        //Click left mouse button to drop a bomb. The amount of bombs you've used will go up by one.
-        if (Input.GetMouseButtonDown(0))
-        {
-            DropObject(objectToDropOrThrow);
-            currentAmount++;
-        }
-        //If the maximum amount has passed, this weapon will (should) be removed from your inventory.
-        if (currentAmount >= maxAmount)
-        {
-            Destroy(gameObject);
-        }
+        base.Update();
+        ////Click left mouse button to drop a bomb. The amount of bombs you've used will go up by one.
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    DropObject(objectToDropOrThrow);
+        //    currentAmount++;
+        //}
+        ////If the maximum amount has passed, this weapon will (should) be removed from your inventory.
+        //if (currentAmount >= maxAmount)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
-    void DropObject(GameObject gameobj)
+    public override void Attack()
     {
-        //puts out a bomb which gets activated.
+        base.Attack();
         GameObject explosive = Instantiate(objectToDropOrThrow, transform.position, Quaternion.identity);
-
-        //This script reference is needed because it contains a bool which determines if the bomb has been activated or not.
         eScript = explosive.GetComponent<Explosive>();
         eScript.setOff = true;
-        Debug.Log(eScript.setOff);
     }
+
+    //void DropObject(GameObject gameobj)
+    //{
+    //    //puts out a bomb which gets activated.
+    //    GameObject explosive = Instantiate(objectToDropOrThrow, transform.position, Quaternion.identity);
+    //    eScript = explosive.GetComponent<Explosive>();
+    //    eScript.setOff = true;
+    //}
 }
