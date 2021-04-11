@@ -7,7 +7,7 @@ public class WeaponInventory : MonoBehaviour
 {
 
     [Header("Weapons and Inventory")]
-    public GameObject playerHand;
+    public GameObject playerHand, dropLocation;
 
     private List<GameObject> inventoryList;
 
@@ -54,17 +54,31 @@ public class WeaponInventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-
+            DropWeapon();
         }
 
     }
 
     private void DropWeapon()
     {
-        foreach(Transform weapon in playerHand.transform)
+        int i = 0;
+        foreach (Transform weapon in playerHand.transform)
         {
-
+            if(weapon.gameObject.active == false)
+            {
+                selectedWeapon = i;
+            }
+            else if(weapon.gameObject.active == true)
+            {
+                weapon.parent = null;
+                weapon.position = dropLocation.transform.position;
+                inventoryList.Remove(weapon.gameObject);
+                break;
+            }
+            i++;
         }
+
+        SelectWeapon();
     }
 
     private void SelectWeapon()
