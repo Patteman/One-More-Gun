@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3031444834697893290}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: WEAPON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,5 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486ea182e125fff46b2c7a2d0f3bd0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nrOfAttacks: 0
+  maxNrOfAttacks: 5
   damageAmount: 5
-  maxAttackAmount: 10

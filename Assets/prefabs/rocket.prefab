@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -416688991284281497}
   m_Layer: 0
   m_Name: rocket
-  m_TagString: Untagged
+  m_TagString: BasicProjectiles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6949186392122410642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.1635118, y: -1.2636726, z: -7.235171}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,9 +73,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4d49f07440df19f43b735f9d5c0600ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3be27d1f5c17d5749b21fbdf778e6af4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.45, y: 0.45}
@@ -100,7 +100,6 @@ MonoBehaviour:
   maxLifeTime: 3
   type: 1
   rb: {fileID: -2935272467986179702}
-  damageAmount: 30
   explosionEffect: {fileID: 5543081865606710270, guid: bb3a30f09c835814780a64c9e91323d7,
     type: 3}
 --- !u!50 &-2935272467986179702
@@ -123,7 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &-416688991284281497
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +140,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.45, y: 0.45}
+    oldSize: {x: 0.43, y: 0.1}
     newSize: {x: 0.45, y: 0.45}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

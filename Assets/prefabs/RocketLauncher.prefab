@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7726699861513652915}
   m_Layer: 0
   m_Name: RocketLauncher
-  m_TagString: Untagged
+  m_TagString: WEAPON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,5 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd261bb42712c1f4097e7b291d0750ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nrOfAttacks: 0
+  maxNrOfAttacks: 2
   bullet: {fileID: 6949186392122410642, guid: 945885859e983c049a9fac65dc7643a4, type: 3}
-  ammunitionAmount: 3
