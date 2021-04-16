@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+//Comments should not be after code but above
+
 public class EnemyAgentTest : MonoBehaviour
 {
     //States for enemy behavior

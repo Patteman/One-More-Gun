@@ -98,7 +98,6 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Gun script not found");
             }
         }
-        
     }
 
     private void IncreaseHealth()
