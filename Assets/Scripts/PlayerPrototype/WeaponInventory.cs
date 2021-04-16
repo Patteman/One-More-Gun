@@ -108,7 +108,9 @@ public class WeaponInventory : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D col)
     {
-               
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+
         if (col.transform.tag == "Gun" && !inventoryList.Contains(col.transform.gameObject))
         {
             col.gameObject.transform.parent = playerHand.transform;
@@ -120,7 +122,7 @@ public class WeaponInventory : MonoBehaviour
             SetWeaponPosition(col.transform);
             SelectWeapon();
         }
-
+        }
         Debug.Log(col.gameObject.name);
     }    
 }
