@@ -444,7 +444,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.61}
+    oldSize: {x: 0.24, y: 0.16}
     newSize: {x: 2.79, y: 2.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -674,7 +674,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.61}
+    oldSize: {x: 0.24, y: 0.16}
     newSize: {x: 2.79, y: 2.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1187,7 +1187,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.61}
+    oldSize: {x: 0.24, y: 0.16}
     newSize: {x: 2.79, y: 2.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1285,7 +1285,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.61}
+    oldSize: {x: 0.24, y: 0.16}
     newSize: {x: 2.79, y: 2.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1317,7 +1317,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.61}
+    oldSize: {x: 0.24, y: 0.16}
     newSize: {x: 2.79, y: 2.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1446,6 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a362474ff65aa4aabefc6eedac2ddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatingText: {fileID: 0}
 --- !u!102 &1643232031
 TextMesh:
   serializedVersion: 3
@@ -1622,7 +1623,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.61}
+    oldSize: {x: 0.24, y: 0.16}
     newSize: {x: 2.79, y: 2.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1749,7 +1750,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.79, y: 2.61}
+    oldSize: {x: 0.24, y: 0.16}
     newSize: {x: 2.79, y: 2.61}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1862,12 +1863,12 @@ PrefabInstance:
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.75
+      value: -12.16
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.21
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
