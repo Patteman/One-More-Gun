@@ -98,7 +98,6 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Gun script not found");
             }
         }
-        
     }
 
     private void IncreaseHealth()
@@ -126,11 +125,6 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Finish")
         {
             Debug.Log("You've reached the goal!");
-        }
-
-        if (other.gameObject.tag == "Weapon")
-        {
-            Debug.Log("Within range of weapon on ground");
         }
     }
 

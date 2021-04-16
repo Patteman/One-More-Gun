@@ -28,10 +28,12 @@ public class MeleeAtk : Weapon
         if (Input.GetMouseButtonUp(0))
             isAttacking = false;
 
+        //In the future this should be replaced by an animation,
+        //or a more appropriate visual representation of the player character using the sword or knife to attack an enemy.
         if (isAttacking == false)
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        if (isAttacking == true)
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        if (isAttacking == true)
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
     }
 
     public override void Attack()

@@ -55,6 +55,11 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (collision.gameObject.tag == "BasicProtection")
+        {
+            Destroy(gameObject);
+        }
+
         //If you hit something the bullet should realistically not keep travelling.
         //if (collision.gameObject.tag == "TARGET" || collision.gameObject.tag == "WALL")
         //{

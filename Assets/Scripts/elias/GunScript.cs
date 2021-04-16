@@ -7,6 +7,7 @@ public class GunScript : Weapon
 {
     Vector3 position;
     public GameObject bullet;
+    public Transform bulletSpawnPoint;
     Quaternion rotation=Quaternion.identity;
     Camera maincam;
     
@@ -37,7 +38,7 @@ public class GunScript : Weapon
         base.Attack();
 
         //Instantiates a bullet, obtains its script and sets the direction
-        GameObject tempBullet = Instantiate(bullet, position, Quaternion.identity);
+        GameObject tempBullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
         BulletScript bs = tempBullet.GetComponent<BulletScript>();
         //direction is towards where you click
         Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position;
