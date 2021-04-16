@@ -7,42 +7,35 @@ public class ProtectionScript : MonoBehaviour
     public float coverHealth;
     public float maxHealth;
 
-
     void Start()
     {
         coverHealth = maxHealth;
+
+        gameObject.AddComponent<BoxCollider2D>();
+
+        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
     
     void Update()
     {
-
+        
         if (coverHealth <= 0)
         {
             Destroy(gameObject);
-            
+
         }
     }
 
-    void Collision(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "BasicProjectiles")
         {
-            coverHealth -= 25;
+            coverHealth -= 10f;
         }
-    }
 
-    void OnCollisionEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "BasicProjectiles")
-        {
-            coverHealth -= 25f;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "BasicProjectiles")
+        else if (other.gameObject.tag == "RocketProjectiles")
         {
             coverHealth -= 25f;
         }
