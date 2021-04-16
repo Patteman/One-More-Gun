@@ -123,7 +123,10 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        if (other.gameObject.tag == "Finish")
+        {
+            Debug.Log("You've reached the goal!");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
