@@ -7,46 +7,26 @@ public class Bomb : Weapon
     public GameObject objectToDropOrThrow;
     Explosive eScript;
 
-    //int maxAmount;
-    //int currentAmount;
-
     protected override void Start()
     {
+        //Inherits start method from Weapon.cs
         base.Start();
-        //currentAmount = 0;
-        //maxAmount=5;
-        //This script reference is needed because it contains a bool which determines if the bomb has been activated or not.
     }
 
     // Update is called once per frame
     protected override void Update()
     {
+        //Inherits update method from Weapon.cs
         base.Update();
-        ////Click left mouse button to drop a bomb. The amount of bombs you've used will go up by one.
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    DropObject(objectToDropOrThrow);
-        //    currentAmount++;
-        //}
-        ////If the maximum amount has passed, this weapon will (should) be removed from your inventory.
-        //if (currentAmount >= maxAmount)
-        //{
-        //    Destroy(gameObject);
-        //}
     }
     public override void Attack()
     {
+        //Inherits Attack method from Weapon.cs
         base.Attack();
+
+        //Instantiates an explosive with the Explosive script, and sets the explosive off.
         GameObject explosive = Instantiate(objectToDropOrThrow, transform.position, Quaternion.identity);
         eScript = explosive.GetComponent<Explosive>();
         eScript.setOff = true;
     }
-
-    //void DropObject(GameObject gameobj)
-    //{
-    //    //puts out a bomb which gets activated.
-    //    GameObject explosive = Instantiate(objectToDropOrThrow, transform.position, Quaternion.identity);
-    //    eScript = explosive.GetComponent<Explosive>();
-    //    eScript.setOff = true;
-    //}
 }
