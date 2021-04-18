@@ -18,19 +18,6 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject playerHand;
 
-    /*
-    [Header("Weapons and Inventory")]
-    public int inventorySlots;
-    public float moveWeaponsBy;
-    
-    public GameObject inventoryGameObject;
-    private int inventoryIndex;
-    private List<GameObject> inventory;
-    public int[] invTestArr;
-
-    */
-
-    //Private
     private Vector2 movement;
 
 
@@ -38,12 +25,9 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        //inventory = new List<GameObject>();
-        //inventoryIndex = inventory.Count;
+
     }
 
-    
-    
     private void ManageHealth()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -67,8 +51,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //gs = gameObject.GetComponentsInChildren<GunScript>();
-            Debug.Log("Space pressed");
-            Debug.Log(playerHand.name);
+           
             GunScript daGunScript = playerHand.GetComponentInChildren<GunScript>();
            
             if(daGunScript != null)
