@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8110133182669366490}
   - component: {fileID: 5638887131165548804}
   - component: {fileID: 4031744190892163499}
+  - component: {fileID: 6921577459488727001}
   m_Layer: 0
   m_Name: theBomb
   m_TagString: Untagged
@@ -97,6 +98,25 @@ MonoBehaviour:
   setOff: 0
   expEffect: {fileID: 5543081865606710270, guid: bb3a30f09c835814780a64c9e91323d7,
     type: 3}
+--- !u!95 &6921577459488727001
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485085966112309011}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14f69ee324da30246b77f02729bd5e31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9118233544356679112
 GameObject:
   m_ObjectHideFlags: 0
