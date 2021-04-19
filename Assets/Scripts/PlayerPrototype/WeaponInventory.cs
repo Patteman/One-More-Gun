@@ -12,7 +12,11 @@ public class WeaponInventory : MonoBehaviour
     private List<GameObject> inventoryList;
 
     public int selectedWeapon = 0;
-    
+
+    public FloatingText floatingText;
+
+    private GameObject weaponYouCanEquip;
+
     void Start()
     {
         inventoryList = new List<GameObject>();
@@ -47,7 +51,7 @@ public class WeaponInventory : MonoBehaviour
             }
         }
 
-        if(previousSelectedWeapon != selectedWeapon)
+        if (previousSelectedWeapon != selectedWeapon)
         {
             SelectWeapon();
         }
@@ -57,6 +61,11 @@ public class WeaponInventory : MonoBehaviour
             DropWeapon();
         }
 
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            EquipWeapon();
+        }
     }
 
     private void DropWeapon()
@@ -64,11 +73,11 @@ public class WeaponInventory : MonoBehaviour
         int i = 0;
         foreach (Transform weapon in playerHand.transform)
         {
-            if(weapon.gameObject.active == false)
+            if (weapon.gameObject.activeSelf == false)
             {
                 selectedWeapon = i;
             }
-            else if(weapon.gameObject.active == true)
+            else if (weapon.gameObject.activeSelf == true)
             {
                 weapon.parent = null;
                 weapon.position = dropLocation.transform.position;
@@ -84,7 +93,7 @@ public class WeaponInventory : MonoBehaviour
     private void SelectWeapon()
     {
         int i = 0;
-        foreach(Transform weapon in playerHand.transform)
+        foreach (Transform weapon in playerHand.transform)
         {
             if (i == selectedWeapon)
             {
@@ -100,29 +109,39 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
+    private void EquipWeapon()
+    {
+
+        weaponYouCanEquip.gameObject.transform.parent = playerHand.transform;
+        inventoryList.Add(weaponYouCanEquip);
+
+        SetWeaponPosition(weaponYouCanEquip.transform);
+        SelectWeapon();
+
+    }
+
     private void SetWeaponPosition(Transform weaponTransform)
     {
-        weaponTransform.position = new Vector3(playerHand.transform.position.x , playerHand.transform.position.y , playerHand.transform.position.z);
+        weaponTransform.position = new Vector3(playerHand.transform.position.x, playerHand.transform.position.y, playerHand.transform.position.z);
         weaponTransform.rotation = playerHand.transform.rotation;
     }
-    
+
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-
         if (col.transform.tag == "Gun" && !inventoryList.Contains(col.transform.gameObject))
         {
-            col.gameObject.transform.parent = playerHand.transform;
-            col.gameObject.transform.position = playerHand.transform.position;
-            col.gameObject.transform.rotation = playerHand.transform.rotation;                
-          
-            inventoryList.Add(col.gameObject);
-
-            SetWeaponPosition(col.transform);
-            SelectWeapon();
-        }
+            floatingText.ShowFloatingtext("Press X to eqip");
+            weaponYouCanEquip = col.gameObject;
         }
         Debug.Log(col.gameObject.name);
-    }    
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.transform.tag == "Gun")
+        {
+            floatingText.HideFloatingText();
+            weaponYouCanEquip = null;
+        }
+    }
 }
