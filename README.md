@@ -1,5 +1,4 @@
 # One More Gun
-
 How to run:
 - Download the files or copy them via GitHub
 - Open the files in Unity
