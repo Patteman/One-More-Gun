@@ -10,11 +10,6 @@ public class ProtectionScript : MonoBehaviour
     void Start()
     {
         coverHealth = maxHealth;
-
-        gameObject.AddComponent<BoxCollider2D>();
-
-        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
     
