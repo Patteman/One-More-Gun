@@ -52,10 +52,14 @@ public class BulletScript : MonoBehaviour
             //In the future this should be replaced with the health of the enemies
             TargetHealthAndStuff tHealth = collision.gameObject.GetComponent<TargetHealthAndStuff>();
             tHealth.health -= damageAmount;
+            
+            //If we fire a rocket it should explode and there should be an effect
             if (type == typeOfBullet.rocket)
             {
                 GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             }
+
+            //Bullet should not remain in scene after hitting target
             Destroy(gameObject);
         }
     }

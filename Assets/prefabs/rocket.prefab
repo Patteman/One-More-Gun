@@ -101,7 +101,7 @@ MonoBehaviour:
   type: 1
   rb: {fileID: -2935272467986179702}
   damageAmount: 30
-  explosionEffect: {fileID: 5543081865606710270, guid: bb3a30f09c835814780a64c9e91323d7,
+  explosionEffect: {fileID: 9203354702321040907, guid: 63eb2e464694b184c92c655d553ed738,
     type: 3}
 --- !u!50 &-2935272467986179702
 Rigidbody2D:
