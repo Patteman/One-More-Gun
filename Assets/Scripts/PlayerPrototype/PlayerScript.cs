@@ -32,18 +32,10 @@ public class PlayerScript : MonoBehaviour
 
     private Vector2 movement;
 
-
-    public Component[] gs;
-
     void Start()
     {
-
-
         CalculateScreenSize();
         onSpawn = true;
-
-        //inventory = new List<GameObject>();
-        //inventoryIndex = inventory.Count;
 
     }
 
@@ -69,16 +61,13 @@ public class PlayerScript : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //gs = gameObject.GetComponentsInChildren<GunScript>();
-           
             GunScript daGunScript = playerHand.GetComponentInChildren<GunScript>();
-           
-            if(daGunScript != null)
+
+            try
             {
                 daGunScript.Attack();
-                Debug.Log("Shoot");
             }
-            else if(daGunScript == null)
+            catch
             {
                 Debug.Log("Gun script not found");
             }
@@ -110,6 +99,12 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Finish")
         {
             Debug.Log("You've reached the goal!");
+        }
+        
+        if (other.gameObject.tag == "BasicProjectiles")
+        {
+            Debug.Log(other.gameObject.name);
+            DecreaseHealth(5);
         }
     }
 

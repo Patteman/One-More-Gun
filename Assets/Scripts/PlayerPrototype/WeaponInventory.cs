@@ -9,7 +9,7 @@ public class WeaponInventory : MonoBehaviour
     [Header("Weapons and Inventory")]
     public GameObject playerHand, dropLocation;
 
-    private List<GameObject> inventoryList;
+    public List<GameObject> inventoryList;
 
     public int selectedWeapon = 0;
 
@@ -111,13 +111,18 @@ public class WeaponInventory : MonoBehaviour
 
     private void EquipWeapon()
     {
+        try
+        {
+            weaponYouCanEquip.gameObject.transform.parent = playerHand.transform;
+            inventoryList.Add(weaponYouCanEquip);
 
-        weaponYouCanEquip.gameObject.transform.parent = playerHand.transform;
-        inventoryList.Add(weaponYouCanEquip);
-
-        SetWeaponPosition(weaponYouCanEquip.transform);
-        SelectWeapon();
-
+            SetWeaponPosition(weaponYouCanEquip.transform);
+            SelectWeapon();
+        }
+        catch
+        {
+            Debug.Log("No Weapon to equip");
+        }
     }
 
     private void SetWeaponPosition(Transform weaponTransform)
@@ -130,7 +135,11 @@ public class WeaponInventory : MonoBehaviour
     {
         if (col.transform.tag == "Gun" && !inventoryList.Contains(col.transform.gameObject))
         {
-            floatingText.ShowFloatingtext("Press X to eqip");
+            string message = "Press X to equip {0}";
+            string weapon = col.transform.name;
+            message = string.Format(message, weapon);
+
+            floatingText.ShowFloatingtext(message);
             weaponYouCanEquip = col.gameObject;
         }
         Debug.Log(col.gameObject.name);
