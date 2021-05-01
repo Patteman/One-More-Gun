@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        CalculateScreenSize();
+        //CalculateScreenSize();
         onSpawn = true;
 
     }
