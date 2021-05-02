@@ -6,7 +6,7 @@ public class Explosive : MonoBehaviour
 {
     public bool setOff;
     float timer;
-    public GameObject expEffect;
+    public GameObject explosion;
 
     void Start()
     {
@@ -14,16 +14,17 @@ public class Explosive : MonoBehaviour
         timer = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //anim.SetFloat("Timer", timer);
         if (setOff == true)
         {
-            timer += Time.deltaTime; //adds time in seconds.
-            if (timer >= 5) //if five or more seconds have passed...
+            //Adds time in seconds. If five or more seconds have passed...
+            timer += Time.deltaTime;
+            if (timer >= 5.7)
             {
-                //the bomb will explode (be destroyed) and an explosion effect will play.
-                GameObject explosion = Instantiate(expEffect, transform.position, Quaternion.identity);
+                //...the bomb will explode (be destroyed) and an explosion effect will play.
+                GameObject exp = Instantiate(explosion, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

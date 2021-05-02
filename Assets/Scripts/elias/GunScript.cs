@@ -2,51 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//public enum TypeOfGun { regular, shotgun }
 public class GunScript : Weapon
 {
-    Vector3 position;
     public GameObject bullet;
     public Transform bulletSpawnPoint;
-    Quaternion rotation=Quaternion.identity;
     Camera maincam;
-    
-    //public TypeOfGun type; //not certain if is to be used
-    //int bulletCounter;
-    //public int ammunitionAmount;
 
     protected override void Start()
     {
+        //inherits Start method from Weapon.cs
         base.Start();
+
+        //Sets the camera
         maincam = Camera.main;
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
+        //Inherits Update method from Weapon.cs
         base.Update();
-        position = transform.position; //the position should be the position of the gun
-        //if (Input.GetMouseButtonDown(0)) //if you press space it should spawn and shoot a bullet
-        //{
-        //    Attack();
-        //}
-
     }
 
     public override void Attack()
     {
+        //Inherits Attack method from Weapon.cs
         base.Attack();
 
-        //Instantiates a bullet, obtains its script and sets the direction
+        //Instantiates a bullet and obtains its script.
         GameObject tempBullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
         BulletScript bs = tempBullet.GetComponent<BulletScript>();
-        //direction is towards where you click
+
+        //The direction of the bullet is towards where you click.
         Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position;
         direction.Normalize();
 
+        //If the script exists...
         if (bs != null)
         {
-            //aims bullet at mouse position
+            //...bullet aims at mouse position upon click
             bs.Setup(direction);
         }
     }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -416688991284281497}
   m_Layer: 0
   m_Name: rocket
-  m_TagString: RocketProjectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,12 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6923a752b6c66a64dae7518939d653a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 10
   maxLifeTime: 3
   type: 1
   rb: {fileID: -2935272467986179702}
-  damageAmount: 0
-  explosionEffect: {fileID: 5543081865606710270, guid: bb3a30f09c835814780a64c9e91323d7,
+  damageAmount: 30
+  explosionEffect: {fileID: 9203354702321040907, guid: 63eb2e464694b184c92c655d553ed738,
     type: 3}
 --- !u!50 &-2935272467986179702
 Rigidbody2D:
