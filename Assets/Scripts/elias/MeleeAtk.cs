@@ -8,6 +8,7 @@ public class MeleeAtk : Weapon
 {
     bool isAttacking;
     public int damageAmount;
+    public AudioSource meleeAudioSrc;
 
     protected override void Start()
     {
@@ -40,6 +41,7 @@ public class MeleeAtk : Weapon
     {
         //Inherits Attack method from Weapon.cs
         base.Attack();
+        meleeAudioSrc.Play();
 
         //Sets the attack bool to true
         isAttacking = true;

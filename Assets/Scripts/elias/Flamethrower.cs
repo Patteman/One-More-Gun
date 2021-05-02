@@ -5,6 +5,7 @@ using UnityEngine;
 public class Flamethrower : Weapon
 {
     public ParticleSystem flameEffect;
+    public AudioSource flamethrowerAudioSrc;
 
     //where we want the flame effect to start
     public Transform flameStartPos;
@@ -32,6 +33,7 @@ public class Flamethrower : Weapon
     {
         //Inherits Attack method from Weapon.cs
         base.Attack();
+        flamethrowerAudioSrc.Play();
 
         //Gets the World position of the mouse
         Vector3 mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition); //World position of mouse.
