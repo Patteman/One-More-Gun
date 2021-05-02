@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 9030113794612619976}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: WEAPON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

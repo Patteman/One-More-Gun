@@ -33,7 +33,6 @@ public class BulletScript : MonoBehaviour
     {
         float speed = 20f;
         rb.velocity = direction * speed;
-
         lifetime += Time.deltaTime;
         if (lifetime >= maxLifeTime)
         {
@@ -48,10 +47,12 @@ public class BulletScript : MonoBehaviour
             //In the future this should be replaced with the health of the enemies
             TargetHealthAndStuff tHealth = collision.gameObject.GetComponent<TargetHealthAndStuff>();
             tHealth.health -= damageAmount;
-            if (type == typeOfBullet.rocket)
-            {
-                GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            }
+            Destroy(gameObject);
+        }
+
+        if (type == typeOfBullet.rocket)
+        {
+            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -64,16 +65,6 @@ public class BulletScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        //If you hit something the bullet should realistically not keep travelling.
-        //if (collision.gameObject.tag == "TARGET" || collision.gameObject.tag == "WALL")
-        //{
-        //    if (type == typeOfBullet.rocket)
-        //    {
-        //        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        //    }
-        //    Destroy(gameObject);
-        //}
 
     }
 

@@ -25,6 +25,10 @@ public class Weapon : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Attack();
+        //}
     }
 
     public virtual void Attack()

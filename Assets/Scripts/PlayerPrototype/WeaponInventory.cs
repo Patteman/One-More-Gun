@@ -133,7 +133,9 @@ public class WeaponInventory : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.tag == "Gun" && !inventoryList.Contains(col.transform.gameObject))
+        //Changed your code thingy so the player can pick up more weapons. Kept the old code if this leads to problems.
+        //if (col.transform.tag == "Gun" && !inventoryList.Contains(col.transform.gameObject))
+        if (col.transform.tag == "WEAPON" && !inventoryList.Contains(col.transform.gameObject))
         {
             string message = "Press X to equip {0}";
             string weapon = col.transform.name;
@@ -147,7 +149,8 @@ public class WeaponInventory : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.transform.tag == "Gun")
+        //if (col.transform.tag == "Gun")
+        if(col.transform.tag=="WEAPON")
         {
             floatingText.HideFloatingText();
             weaponYouCanEquip = null;
