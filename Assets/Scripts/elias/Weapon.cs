@@ -17,15 +17,10 @@ public class Weapon : MonoBehaviour
     }
     
     protected virtual void Update()
-    {
-        //If the left mouse button is clicked, attack.
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
-        }
-
+    {       
         //There is a maximum amount of "attacks" one can do with a weapon.
         //If the current number is equal to or larger than that number, the weapon disappears.
+
         if (nrOfAttacks >= maxNrOfAttacks)
         {
             Destroy(gameObject);
