@@ -36,7 +36,7 @@ public class PlayerScript : MonoBehaviour
     {
         //CalculateScreenSize();
         onSpawn = true;
-
+        currentHealth = maxHealth;
     }
 
     private void ManageHealth()
@@ -59,7 +59,7 @@ public class PlayerScript : MonoBehaviour
         ManageHealth();
         
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             GunScript daGunScript = playerHand.GetComponentInChildren<GunScript>();
 

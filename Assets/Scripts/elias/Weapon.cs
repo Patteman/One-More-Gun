@@ -14,11 +14,11 @@ public class Weapon : MonoBehaviour
 
     // Update is called once per frame
     protected virtual void Update()
-    {
+    {/*
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
-        }
+        }*/
         if (nrOfAttacks >= maxNrOfAttacks)
         {
             Destroy(gameObject);
