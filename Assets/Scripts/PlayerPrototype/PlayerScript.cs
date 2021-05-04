@@ -61,11 +61,11 @@ public class PlayerScript : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GunScript daGunScript = playerHand.GetComponentInChildren<GunScript>();
+            Weapon gunScript = playerHand.GetComponentInChildren<Weapon>();
 
             try
             {
-                daGunScript.Attack();
+                gunScript.Attack();
             }
             catch
             {
