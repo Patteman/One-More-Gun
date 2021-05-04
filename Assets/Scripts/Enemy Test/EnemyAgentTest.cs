@@ -11,6 +11,8 @@ public class EnemyAgentTest : MonoBehaviour
     private enum State
     {
         Roaming,
+        Patrolling,
+        Watching,
         ChaseTarget,
         AttackTarget,
     }
@@ -121,6 +123,7 @@ public class EnemyAgentTest : MonoBehaviour
                 float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
                 {
+                    Debug.Log("Target hit");
                     roamPosition = GetRoamingPosition();
                 }
             break;
