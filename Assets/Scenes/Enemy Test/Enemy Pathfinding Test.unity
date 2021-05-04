@@ -2417,7 +2417,7 @@ PrefabInstance:
     - target: {fileID: 7943544854015121258, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7943544854015121258, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
@@ -2469,6 +2469,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 748124824}
+    - target: {fileID: 8008122339713625978, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: AIBehavior
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 810c4386d9a9c5a48a5df3b02a0b769e, type: 3}
 --- !u!1 &519420028
@@ -2567,6 +2572,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 143604875, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1643232029, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -5355,7 +5364,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 12
-      m_TileSpriteIndex: 12
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8672,14 +8681,14 @@ Tilemap:
   - m_RefCount: 6
     m_Data: {fileID: 1077660200836561826, guid: dddce326ef566a9469d0226002f2bdef,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 6187717847525548743, guid: dddce326ef566a9469d0226002f2bdef,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 7365494074633768783, guid: dddce326ef566a9469d0226002f2bdef,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 6187717847525548743, guid: dddce326ef566a9469d0226002f2bdef,
+      type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 5709044573871160046, guid: dddce326ef566a9469d0226002f2bdef,
       type: 3}
