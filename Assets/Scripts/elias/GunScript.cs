@@ -34,6 +34,7 @@ public class GunScript : Weapon
 
         //The direction of the bullet is towards where you click.
         Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position;
+        direction.z = 0;
         direction.Normalize();
 
         //If the script exists...

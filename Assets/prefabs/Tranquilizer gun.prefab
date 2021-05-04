@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8505101651687043709}
   - component: {fileID: 6964617466219082307}
   - component: {fileID: 4737957539419225624}
+  - component: {fileID: -7210186909063939304}
   m_Layer: 0
   m_Name: Tranquilizer gun
   m_TagString: WEAPON
@@ -99,6 +100,37 @@ MonoBehaviour:
   maxNrOfAttacks: 3
   bullet: {fileID: 6978887573400244824, guid: 70c31b6c241c7ff49997eceddab93c74, type: 3}
   bulletSpawnPoint: {fileID: 8531670038453859152}
+--- !u!60 &-7210186909063939304
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3694799280564307413}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.46, y: 0.18}
+    newSize: {x: 0.92, y: 0.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.22999999, y: 0.089999996}
+      - {x: -0.22999999, y: -0.089999996}
+      - {x: 0.08, y: -0.089999996}
+      - {x: 0.22999999, y: -0.02}
+      - {x: 0.22999999, y: 0.06}
+      - {x: 0.16, y: 0.089999996}
 --- !u!1 &4107022396918246415
 GameObject:
   m_ObjectHideFlags: 0

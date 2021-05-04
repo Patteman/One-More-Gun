@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5184392195326593068}
   - component: {fileID: 1897935968148302558}
   - component: {fileID: 4720725591396527197}
+  - component: {fileID: 1436339801566259338}
   m_Layer: 0
   m_Name: Gun2
   m_TagString: WEAPON
@@ -99,6 +100,37 @@ MonoBehaviour:
   maxNrOfAttacks: 15
   bullet: {fileID: 8211641499035916651, guid: 338d58a739fbc01489a3939ce5c22284, type: 3}
   bulletSpawnPoint: {fileID: 7850795661175633372}
+--- !u!60 &1436339801566259338
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29865436204410495}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.25, y: 0.16}
+    newSize: {x: 0.92, y: 0.4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.125, y: 0.08}
+      - {x: -0.125, y: -0.08}
+      - {x: -0.005, y: -0.08}
+      - {x: 0.015, y: -0.06}
+      - {x: 0.125, y: -0.02}
+      - {x: 0.125, y: 0.08}
 --- !u!1 &6567233475766196964
 GameObject:
   m_ObjectHideFlags: 0
