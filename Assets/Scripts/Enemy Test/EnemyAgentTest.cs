@@ -27,11 +27,22 @@ public class EnemyAgentTest : MonoBehaviour
     [Header("Pre-start Settings")]
     [SerializeField] private Behavior AIBehavior;
     
-    [SerializeField] private Transform watchPoint;
-    
     public Transform target;
     public Transform firePoint;
     public EnemyGunScript enemyGunScript;
+
+    [Header("Watch and Patrol Points")]
+    [Tooltip("The point where enemy looks when stading guard")]
+    [SerializeField] private Transform guardPoint;
+    [Tooltip("The first point where enemy moves to when patrolling")]
+    [SerializeField] private Transform patrolPointA;
+    [Tooltip("The point where the enemy looks after moving to the first patrol point")]
+    [SerializeField] private Transform patrolWatchPointA;
+    [Tooltip("The second point where enemy moves to when patrolling")]
+    [SerializeField] private Transform patrolPointB;
+    [Tooltip("The point where the enemy looks after moving to the first patrol point")]
+    [SerializeField] private Transform patrolWatchPointB;
+
 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
@@ -155,6 +166,7 @@ public class EnemyAgentTest : MonoBehaviour
             default:
             case State.StandingGuard:
                 FindTarget();
+                lookAt = guardPoint.position;
                 break;
 
             case State.Patrolling:
