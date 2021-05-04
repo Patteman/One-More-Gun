@@ -11,6 +11,8 @@ public class EnemyAgentTest : MonoBehaviour
     private enum State
     {
         Roaming,
+        Patrolling,
+        Watching,
         ChaseTarget,
         AttackTarget,
     }
