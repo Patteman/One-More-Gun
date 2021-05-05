@@ -40,17 +40,18 @@ public class EnemyAgentTest : MonoBehaviour
     [SerializeField] private Transform patrolWatchPointA;
     [Tooltip("The second point where enemy moves to when patrolling")]
     [SerializeField] private Transform patrolPointB;
-    [Tooltip("The point where the enemy looks after moving to the first patrol point")]
+    [Tooltip("The point where the enemy looks after moving to the second patrol point")]
     [SerializeField] private Transform patrolWatchPointB;
-
+    [Tooltip("How long the enemy waits before moving to next patrol point")]
+    [Range(1,5)]
+    [SerializeField] private float patrolWaitTime = 3f;
 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
     private Vector3 lookAt;
 
     private float currentSpeed;
-    private float roamSpeed;
-    private float chaseSpeed;
+    private float currentPatrolWaitTime;
 
     private bool roam;
     private bool patrol;
@@ -68,6 +69,8 @@ public class EnemyAgentTest : MonoBehaviour
     public float maxHealth = 100;
     public float health;
     public float fireRate = 1f;
+    [SerializeField] private float walkSpeed = 1f;
+    [SerializeField] private float runSpeed = 3.5f;
     private float fireCooldown = 0f;
 
     private NavMeshAgent agent;
@@ -79,9 +82,10 @@ public class EnemyAgentTest : MonoBehaviour
         startingPosition = transform.position;
         roamPosition = GetRoamingPosition();
 
-        roamSpeed = 1f;
-        chaseSpeed = 3.5f;
-        currentSpeed = roamSpeed;
+        walkSpeed = 1f;
+        runSpeed = 3.5f;
+        currentSpeed = walkSpeed;
+        currentPatrolWaitTime = patrolWaitTime;
 
         health = maxHealth;
 
@@ -145,8 +149,6 @@ public class EnemyAgentTest : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);    //NEW COMMENTED
 
 
-
-
         //Dette virker for modellen, men FOV'en er independent               //NEW
         //Vector3 myLocation = transform.position;
         //Vector3 targetLocation = roamPosition;
@@ -170,7 +172,7 @@ public class EnemyAgentTest : MonoBehaviour
                 break;
 
             case State.Patrolling:
-
+                PatrolToA();
                 break;
             
             case State.Roaming:
@@ -260,7 +262,7 @@ public class EnemyAgentTest : MonoBehaviour
                     {
                         //Player hit
                         currentState = State.ChaseTarget;
-                        currentSpeed = chaseSpeed;
+                        currentSpeed = runSpeed;
                     }
                 }
             }
@@ -274,7 +276,7 @@ public class EnemyAgentTest : MonoBehaviour
         {
             GetRoamingPosition();
             currentState = State.Roaming;
-            currentSpeed = roamSpeed;
+            currentSpeed = walkSpeed;
         }
     }
 
@@ -292,6 +294,42 @@ public class EnemyAgentTest : MonoBehaviour
     {
         Destroy(gameObject);
         //Other stuff than just destroy
+    }
+
+    private void PatrolToA()
+    {
+        lookAt = patrolPointA.position;
+        float reachedPositionDistance = 1f;
+        while (Vector3.Distance(transform.position, patrolPointA.position) > reachedPositionDistance)
+        {
+            agent.SetDestination(patrolPointA.position);
+            FindTarget();
+        }
+        PatrolWatch(patrolWatchPointA.position);
+        PatrolToB();
+    }
+
+    private void PatrolToB()
+    {
+        lookAt = patrolPointB.position;
+        float reachedPositionDistance = 1f;
+        while (Vector3.Distance(transform.position, patrolPointB.position) > reachedPositionDistance)
+        {
+            agent.SetDestination(patrolPointB.position);
+            FindTarget();
+        }
+        PatrolWatch(patrolWatchPointB.position);
+        PatrolToA();
+    }
+
+    private void PatrolWatch(Vector3 patrolWatchPoint)
+    {
+        currentPatrolWaitTime = patrolWaitTime;
+        lookAt = patrolWatchPoint;
+        while (patrolWaitTime > 0)
+        {
+           patrolWaitTime -= Time.deltaTime;
+        }
     }
 
 }
