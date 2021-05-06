@@ -6,6 +6,7 @@ public enum TypeOfBullet { bullet, rocket, dart }
 enum BulletOrigin { enemy, player }
 public class BulletScript : MonoBehaviour
 {
+    EnemyAgentTest enemy;
     public float speed = 0;
 
     float lifetime;
@@ -47,6 +48,16 @@ public class BulletScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Enemies")
+        {
+            Destroy(gameObject);
+        }
+
         if (collision.gameObject.tag == "TARGET")
         {
             //This has been made with the test targets in my stage in mind.
