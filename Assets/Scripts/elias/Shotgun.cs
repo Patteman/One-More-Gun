@@ -9,6 +9,8 @@ public class Shotgun : Weapon
     Camera mainCam;
     float distance;
 
+    public AudioSource shotgunAudioSrc;
+
     Vector3 direction;
     
     protected override void Start()
@@ -36,6 +38,7 @@ public class Shotgun : Weapon
     {
         //Inherits Attack method from Weapon.cs
         base.Attack();
+        shotgunAudioSrc.Play();
 
         //makes a RayCastHit from your position, the mouse position, and the maximum distance your "bullet" can travel.
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance);

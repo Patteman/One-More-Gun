@@ -8,6 +8,8 @@ public class GunScript : Weapon
     public Transform bulletSpawnPoint;
     Camera maincam;
 
+    public AudioSource gunSoundSrc;
+
     protected override void Start()
     {
         //inherits Start method from Weapon.cs
@@ -26,15 +28,18 @@ public class GunScript : Weapon
     public override void Attack()
     {
         //Inherits Attack method from Weapon.cs
+        
         base.Attack();
-
         //Instantiates a bullet and obtains its script.
         GameObject tempBullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
         BulletScript bs = tempBullet.GetComponent<BulletScript>();
 
         //The direction of the bullet is towards where you click.
         Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position;
+        direction.z = 0;
         direction.Normalize();
+
+        gunSoundSrc.Play();
 
         //If the script exists...
         if (bs != null)

@@ -6,6 +6,7 @@ public class ProtectionScript : MonoBehaviour
 {
     public float coverHealth;
     public float maxHealth;
+    public AudioSource protectionAudioSrc;
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class ProtectionScript : MonoBehaviour
         if (coverHealth <= 0)
         {
             Destroy(gameObject);
-
+            protectionAudioSrc.Play();
         }
     }
 
@@ -27,12 +28,17 @@ public class ProtectionScript : MonoBehaviour
     {
         if (other.gameObject.tag == "BasicProjectiles")
         {
-            coverHealth -= 10f;
+            coverHealth -= 20f;
         }
 
-        else if (other.gameObject.tag == "RocketProjectiles")
+        if (other.gameObject.tag == "RocketProjectile")
         {
-            coverHealth -= 25f;
+            coverHealth -= 50f;
+        }
+
+        if (other.gameObject.tag == "POISONOUS")
+        {
+            coverHealth -= 10f;
         }
     }
 }

@@ -5,13 +5,9 @@ using UnityEngine.UI;
 
 public class WeaponInventory : MonoBehaviour
 {
-    [Header("Check this if the object is the player")]
-    public bool isPlayer;
 
     [Header("Weapons and Inventory")]
-    public GameObject entityHand;
-
-    public string weaponTag;
+    public GameObject playerHand, dropLocation;
 
     public List<GameObject> inventoryList;
 
@@ -34,7 +30,7 @@ public class WeaponInventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (selectedWeapon >= entityHand.transform.childCount - 1)
+            if (selectedWeapon >= playerHand.transform.childCount - 1)
             {
                 selectedWeapon = 0;
             }
@@ -47,7 +43,7 @@ public class WeaponInventory : MonoBehaviour
         {
             if (selectedWeapon <= 0)
             {
-                selectedWeapon = entityHand.transform.childCount - 1;
+                selectedWeapon = playerHand.transform.childCount - 1;
             }
             else
             {
@@ -75,7 +71,7 @@ public class WeaponInventory : MonoBehaviour
     private void DropWeapon()
     {
         int i = 0;
-        foreach (Transform weapon in entityHand.transform)
+        foreach (Transform weapon in playerHand.transform)
         {
             if (weapon.gameObject.activeSelf == false)
             {
@@ -84,7 +80,7 @@ public class WeaponInventory : MonoBehaviour
             else if (weapon.gameObject.activeSelf == true)
             {
                 weapon.parent = null;
-                weapon.position = entityHand.transform.position;// dropLocation.transform.position;
+                weapon.position = dropLocation.transform.position;
                 inventoryList.Remove(weapon.gameObject);
                 break;
             }
@@ -97,7 +93,7 @@ public class WeaponInventory : MonoBehaviour
     private void SelectWeapon()
     {
         int i = 0;
-        foreach (Transform weapon in entityHand.transform)
+        foreach (Transform weapon in playerHand.transform)
         {
             if (i == selectedWeapon)
             {
@@ -117,7 +113,7 @@ public class WeaponInventory : MonoBehaviour
     {
         try
         {
-            weaponYouCanEquip.gameObject.transform.parent = entityHand.transform;
+            weaponYouCanEquip.gameObject.transform.parent = playerHand.transform;
             inventoryList.Add(weaponYouCanEquip);
 
             SetWeaponPosition(weaponYouCanEquip.transform);
@@ -131,13 +127,15 @@ public class WeaponInventory : MonoBehaviour
 
     private void SetWeaponPosition(Transform weaponTransform)
     {
-        weaponTransform.position = new Vector3(entityHand.transform.position.x, entityHand.transform.position.y, entityHand.transform.position.z);
-        weaponTransform.rotation = entityHand.transform.rotation;
+        weaponTransform.position = new Vector3(playerHand.transform.position.x, playerHand.transform.position.y, playerHand.transform.position.z);
+        weaponTransform.rotation = playerHand.transform.rotation;
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.tag == weaponTag && !inventoryList.Contains(col.transform.gameObject) && isPlayer)
+        //Changed your code thingy so the player can pick up more weapons. Kept the old code if this leads to problems.
+        //if (col.transform.tag == "Gun" && !inventoryList.Contains(col.transform.gameObject))
+        if (col.transform.tag == "WEAPON" && !inventoryList.Contains(col.transform.gameObject))
         {
             string message = "Press X to equip {0}";
             string weapon = col.transform.name;
@@ -151,7 +149,8 @@ public class WeaponInventory : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.transform.tag == weaponTag && isPlayer)
+        //if (col.transform.tag == "Gun")
+        if(col.transform.tag=="WEAPON")
         {
             floatingText.HideFloatingText();
             weaponYouCanEquip = null;
