@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6245110614589520595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.11, z: -1.607}
+  m_LocalPosition: {x: 0, y: 1.11, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5783336436594549291}
@@ -306,9 +306,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c172ae20033f1469c276c5c7fda3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AIBehavior: 0
   target: {fileID: 0}
   firePoint: {fileID: 5331731690804329549}
   enemyGunScript: {fileID: 2272094724758876414}
+  guardPoint: {fileID: 0}
+  patrolPointA: {fileID: 0}
+  patrolWatchPointA: {fileID: 0}
+  patrolPointB: {fileID: 0}
+  patrolWatchPointB: {fileID: 0}
+  patrolWaitTime: 3
   fovPrefab: {fileID: 5775167233331644988, guid: 701291643719d4340a4bba6ef4a050d7,
     type: 3}
   fov: 0
@@ -319,6 +326,8 @@ MonoBehaviour:
   maxHealth: 100
   health: 0
   fireRate: 1
+  walkSpeed: 1
+  runSpeed: 3.5
 --- !u!195 &8008122339713625971
 NavMeshAgent:
   m_ObjectHideFlags: 0
