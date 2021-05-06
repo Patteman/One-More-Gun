@@ -173,12 +173,12 @@ PrefabInstance:
     - target: {fileID: 403699981358921047, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 403699981358921047, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 403699981358921047, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
         type: 3}
@@ -277,6 +277,11 @@ PrefabInstance:
       propertyPath: maxNrOfAttacks
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7776414256830619639, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
+        type: 3}
+      propertyPath: flamethrowerAudioSrc
+      value: 
+      objectReference: {fileID: 3873202993539706086}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d5b1d7379db3e942a5f7cb766a96e55, type: 3}
 --- !u!1 &6997962232989692276 stripped

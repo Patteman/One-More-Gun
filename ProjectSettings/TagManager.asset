@@ -9,6 +9,7 @@ TagManager:
   - Walls
   - WEAPON
   - RocketProjectile
+  - Enemies
   layers:
   - Default
   - TransparentFX

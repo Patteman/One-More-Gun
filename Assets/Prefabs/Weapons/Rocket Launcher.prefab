@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 6724128488300940219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.44, y: -1.2636726, z: -3}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1283954558613340112}
   m_Father: {fileID: 0}
@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nrOfAttacks: 0
-  maxNrOfAttacks: 2
+  maxNrOfAttacks: 3
   bullet: {fileID: 6949186392122410642, guid: 945885859e983c049a9fac65dc7643a4, type: 3}
   bulletSpawnPoint: {fileID: 1283954558613340112}
-  gunSoundSrc: {fileID: 0}
+  gunSoundSrc: {fileID: 1596347903550335651}
 --- !u!60 &4500462824704034785
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 604e95f47b711d74c8f255dff477669e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

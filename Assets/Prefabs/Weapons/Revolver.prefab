@@ -101,7 +101,7 @@ MonoBehaviour:
   maxNrOfAttacks: 15
   bullet: {fileID: 8211641499035916651, guid: 338d58a739fbc01489a3939ce5c22284, type: 3}
   bulletSpawnPoint: {fileID: 7850795661175633372}
-  gunSoundSrc: {fileID: 0}
+  gunSoundSrc: {fileID: -1783518712979844799}
 --- !u!60 &1436339801566259338
 PolygonCollider2D:
   m_ObjectHideFlags: 0
