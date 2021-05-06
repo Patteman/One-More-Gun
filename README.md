@@ -5,4 +5,5 @@ How to run:
 NOTE:
 We are using Unity editor version '2019.4.16'. Make sure you use that editor when runing.
 
-(Everything is scattered at the moement, so you can go to individual scenes to run different code)
+The 'game' scene is the actual scene used for the game.
+You can find this scene in Assets->Scenes and the scene should be visible.
