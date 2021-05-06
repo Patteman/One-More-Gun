@@ -56,6 +56,9 @@ public class EnemyAgentTest : MonoBehaviour
     private bool roam;
     private bool patrol;
     private bool standGuard;
+    private bool moveToPointA;
+
+    private float reachedPositionDistance = 1f;
 
     [Header("FOV Settings")]
     [SerializeField] private Transform fovPrefab;
@@ -88,6 +91,8 @@ public class EnemyAgentTest : MonoBehaviour
         currentPatrolWaitTime = patrolWaitTime;
 
         health = maxHealth;
+
+        moveToPointA = true;
 
         //Should not be present if you wonna use inspector to set
         fov = 90f;
@@ -172,7 +177,14 @@ public class EnemyAgentTest : MonoBehaviour
                 break;
 
             case State.Patrolling:
-                PatrolToA();
+                if (moveToPointA)
+                {
+                    PatrolTo(patrolPointA.position, patrolWatchPointA.position);
+                }
+                else
+                {
+                    PatrolTo(patrolPointB.position, patrolWatchPointB.position);
+                }
                 break;
             
             case State.Roaming:
@@ -185,7 +197,6 @@ public class EnemyAgentTest : MonoBehaviour
                 //Checks if player is in range
                 FindTarget();
 
-                float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
                 {
                     Debug.Log("Target hit");
@@ -274,9 +285,22 @@ public class EnemyAgentTest : MonoBehaviour
         float dropRange = 10f;
         if (Vector3.Distance(transform.position, target.transform.position) > dropRange)
         {
-            GetRoamingPosition();
-            currentState = State.Roaming;
             currentSpeed = walkSpeed;
+            if (roam)
+            {
+                GetRoamingPosition();
+                currentState = State.Roaming;
+            }
+            if (patrol)
+            {
+                currentState = State.Patrolling;
+            }
+            if (standGuard)
+            {
+                currentState = State.StandingGuard; //Currently just stops the enemy and makes it look in the direction of watchpoint.
+                //needs function for returning to guardpoint.
+            }
+
         }
     }
 
@@ -288,6 +312,7 @@ public class EnemyAgentTest : MonoBehaviour
             health = 0;
             Die();
         }
+        currentState = State.ChaseTarget;
     }
 
     private void Die() //Method gets called when the enemy has to die
@@ -296,40 +321,28 @@ public class EnemyAgentTest : MonoBehaviour
         //Other stuff than just destroy
     }
 
-    private void PatrolToA()
+    private void PatrolTo(Vector3 patrolPosition, Vector3 watchPosition)
     {
-        lookAt = patrolPointA.position;
-        float reachedPositionDistance = 1f;
-        while (Vector3.Distance(transform.position, patrolPointA.position) > reachedPositionDistance)
+        lookAt = patrolPosition;
+        agent.SetDestination(patrolPosition);
+        FindTarget();
+        if (Vector3.Distance(transform.position, patrolPosition) < reachedPositionDistance)
         {
-            agent.SetDestination(patrolPointA.position);
-            FindTarget();
+            PatrolWatch(watchPosition);
         }
-        PatrolWatch(patrolWatchPointA.position);
-        PatrolToB();
-    }
-
-    private void PatrolToB()
-    {
-        lookAt = patrolPointB.position;
-        float reachedPositionDistance = 1f;
-        while (Vector3.Distance(transform.position, patrolPointB.position) > reachedPositionDistance)
-        {
-            agent.SetDestination(patrolPointB.position);
-            FindTarget();
-        }
-        PatrolWatch(patrolWatchPointB.position);
-        PatrolToA();
     }
 
     private void PatrolWatch(Vector3 patrolWatchPoint)
     {
-        currentPatrolWaitTime = patrolWaitTime;
+        currentPatrolWaitTime = 0f;
         lookAt = patrolWatchPoint;
-        while (patrolWaitTime > 0)
+        while (currentPatrolWaitTime < patrolWaitTime)
         {
-           patrolWaitTime -= Time.deltaTime;
+            currentPatrolWaitTime += Time.deltaTime; //Doesn't work as intented for some reason. Need help later.
+            FindTarget();
+            Debug.Log(currentPatrolWaitTime);
         }
+        moveToPointA = !moveToPointA;
     }
 
 }
