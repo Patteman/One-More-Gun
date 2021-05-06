@@ -27,23 +27,38 @@ public class EnemyAgentTest : MonoBehaviour
     [Header("Pre-start Settings")]
     [SerializeField] private Behavior AIBehavior;
     
-    [SerializeField] private Transform watchPoint;
-    
     public Transform target;
     public Transform firePoint;
     public EnemyGunScript enemyGunScript;
+
+    [Header("Watch and Patrol Points")]
+    [Tooltip("The point where enemy looks when stading guard")]
+    [SerializeField] private Transform guardPoint;
+    [Tooltip("The first point where enemy moves to when patrolling")]
+    [SerializeField] private Transform patrolPointA;
+    [Tooltip("The point where the enemy looks after moving to the first patrol point")]
+    [SerializeField] private Transform patrolWatchPointA;
+    [Tooltip("The second point where enemy moves to when patrolling")]
+    [SerializeField] private Transform patrolPointB;
+    [Tooltip("The point where the enemy looks after moving to the second patrol point")]
+    [SerializeField] private Transform patrolWatchPointB;
+    [Tooltip("How long the enemy waits before moving to next patrol point")]
+    [Range(1,5)]
+    [SerializeField] private float patrolWaitTime = 3f;
 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
     private Vector3 lookAt;
 
     private float currentSpeed;
-    private float roamSpeed;
-    private float chaseSpeed;
+    private float currentPatrolWaitTime;
 
     private bool roam;
     private bool patrol;
     private bool standGuard;
+    private bool moveToPointA;
+
+    private float reachedPositionDistance = 1f;
 
     [Header("FOV Settings")]
     [SerializeField] private Transform fovPrefab;
@@ -57,6 +72,8 @@ public class EnemyAgentTest : MonoBehaviour
     public float maxHealth = 100;
     public float health;
     public float fireRate = 1f;
+    [SerializeField] private float walkSpeed = 1f;
+    [SerializeField] private float runSpeed = 3.5f;
     private float fireCooldown = 0f;
 
     private NavMeshAgent agent;
@@ -68,11 +85,14 @@ public class EnemyAgentTest : MonoBehaviour
         startingPosition = transform.position;
         roamPosition = GetRoamingPosition();
 
-        roamSpeed = 1f;
-        chaseSpeed = 3.5f;
-        currentSpeed = roamSpeed;
+        walkSpeed = 1f;
+        runSpeed = 3.5f;
+        currentSpeed = walkSpeed;
+        currentPatrolWaitTime = patrolWaitTime;
 
         health = maxHealth;
+
+        moveToPointA = true;
 
         //Should not be present if you wonna use inspector to set
         fov = 90f;
@@ -134,8 +154,6 @@ public class EnemyAgentTest : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);    //NEW COMMENTED
 
 
-
-
         //Dette virker for modellen, men FOV'en er independent               //NEW
         //Vector3 myLocation = transform.position;
         //Vector3 targetLocation = roamPosition;
@@ -155,10 +173,18 @@ public class EnemyAgentTest : MonoBehaviour
             default:
             case State.StandingGuard:
                 FindTarget();
+                lookAt = guardPoint.position;
                 break;
 
             case State.Patrolling:
-
+                if (moveToPointA)
+                {
+                    PatrolTo(patrolPointA.position, patrolWatchPointA.position);
+                }
+                else
+                {
+                    PatrolTo(patrolPointB.position, patrolWatchPointB.position);
+                }
                 break;
             
             case State.Roaming:
@@ -171,7 +197,6 @@ public class EnemyAgentTest : MonoBehaviour
                 //Checks if player is in range
                 FindTarget();
 
-                float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
                 {
                     Debug.Log("Target hit");
@@ -248,7 +273,7 @@ public class EnemyAgentTest : MonoBehaviour
                     {
                         //Player hit
                         currentState = State.ChaseTarget;
-                        currentSpeed = chaseSpeed;
+                        currentSpeed = runSpeed;
                     }
                 }
             }
@@ -260,9 +285,22 @@ public class EnemyAgentTest : MonoBehaviour
         float dropRange = 10f;
         if (Vector3.Distance(transform.position, target.transform.position) > dropRange)
         {
-            GetRoamingPosition();
-            currentState = State.Roaming;
-            currentSpeed = roamSpeed;
+            currentSpeed = walkSpeed;
+            if (roam)
+            {
+                GetRoamingPosition();
+                currentState = State.Roaming;
+            }
+            if (patrol)
+            {
+                currentState = State.Patrolling;
+            }
+            if (standGuard)
+            {
+                currentState = State.StandingGuard; //Currently just stops the enemy and makes it look in the direction of watchpoint.
+                //needs function for returning to guardpoint.
+            }
+
         }
     }
 
@@ -274,12 +312,37 @@ public class EnemyAgentTest : MonoBehaviour
             health = 0;
             Die();
         }
+        currentState = State.ChaseTarget;
     }
 
     private void Die() //Method gets called when the enemy has to die
     {
         Destroy(gameObject);
         //Other stuff than just destroy
+    }
+
+    private void PatrolTo(Vector3 patrolPosition, Vector3 watchPosition)
+    {
+        lookAt = patrolPosition;
+        agent.SetDestination(patrolPosition);
+        FindTarget();
+        if (Vector3.Distance(transform.position, patrolPosition) < reachedPositionDistance)
+        {
+            PatrolWatch(watchPosition);
+        }
+    }
+
+    private void PatrolWatch(Vector3 patrolWatchPoint)
+    {
+        currentPatrolWaitTime = 0f;
+        lookAt = patrolWatchPoint;
+        while (currentPatrolWaitTime < patrolWaitTime)
+        {
+            currentPatrolWaitTime += Time.deltaTime; //Doesn't work as intented for some reason. Need help later.
+            FindTarget();
+            Debug.Log(currentPatrolWaitTime);
+        }
+        moveToPointA = !moveToPointA;
     }
 
 }
