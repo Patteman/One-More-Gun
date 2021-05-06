@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum typeOfBullet { bullet, rocket, dart }
+public enum TypeOfBullet { bullet, rocket, dart }
+enum BulletOrigin { enemy, player }
 public class BulletScript : MonoBehaviour
 {
     public float speed = 0;
+
     float lifetime;
     public float maxLifeTime;
-    public typeOfBullet type;
-    public Rigidbody2D rb;
     public int damageAmount;
-    Vector3 direction;
+
+    public TypeOfBullet type;
+    public Rigidbody2D rb;
+    BulletOrigin firedBy;
+
     public GameObject explosionEffect;
+
+    Vector3 direction;
     Camera mainCam;
 
     void Start()
@@ -22,18 +28,17 @@ public class BulletScript : MonoBehaviour
 
     public void Setup(Vector3 dir)
     {
-        //mainCam = Camera.main;
-        this.direction = dir; //the direction in which it moves
-        Vector3 mouseCameraPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        this.direction = dir;
+        mainCam = Camera.main;
+        //Vector3 mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.Rotate(0.0f, 0.0f, angle);
     }
 
     void Update()
     {
-        float speed = 20f;
+        float speed = 10f;
         rb.velocity = direction * speed;
-
         lifetime += Time.deltaTime;
         if (lifetime >= maxLifeTime)
         {
@@ -48,10 +53,12 @@ public class BulletScript : MonoBehaviour
             //In the future this should be replaced with the health of the enemies
             TargetHealthAndStuff tHealth = collision.gameObject.GetComponent<TargetHealthAndStuff>();
             tHealth.health -= damageAmount;
-            if (type == typeOfBullet.rocket)
-            {
-                GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            }
+            Destroy(gameObject);
+        }
+
+        if (type == TypeOfBullet.rocket)
+        {
+            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
@@ -64,16 +71,6 @@ public class BulletScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        //If you hit something the bullet should realistically not keep travelling.
-        //if (collision.gameObject.tag == "TARGET" || collision.gameObject.tag == "WALL")
-        //{
-        //    if (type == typeOfBullet.rocket)
-        //    {
-        //        GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        //    }
-        //    Destroy(gameObject);
-        //}
 
     }
 
