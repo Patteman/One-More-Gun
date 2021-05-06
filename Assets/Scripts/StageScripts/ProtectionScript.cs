@@ -19,8 +19,8 @@ public class ProtectionScript : MonoBehaviour
         
         if (coverHealth <= 0)
         {
-            Destroy(gameObject);
             protectionAudioSrc.Play();
+            Destroy(gameObject);
         }
     }
 
