@@ -34,7 +34,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        //CalculateScreenSize();
         onSpawn = true;
         currentHealth = maxHealth;
     }
