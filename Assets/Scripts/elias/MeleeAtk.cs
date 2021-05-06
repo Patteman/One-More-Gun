@@ -8,26 +8,27 @@ public class MeleeAtk : Weapon
 {
     bool isAttacking;
     public int damageAmount;
-    //int numberOfAttacks;
-    //public int maxAttackAmount;
+    public AudioSource meleeAudioSrc;
 
-    //void Start()
-    //{
-    //    isAttacking = false;
-    //    numberOfAttacks = 0;
-    //}
     protected override void Start()
     {
+        //Inherits Start method from Weapon.cs
         base.Start();
+
+        //You're only supposed to attack if you click, so the bool for attacking is set to false from the beginning.
         isAttacking = false;
     }
 
     protected override void Update()
     {
+        //Inherits Update method from Weapon.cs
         base.Update();
+
+        //If the left mouse button has been released, you should no longer be in attack mode
         if (Input.GetMouseButtonUp(0))
             isAttacking = false;
 
+        //Flips the sprite to simulate an attack (for the time being).
         //In the future this should be replaced by an animation,
         //or a more appropriate visual representation of the player character using the sword or knife to attack an enemy.
         if (isAttacking == false)
@@ -38,27 +39,11 @@ public class MeleeAtk : Weapon
 
     public override void Attack()
     {
+        //Inherits Attack method from Weapon.cs
         base.Attack();
+        meleeAudioSrc.Play();
+
+        //Sets the attack bool to true
         isAttacking = true;
     }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0))
-    //    {
-    //        numberOfAttacks++;
-    //        isAttacking = true;
-    //        gameObject.GetComponent<SpriteRenderer>().flipX = true;
-    //    }
-    //    else if (Input.GetMouseButtonUp(0))
-    //    {
-    //        isAttacking = false;
-    //        gameObject.GetComponent<SpriteRenderer>().flipX = false;
-    //    }
-    //    if (numberOfAttacks >= maxAttackAmount)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
 }

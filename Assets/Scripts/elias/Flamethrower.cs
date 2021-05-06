@@ -5,57 +5,42 @@ using UnityEngine;
 public class Flamethrower : Weapon
 {
     public ParticleSystem flameEffect;
+    public AudioSource flamethrowerAudioSrc;
+
+    //where we want the flame effect to start
     public Transform flameStartPos;
 
-    Vector3 position;
     Camera mainCam;
     GameObject flame;
-    //ParticleSystemRenderer partRend;
-    protected override void Start()
-    {
-        base.Start();
-        mainCam = Camera.main; //The main camera is needed to get the world position of the mouse.
-        //flameStartPos = new Vector3(transform.position.x + 0.46f, transform.position.y, transform.position.z);
-        //flame2.Pause();
-        //partRend = flameEffect.GetComponent<ParticleSystemRenderer>();
-    }
 
-    // Update is called once per frame
+    protected override void Start()
+
+    {
+        //inherits Start method from Weapon.cs
+        base.Start();
+
+        //The main camera is needed to get the world position of the mouse.
+        mainCam = Camera.main; 
+    }
+    
     protected override void Update()
     {
+        //inherits Update method from Weapon.cs
         base.Update();
-
-        position = transform.position;
-        //flame2.transform.position = position;
-        //flame2.transform.rotation = Quaternion.Euler(0, 0, angle);
-        //flameEffect.transform.position = transform.position;
-        //flameEffect.transform.rotation = transform.rotation;
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    //partRend.enabled = true;
-        //    Fire();
-        //}
-        //else if (Input.GetMouseButtonUp(0))
-        //{
-        //    flameEffect.Stop(true);
-        //}
 
     }
     public override void Attack()
     {
+        //Inherits Attack method from Weapon.cs
         base.Attack();
-        //Vector3 direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        //direction.Normalize();
-        //flame2.Play();
-        //flameEffect.SetActive(true);
-        //bb
-        /*Vector3 screenPoint = mainCam.WorldToScreenPoint(transform.localPosition);*/ //player position in screen space
+        flamethrowerAudioSrc.Play();
+
+        //Gets the World position of the mouse
         Vector3 mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition); //World position of mouse.
-        //Vector2 distance = Input.mousePosition-screenPoint; //distance between mouse and player
-        //distance.Normalize();
-        //float angle = Mathf.Atan2(distance.y, distance.x) * Mathf.Rad2Deg; //the angle, in degrees
-        flame = Instantiate(flameEffect.gameObject, flameStartPos.position, Quaternion.identity); //Instantiates effect.
-        flame.transform.LookAt(mouseCameraPos); //Makes effect point towards where you click.
+        
+        //Instantiates a flame effect, and tells it to "look at" the mouse position.
+        flame = Instantiate(flameEffect.gameObject, flameStartPos.position, Quaternion.identity);
+        flame.transform.LookAt(mouseCameraPos);
     }
 }
 //Special thanks to David Täljsten

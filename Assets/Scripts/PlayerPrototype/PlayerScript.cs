@@ -30,37 +30,15 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject playerHand;
 
-    /*
-    [Header("Weapons and Inventory")]
-    public int inventorySlots;
-    public float moveWeaponsBy;
-    
-    public GameObject inventoryGameObject;
-    private int inventoryIndex;
-    private List<GameObject> inventory;
-    public int[] invTestArr;
-
-    */
-
-    //Private
     private Vector2 movement;
-
-
-    public Component[] gs;
 
     void Start()
     {
-
-        CalculateScreenSize();
+        //CalculateScreenSize();
         onSpawn = true;
-
-        //inventory = new List<GameObject>();
-        //inventoryIndex = inventory.Count;
-
+        currentHealth = maxHealth;
     }
 
-    
-    
     private void ManageHealth()
     {
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -81,19 +59,15 @@ public class PlayerScript : MonoBehaviour
         ManageHealth();
         
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //gs = gameObject.GetComponentsInChildren<GunScript>();
-            Debug.Log("Space pressed");
-            Debug.Log(playerHand.name);
-            GunScript daGunScript = playerHand.GetComponentInChildren<GunScript>();
-           
-            if(daGunScript != null)
+            Weapon daGunScript = playerHand.GetComponentInChildren<Weapon>();
+
+            try
             {
                 daGunScript.Attack();
-                Debug.Log("Shoot");
             }
-            else if(daGunScript == null)
+            catch
             {
                 Debug.Log("Gun script not found");
             }
@@ -115,16 +89,17 @@ public class PlayerScript : MonoBehaviour
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
     }
 
-    private void LateUpdate()
-    {
-        UpdateBounds();
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Finish")
         {
             Debug.Log("You've reached the goal!");
+        }
+        
+        if (other.gameObject.tag == "BasicProjectiles")
+        {
+            Debug.Log(other.gameObject.name);
+            DecreaseHealth(5);
         }
     }
 
@@ -135,20 +110,5 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("You've left the spawn!");
             onSpawn = false;
         }
-    }
-
-    private void CalculateScreenSize()
-    {
-        screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
-        objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x;
-        objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y;
-    }
-
-    private void UpdateBounds()
-    {
-        Vector3 viewPos = transform.position;
-        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x * -1 + objectWidth, screenBounds.x - objectWidth);
-        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y * -1 + objectHeight, screenBounds.y - objectHeight);
-        transform.position = viewPos;
     }
 }

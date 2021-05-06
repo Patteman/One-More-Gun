@@ -11,10 +11,27 @@ public class EnemyAgentTest : MonoBehaviour
     private enum State
     {
         Roaming,
+        Patrolling,
+        StandingGuard,
         ChaseTarget,
         AttackTarget,
     }
     private State currentState;
+
+    private enum Behavior
+    {
+        StandGuard,
+        Patrol,
+        Roam,
+    }
+    [Header("Pre-start Settings")]
+    [SerializeField] private Behavior AIBehavior;
+    
+    [SerializeField] private Transform watchPoint;
+    
+    public Transform target;
+    public Transform firePoint;
+    public EnemyGunScript enemyGunScript;
 
     private Vector3 startingPosition;
     private Vector3 roamPosition;
@@ -24,10 +41,11 @@ public class EnemyAgentTest : MonoBehaviour
     private float roamSpeed;
     private float chaseSpeed;
 
-    public Transform target;
-    public Transform firePoint;
-    public EnemyGunScript enemyGunScript;
+    private bool roam;
+    private bool patrol;
+    private bool standGuard;
 
+    [Header("FOV Settings")]
     [SerializeField] private Transform fovPrefab;
     [SerializeField] private float fov;
     [SerializeField] private float viewDistance;
@@ -54,10 +72,9 @@ public class EnemyAgentTest : MonoBehaviour
         chaseSpeed = 3.5f;
         currentSpeed = roamSpeed;
 
-        currentState = State.Roaming;
-
         health = maxHealth;
 
+        //Should not be present if you wonna use inspector to set
         fov = 90f;
         viewDistance = 5f;
 
@@ -72,6 +89,34 @@ public class EnemyAgentTest : MonoBehaviour
 
         //Rotation
         turnSpeed = 150f;     //NEW
+
+        switch (AIBehavior)
+        {
+            default:
+                roam = false;
+                patrol = false;
+                standGuard = true;
+                currentState = State.StandingGuard;
+                break;
+            case Behavior.Roam:
+                roam = true;
+                patrol = false;
+                standGuard = false;
+                currentState = State.Roaming;
+                break;
+            case Behavior.Patrol:
+                roam = false;
+                patrol = true;
+                standGuard = false;
+                currentState = State.Patrolling;
+                break;
+            case Behavior.StandGuard:
+                roam = false;
+                patrol = false;
+                standGuard = true;
+                currentState = State.StandingGuard;
+                break;
+        }
     }
 
     private void Update()
@@ -108,6 +153,14 @@ public class EnemyAgentTest : MonoBehaviour
         switch (currentState)
         {
             default:
+            case State.StandingGuard:
+                FindTarget();
+                break;
+
+            case State.Patrolling:
+
+                break;
+            
             case State.Roaming:
                 //Move to target using the agent component(roamPos)
                 agent.SetDestination(roamPosition);
@@ -121,9 +174,10 @@ public class EnemyAgentTest : MonoBehaviour
                 float reachedPositionDistance = 1f;
                 if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
                 {
+                    Debug.Log("Target hit");
                     roamPosition = GetRoamingPosition();
                 }
-            break;
+                break;
 
             case State.ChaseTarget:
                 //Move to target (player)
