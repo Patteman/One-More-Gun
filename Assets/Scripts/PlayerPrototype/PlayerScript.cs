@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
 
     public bool onSpawn;
 
+    //A classic
     private bool isDead;
 
     [Header("Movement")]
