@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7460505272447175601}
   - component: {fileID: 4912229338276171155}
   - component: {fileID: -2935272467986179702}
-  - component: {fileID: -416688991284281497}
+  - component: {fileID: 8529438396015833757}
   m_Layer: 0
   m_Name: rocket
   m_TagString: RocketProjectile
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   maxLifeTime: 3
+  damageAmount: 30
   type: 1
   rb: {fileID: -2935272467986179702}
-  damageAmount: 30
   explosionEffect: {fileID: 9203354702321040907, guid: 63eb2e464694b184c92c655d553ed738,
     type: 3}
 --- !u!50 &-2935272467986179702
@@ -124,8 +124,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &-416688991284281497
-PolygonCollider2D:
+--- !u!61 &8529438396015833757
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,7 +137,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.1, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -147,12 +147,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.13499999, y: 0.114999995}
-      - {x: -0.225, y: -0.005}
-      - {x: -0.225, y: -0.035}
-      - {x: -0.105, y: -0.125}
-      - {x: 0.195, y: -0.125}
-      - {x: 0.205, y: -0.105}
-      - {x: 0.205, y: 0.114999995}
+  serializedVersion: 2
+  m_Size: {x: 0.23, y: 0.1}
+  m_EdgeRadius: 0
