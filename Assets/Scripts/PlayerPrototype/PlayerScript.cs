@@ -89,6 +89,14 @@ public class PlayerScript : MonoBehaviour
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "BasicProjectiles")
+        {
+            DecreaseHealth(5);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Finish")
@@ -96,11 +104,11 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("You've reached the goal!");
         }
         
-        if (other.gameObject.tag == "BasicProjectiles")
-        {
-            Debug.Log(other.gameObject.name);
-            DecreaseHealth(5);
-        }
+        //if (other.gameObject.tag == "BasicProjectiles")
+        //{
+        //    Debug.Log(other.gameObject.name);
+        //    DecreaseHealth(5);
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D other)

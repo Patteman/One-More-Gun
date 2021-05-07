@@ -448,6 +448,16 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.016675148
       objectReference: {fileID: 0}
+    - target: {fileID: 1016602996466354922, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016602996466354922, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1016602996466354923, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
       propertyPath: m_Name
@@ -1865,6 +1875,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1489908986, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489908986, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489908986, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.009213686
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489908986, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0066279173
+      objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_RootOrder
