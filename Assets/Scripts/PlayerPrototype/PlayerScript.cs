@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
 
     public bool onSpawn;
 
+    private bool isDead;
 
     [Header("Movement")]
     public float movementSpeed;
@@ -36,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     {
         onSpawn = true;
         currentHealth = maxHealth;
+        isDead = false;
     }
 
     private void ManageHealth()
@@ -47,7 +49,12 @@ public class PlayerScript : MonoBehaviour
     }
     
     void Update()
-    {        
+    {
+        if (isDead)
+        {
+            return;
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
@@ -82,6 +89,10 @@ public class PlayerScript : MonoBehaviour
     private void DecreaseHealth(float damageTaken)
     {
         currentHealth -= damageTaken;
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
     }
 
     private void FixedUpdate()
@@ -118,5 +129,11 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("You've left the spawn!");
             onSpawn = false;
         }
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        Destroy(gameObject);
     }
 }
