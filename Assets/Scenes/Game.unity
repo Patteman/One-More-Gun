@@ -160,6 +160,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -302,6 +312,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6245110614589520595, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
       propertyPath: m_Name
@@ -457,6 +477,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.y
       value: 0.04933525
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016602996466354922, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1016602996466354922, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
@@ -622,6 +647,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -734,6 +769,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
       propertyPath: m_CollisionDetection
@@ -897,6 +942,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6245110614589520595, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
       propertyPath: m_Name
@@ -1232,6 +1287,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 252663596634271293, guid: 810c4386d9a9c5a48a5df3b02a0b769e,
         type: 3}
       propertyPath: m_CollisionDetection
