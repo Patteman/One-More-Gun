@@ -436,17 +436,27 @@ PrefabInstance:
     - target: {fileID: 796092515071658176, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.2
+      value: 0.19470608
       objectReference: {fileID: 0}
     - target: {fileID: 796092515071658176, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.1
+      value: 0.1653202
+      objectReference: {fileID: 0}
+    - target: {fileID: 796092515071658176, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796092515071658176, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0026469529
       objectReference: {fileID: 0}
     - target: {fileID: 796092515071658176, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
       propertyPath: m_Offset.y
-      value: 0.016675148
+      value: 0.04933525
       objectReference: {fileID: 0}
     - target: {fileID: 1016602996466354922, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
@@ -533,7 +543,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 796092515071658176, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35, type: 3}
 --- !u!1 &488753822
 GameObject:
@@ -2279,6 +2290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3763322125287345356, guid: 7920ede0a209d274fb5b80a4cfd4e366,
         type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763322125287345356, guid: 7920ede0a209d274fb5b80a4cfd4e366,
+        type: 3}
       propertyPath: m_LinearDrag
       value: 10000
       objectReference: {fileID: 0}
@@ -2290,6 +2306,21 @@ PrefabInstance:
     - target: {fileID: 3763322125287345356, guid: 7920ede0a209d274fb5b80a4cfd4e366,
         type: 3}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763322125287345357, guid: 7920ede0a209d274fb5b80a4cfd4e366,
+        type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763322125287345357, guid: 7920ede0a209d274fb5b80a4cfd4e366,
+        type: 3}
+      propertyPath: m_CompositePaths.m_Paths.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763322125287345359, guid: 7920ede0a209d274fb5b80a4cfd4e366,
+        type: 3}
+      propertyPath: m_UsedByComposite
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763322125941555877, guid: 7920ede0a209d274fb5b80a4cfd4e366,
@@ -2833,6 +2864,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: BasicProtection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763322126357620663, guid: 7920ede0a209d274fb5b80a4cfd4e366,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7920ede0a209d274fb5b80a4cfd4e366, type: 3}

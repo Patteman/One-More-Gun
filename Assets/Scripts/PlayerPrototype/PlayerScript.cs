@@ -114,12 +114,6 @@ public class PlayerScript : MonoBehaviour
         {
             Debug.Log("You've reached the goal!");
         }
-        
-        //if (other.gameObject.tag == "BasicProjectiles")
-        //{
-        //    Debug.Log(other.gameObject.name);
-        //    DecreaseHealth(5);
-        //}
     }
 
     private void OnTriggerExit2D(Collider2D other)
