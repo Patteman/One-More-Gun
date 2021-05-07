@@ -114,4 +114,9 @@ public class FieldOfView : MonoBehaviour
     {
         this.viewDistance = viewDistance;
     }
+
+    public void DestroyFOV()
+    {
+        Destroy(gameObject);
+    }
 }

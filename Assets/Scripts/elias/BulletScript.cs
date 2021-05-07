@@ -9,6 +9,8 @@ public class BulletScript : MonoBehaviour
     EnemyAgentTest enemy;
     public float speed = 0;
 
+    EnemyAgentTest enemyScript;
+
     float lifetime;
     public float maxLifeTime;
     public int damageAmount;
@@ -55,6 +57,7 @@ public class BulletScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemies")
         {
+            collision.gameObject.SendMessage("TakeDamage", 50f); //Hardcoded damage, change to be weapon specific
             Destroy(gameObject);
         }
 

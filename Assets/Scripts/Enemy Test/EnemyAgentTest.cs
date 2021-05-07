@@ -313,12 +313,13 @@ public class EnemyAgentTest : MonoBehaviour
             Die();
         }
         currentState = State.ChaseTarget;
+        currentSpeed = runSpeed;
     }
 
     private void Die() //Method gets called when the enemy has to die
     {
         Destroy(gameObject);
-        //Other stuff than just destroy
+        fieldOfView.DestroyFOV();
     }
 
     private void PatrolTo(Vector3 patrolPosition, Vector3 watchPosition)
