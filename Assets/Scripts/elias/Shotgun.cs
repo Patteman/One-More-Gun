@@ -8,7 +8,7 @@ public class Shotgun : Weapon
 
     Camera mainCam;
     float distance;
-
+    
     public AudioSource shotgunAudioSrc;
 
     Vector3 direction;
@@ -44,12 +44,9 @@ public class Shotgun : Weapon
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance);
 
         //Reduces health if hit target is an "enemy"
-        //This has been made with the test targets in my stage in mind.
-        //In the future this should be replaced with the health of the enemies
-        if (hit && hit.transform.gameObject.tag == "TARGET")
+        if (hit && hit.transform.gameObject.tag == "Enemies")
         {
-            TargetHealthAndStuff tHealth = hit.transform.gameObject.GetComponent<TargetHealthAndStuff>();
-            tHealth.health -= damageAmount;
+            hit.transform.gameObject.SendMessage("TakeDamage", damageAmount);
 
             //used during test phase and should be removed eventually.
             Debug.Log("Hit a target");

@@ -46,4 +46,12 @@ public class MeleeAtk : Weapon
         //Sets the attack bool to true
         isAttacking = true;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isAttacking == true && collision.gameObject.tag == "Enemies")
+        {
+            collision.gameObject.SendMessage("TakeDamage", damageAmount);
+        }
+    }
 }

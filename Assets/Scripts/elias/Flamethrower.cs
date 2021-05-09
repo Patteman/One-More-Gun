@@ -32,9 +32,9 @@ public class Flamethrower : Weapon
         base.Update();
 
         //Gets the World position of the mouse
-        mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition); //World position of mouse.
+        mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        while (isActive)
+        if (isActive)
         {
             SetFlamePos();
         }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 //Here it is, the base class that is referenced to in most weapon scripts! So, what does it actually do?
 
-public enum Holder { Enemy, Player }
 public class Weapon : MonoBehaviour
 {
     public int nrOfAttacks;
@@ -26,10 +25,12 @@ public class Weapon : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
-        }
+
+        //remove this code when the weapon test scene is obsolete
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Attack();
+        //}
     }
 
     public virtual void Attack()
