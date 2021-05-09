@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 //Comments should not be after code but above
+//messy
 
 public class EnemyAgentTest : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class EnemyAgentTest : MonoBehaviour
     private bool roam;
     private bool patrol;
     private bool standGuard;
+
     private bool moveToPointA;
 
     private float reachedPositionDistance = 1f;
