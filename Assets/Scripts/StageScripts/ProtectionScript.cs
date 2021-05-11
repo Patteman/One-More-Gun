@@ -12,7 +12,6 @@ public class ProtectionScript : MonoBehaviour
     {
         coverHealth = maxHealth;
     }
-
     
     void Update()
     {
@@ -23,6 +22,13 @@ public class ProtectionScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    #region Collision logic.
+
+    /// <summary>
+    /// Simple collision logic. If whatever gameobject with a specific tag collides with the "Protection" it takes different amounts of damage.
+    /// </summary>
+    /// <param name="other"></param>
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -41,4 +47,7 @@ public class ProtectionScript : MonoBehaviour
             coverHealth -= 10f;
         }
     }
+
+    #endregion
+
 }
