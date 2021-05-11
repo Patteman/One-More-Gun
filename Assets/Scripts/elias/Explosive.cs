@@ -16,7 +16,6 @@ public class Explosive : MonoBehaviour
 
     void Update()
     {
-        //anim.SetFloat("Timer", timer);
         if (setOff == true)
         {
             //Adds time in seconds. If five or more seconds have passed...

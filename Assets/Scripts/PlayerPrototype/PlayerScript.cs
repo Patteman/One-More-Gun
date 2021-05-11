@@ -65,8 +65,6 @@ public class PlayerScript : MonoBehaviour
 
         ManageHealth();
         
-        //ELIAS
-        //Changed GunScript to Weapon (which all weapons inherit from)
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Weapon weaponScript = playerHand.GetComponentInChildren<Weapon>();

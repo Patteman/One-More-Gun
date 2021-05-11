@@ -11,7 +11,10 @@ public class Flamethrower : Weapon
     public Transform flameStartPos;
 
     Camera mainCam;
+    Vector3 mouseCameraPos;
     GameObject flame;
+
+    bool isActive;
 
     protected override void Start()
 
@@ -28,19 +31,30 @@ public class Flamethrower : Weapon
         //inherits Update method from Weapon.cs
         base.Update();
 
+        //Gets the World position of the mouse
+        mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+        if (isActive)
+        {
+            SetFlamePos();
+        }
     }
     public override void Attack()
     {
         //Inherits Attack method from Weapon.cs
         base.Attack();
         flamethrowerAudioSrc.Play();
-
-        //Gets the World position of the mouse
-        Vector3 mouseCameraPos = mainCam.ScreenToWorldPoint(Input.mousePosition); //World position of mouse.
         
         //Instantiates a flame effect, and tells it to "look at" the mouse position.
         flame = Instantiate(flameEffect.gameObject, flameStartPos.position, Quaternion.identity);
+
+        isActive = true;
+
+    }
+    public void SetFlamePos()
+    {
+        flame.transform.position = flameStartPos.position;
         flame.transform.LookAt(mouseCameraPos);
     }
 }
-//Special thanks to David Täljsten
+//Special thanks to David Täljsten and Fat Pug Studio

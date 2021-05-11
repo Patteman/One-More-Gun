@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nrOfAttacks: 0
   maxNrOfAttacks: 5
-  damageAmount: 15
+  damageAmount: 12
   meleeAudioSrc: {fileID: 8200781464997257497}
 --- !u!60 &-3258689124059739208
 PolygonCollider2D:

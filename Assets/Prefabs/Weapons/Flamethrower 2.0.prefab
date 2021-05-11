@@ -265,7 +265,7 @@ PrefabInstance:
         type: 3}
       propertyPath: flameEffect
       value: 
-      objectReference: {fileID: 4864169956455576555, guid: 65cf83526b7705a498f7c4a6ef81cbfd,
+      objectReference: {fileID: 2108957995540456880, guid: ffae58218877f4a408267de69f88d57d,
         type: 3}
     - target: {fileID: 7776414256830619639, guid: 1d5b1d7379db3e942a5f7cb766a96e55,
         type: 3}
