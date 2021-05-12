@@ -54,10 +54,6 @@ public class EnemyAgentTest : MonoBehaviour
     private float currentSpeed;
     private float currentPatrolWaitTime;
 
-    private bool roam;
-    private bool patrol;
-    private bool standGuard;
-
     private bool moveToPointA;
 
     private float reachedPositionDistance = 1f;
@@ -115,27 +111,15 @@ public class EnemyAgentTest : MonoBehaviour
         switch (AIBehavior)
         {
             default:
-                roam = false;
-                patrol = false;
-                standGuard = true;
                 currentState = State.StandingGuard;
                 break;
             case Behavior.Roam:
-                roam = true;
-                patrol = false;
-                standGuard = false;
                 currentState = State.Roaming;
                 break;
             case Behavior.Patrol:
-                roam = false;
-                patrol = true;
-                standGuard = false;
                 currentState = State.Patrolling;
                 break;
             case Behavior.StandGuard:
-                roam = false;
-                patrol = false;
-                standGuard = true;
                 currentState = State.StandingGuard;
                 break;
         }
@@ -288,19 +272,20 @@ public class EnemyAgentTest : MonoBehaviour
         if (Vector3.Distance(transform.position, target.transform.position) > dropRange)
         {
             currentSpeed = walkSpeed;
-            if (roam)
+
+            switch (AIBehavior)
             {
-                GetRoamingPosition();
-                currentState = State.Roaming;
-            }
-            if (patrol)
-            {
-                currentState = State.Patrolling;
-            }
-            if (standGuard)
-            {
-                currentState = State.StandingGuard; //Currently just stops the enemy and makes it look in the direction of watchpoint.
-                //needs function for returning to guardpoint.
+                case Behavior.Roam:
+                    GetRoamingPosition();
+                    currentState = State.Roaming;
+                    break;
+                case Behavior.Patrol:
+                    currentState = State.Patrolling;
+                    break;
+                case Behavior.StandGuard:
+                    currentState = State.StandingGuard; //Currently just stops the enemy and makes it look in the direction of watchpoint.
+                    //needs function for returning to guardpoint.
+                    break;
             }
 
         }
