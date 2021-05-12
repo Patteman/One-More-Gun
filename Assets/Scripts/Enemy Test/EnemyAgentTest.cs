@@ -50,6 +50,7 @@ public class EnemyAgentTest : MonoBehaviour
     private Vector3 startingPosition;
     private Vector3 roamPosition;
     private Vector3 lookAt;
+    private Vector3 guardPosition;
 
     private float currentSpeed;
     private float currentPatrolWaitTime;
@@ -91,6 +92,8 @@ public class EnemyAgentTest : MonoBehaviour
         health = maxHealth;
 
         moveToPointA = true;
+
+        guardPosition = transform.position;
 
         //Should not be present if you wonna use inspector to set
         fov = 90f;
@@ -159,7 +162,15 @@ public class EnemyAgentTest : MonoBehaviour
             default:
             case State.StandingGuard:
                 FindTarget();
-                lookAt = guardPoint.position;
+                if(Vector3.Distance(transform.position, guardPosition) < reachedPositionDistance)
+                {
+                    lookAt = guardPoint.position;
+                }
+                else
+                {
+                    lookAt = guardPosition;
+                    agent.SetDestination(guardPosition);
+                }
                 break;
 
             case State.Patrolling:
