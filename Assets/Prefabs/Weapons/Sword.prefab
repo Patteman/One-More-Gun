@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 998398360124663206}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Gun
+  m_TagString: WEAPON
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
