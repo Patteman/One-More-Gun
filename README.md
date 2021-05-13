@@ -14,10 +14,10 @@ To start the game, follow these simple steps:
 ### Controls:
 You move your character with the ***WASD*** keys and you can aim using the ***mouse***. Use the ***left mouse button*** to attack. To pick up weapons on the ground, press the ***X*** key. To drop it again, press the ***F*** key. If you have multiple weapons picked-up, you can use the ***Q*** and ***E*** key to cykle through them.
 
-*Be careful*, if you run out of ammo/durability your weapon will break and you will not have anything left to defend yourself with. Make the weapons count!
-
 ### Instructions:
 To win the game in its current state, you need to reach the end of the level. If you get shot, you will lose health points and when you run out you will die and have to start over.
+
+*Be careful*, if you run out of ammo/durability your weapon will break and you will not have anything left to defend yourself with. Make the weapons count!
 
 # Scope
 One More Gun is a game created for a school project. Limited time and no budget means the scope of the game is realtively small and limited. Development on the game after the project deadline is almost garanteed to end, no matter the state of the game.
