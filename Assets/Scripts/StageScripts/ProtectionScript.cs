@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class ProtectionScript : MonoBehaviour
 {
-    public float coverHealth;
+    private float coverHealth;
     public float maxHealth;
+    private float destructionTimer;
     public AudioSource protectionAudioSrc;
+
+    private bool madeSound;
 
     void Start()
     {
         coverHealth = maxHealth;
+        madeSound = false;
     }
     
     void Update()
     {
-        
         if (coverHealth <= 0)
         {
-            protectionAudioSrc.Play();
-            Destroy(gameObject);
+            destructionTimer += Time.fixedDeltaTime;
+
+            if (!madeSound)
+            {
+                protectionAudioSrc.Play();
+                madeSound = true;
+            }
+
+            if (destructionTimer >= 1.1f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
