@@ -9,6 +9,10 @@ public class Weapon : MonoBehaviour
     public int nrOfAttacks;
     public int maxNrOfAttacks;
 
+    private float destructionTimer;
+
+    public AudioSource outOfAttacksSoundSrc;
+
     protected virtual void Start()
     {
         //The number of bullets, bombs layed out, hits with melee weapons, etc.
@@ -23,7 +27,13 @@ public class Weapon : MonoBehaviour
 
         if (nrOfAttacks >= maxNrOfAttacks)
         {
-            Destroy(gameObject);
+            destructionTimer += Time.fixedDeltaTime;
+            outOfAttacksSoundSrc.Play();
+
+            if (destructionTimer >= 0.2f)
+            {
+                Destroy(gameObject);
+            }
         }
 
         //remove this code when the weapon test scene is obsolete

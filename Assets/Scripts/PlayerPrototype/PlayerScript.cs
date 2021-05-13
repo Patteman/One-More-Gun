@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-
+    public AudioSource playerAudioSrc;
     public Camera MainCamera;
     private Vector2 screenBounds;
     private float objectWidth;
@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     //public float movementSpeed;
 
     public bool onSpawn;
+    private bool isMoving;
 
     //A classic
     private bool isDead;
@@ -78,6 +79,16 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Weapon script not found");
             }
         }
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            isMoving = true;
+        }
+
+        else if (Input.GetAxis("Horizontal") == 0 || Input.GetAxis("Vertical") == 0)
+        {
+            isMoving = false;
+        }
     }
 
     private void IncreaseHealth()
@@ -97,6 +108,16 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
+
+        if (!isMoving)
+        {
+            playerAudioSrc.Stop();
+        }
+
+        if (isMoving && playerAudioSrc.isPlaying == false)
+        {
+            playerAudioSrc.Play();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
