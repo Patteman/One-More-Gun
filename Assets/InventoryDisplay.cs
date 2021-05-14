@@ -74,6 +74,6 @@ public class InventoryDisplay : MonoBehaviour
             }
 
         }
->>>>>>> Stashed changes
+
     }
 }

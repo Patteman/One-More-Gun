@@ -841,8 +841,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5287371e0bd5444b6bbf6ab25cd737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHand: {fileID: 7921958950901473726}
-  dropLocation: {fileID: 4776886780354274289}
+  isPlayer: 1
+  entityHand: {fileID: 7921958950901473726}
+  weaponTag: WEAPON
   inventoryList: []
   selectedWeapon: 0
   floatingText: {fileID: 1643232030}
