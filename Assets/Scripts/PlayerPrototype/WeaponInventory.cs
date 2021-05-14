@@ -144,7 +144,7 @@ public class WeaponInventory : MonoBehaviour
             floatingText.ShowFloatingtext(message);
             weaponYouCanEquip = col.gameObject;
         }
-        Debug.Log(col.gameObject.name);
+        //Debug.Log(col.gameObject.name);
     }
 
     private void OnTriggerExit2D(Collider2D col)
