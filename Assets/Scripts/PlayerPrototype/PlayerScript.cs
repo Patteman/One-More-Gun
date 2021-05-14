@@ -134,7 +134,7 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Finish")
         {
             Debug.Log("You've reached the goal!");
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("WinMenu");
         }
     }
 
