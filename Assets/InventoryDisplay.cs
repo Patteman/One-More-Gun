@@ -9,32 +9,72 @@ public class InventoryDisplay : MonoBehaviour
     
     private WeaponInventory weaponInventory;
 
-    SpriteRenderer sr;
+
+    public GameObject spriteGO;
+    public Canvas canvas;
+
+    public float distance;
+    private float spritePos;
+
+    private SpriteRenderer sr;
+
 
     void Start()
     {
-        weaponInventory = GetComponentInParent<WeaponInventory>();
+        weaponInventory = this.transform.GetComponent<WeaponInventory>();
     }
 
-    
     void Update()
     {
+
         newInventoryList = weaponInventory.inventoryList;
+        UpdateDisplay();
+        //Debug.Log(weaponInventory.inventoryList.Count + "||" + newInventoryList.Count + "||" + oldInventorylist.Count);
+        oldInventorylist =weaponInventory.inventoryList;
 
-        if (newInventoryList != oldInventorylist)
-        {
+        //Debug.Log(weaponInventory.inventoryList.Count+"||"+newInventoryList.Count+"||"+oldInventorylist.Count);
 
-        }
-
-        oldInventorylist = newInventoryList;
     }
 
     private void UpdateDisplay()
     {
+
         foreach(GameObject weapon in weaponInventory.inventoryList)
         {
             sr = weapon.gameObject.GetComponent<SpriteRenderer>();
             
         }
+
+        if (oldInventorylist != weaponInventory.inventoryList)
+        {
+           
+            spritePos = 0;
+
+            foreach(Transform sprite in canvas.transform)
+            {
+                if(sprite.tag=="UI_Inventory")
+                    GameObject.Destroy(sprite.gameObject);
+            }
+
+            foreach(GameObject weapon in weaponInventory.inventoryList)
+            {
+                spritePos += distance;
+                Debug.Log("Dabadapda");
+                GameObject var = Instantiate(spriteGO, new Vector3(0, 0, 0), Quaternion.identity);
+
+                var.transform.parent = canvas.transform;
+
+                var.gameObject.transform.localPosition = new Vector3(spritePos, 0, 0);
+
+                sr = weapon.gameObject.GetComponent<SpriteRenderer>();
+
+                Sprite sprite = spriteGO.GetComponent<Sprite>();
+
+                sprite = sr.sprite;
+            }
+
+        }
+
+
     }
 }
