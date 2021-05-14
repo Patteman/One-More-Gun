@@ -20,12 +20,16 @@ public class WeaponInventory : MonoBehaviour
     public FloatingText floatingText;
 
     private GameObject weaponYouCanEquip;
+    private InventoryDisplay inventoryDisplay;
 
     void Start()
     {
         inventoryList = new List<GameObject>();
 
         SelectWeapon();
+
+        if (isPlayer)
+            inventoryDisplay = this.gameObject.GetComponent<InventoryDisplay>();            
     }
 
     void Update()
@@ -122,6 +126,9 @@ public class WeaponInventory : MonoBehaviour
 
             SetWeaponPosition(weaponYouCanEquip.transform);
             SelectWeapon();
+
+            if (isPlayer)
+                inventoryDisplay.UpdateDisplay();
         }
         catch
         {
