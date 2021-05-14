@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -133,6 +134,7 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Finish")
         {
             Debug.Log("You've reached the goal!");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
