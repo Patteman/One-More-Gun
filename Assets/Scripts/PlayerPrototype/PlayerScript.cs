@@ -149,6 +149,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Die()
     {
+        SceneManager.LoadScene("LoseMenu");
         isDead = true;
         Destroy(gameObject);
     }
