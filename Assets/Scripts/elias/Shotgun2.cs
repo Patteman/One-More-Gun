@@ -17,6 +17,7 @@ public class Shotgun2 : Weapon
     {
         base.Start();
         mainCam = Camera.main;
+        bullets = new GameObject[3];
     }
 
     // Update is called once per frame
@@ -30,17 +31,21 @@ public class Shotgun2 : Weapon
         base.Attack();
         shotgunAudioSrc.Play();
 
-        bullets[0] = Instantiate(bullet, bulletSpawnPoint);
-        bullets[1] = Instantiate(bullet, bulletSpawnPoint);
-        bullets[2] = Instantiate(bullet, bulletSpawnPoint);
+        for (int i = 0; i < bullets.Length; i++)
+        {
+            bullets[i] = Instantiate(bullet, bulletSpawnPoint);
+        }
 
         //Converts the mouse position to a world position and thus allows you to aim.
         direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         direction.z = 0;
         direction.Normalize();
 
-        Quaternion angle1 = Quaternion.AngleAxis(-15, new Vector3(0, 1, 0));
-        Quaternion angle2 = Quaternion.AngleAxis(15, new Vector3(0, 1, 0));
+        //Quaternion angle1 = Quaternion.AngleAxis(-15, new Vector3(0, 1, 0));
+        //Quaternion angle2 = Quaternion.AngleAxis(15, new Vector3(0, 1, 0));
+
+        Quaternion angle1 = Quaternion.Euler(new Vector3(0, -15, 0));
+        Quaternion angle2 = Quaternion.Euler(new Vector3(15, 15, 0));
 
         bullets[0].GetComponent<BulletScript>().Setup(direction);
         bullets[1].GetComponent<BulletScript>().Setup(angle1 * direction);
