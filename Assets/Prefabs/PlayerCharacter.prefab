@@ -687,6 +687,7 @@ GameObject:
   - component: {fileID: 1016602996466354922}
   - component: {fileID: 796092515071658176}
   - component: {fileID: 8645225046737465358}
+  - component: {fileID: 292355501}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -847,6 +848,23 @@ MonoBehaviour:
   inventoryList: []
   selectedWeapon: 0
   floatingText: {fileID: 1643232030}
+--- !u!114 &292355501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016602996466354923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66024505347c4d74c8db7b9f991d6479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayObjectGameObject: {fileID: 2851107219591568896, guid: 9a6b42025e1eedc4cbca06f21bdec678,
+    type: 3}
+  canvas: {fileID: 122724011}
+  distance: 50
+  displayObjectStartPos: {x: -120, y: 170, z: -1}
 --- !u!1 &4776886780354274289
 GameObject:
   m_ObjectHideFlags: 0

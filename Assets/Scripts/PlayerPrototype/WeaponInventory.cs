@@ -90,6 +90,7 @@ public class WeaponInventory : MonoBehaviour
                 weapon.parent = null;
                 weapon.position = entityHand.transform.position;// dropLocation.transform.position;
                 inventoryList.Remove(weapon.gameObject);
+                inventoryDisplay.UpdateDisplay();
                 break;
             }
             i++;
