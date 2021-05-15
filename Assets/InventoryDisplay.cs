@@ -1,23 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryDisplay : MonoBehaviour
 {
 
     private List<GameObject> newInventoryList, oldInventorylist;
-    
     private WeaponInventory weaponInventory;
 
 
-    public GameObject spriteGO;
+    public GameObject displayObjectGameObject;
     public Canvas canvas;
 
+    public Vector3 displayObjectStartPos;
     public float distance;
     private float spritePos;
-
-    private SpriteRenderer sr;
-
 
     void Start()
     {
@@ -27,54 +25,36 @@ public class InventoryDisplay : MonoBehaviour
     void Update()
     {
 
-        newInventoryList = weaponInventory.inventoryList;
-        UpdateDisplay();
-        //Debug.Log(weaponInventory.inventoryList.Count + "||" + newInventoryList.Count + "||" + oldInventorylist.Count);
-        oldInventorylist =weaponInventory.inventoryList;
-
-        //Debug.Log(weaponInventory.inventoryList.Count+"||"+newInventoryList.Count+"||"+oldInventorylist.Count);
-
     }
 
-    private void UpdateDisplay()
+    public void UpdateDisplay()
     {
+        spritePos = distance;
 
-        foreach(GameObject weapon in weaponInventory.inventoryList)
+        foreach (Transform sprite in canvas.transform)
         {
-            sr = weapon.gameObject.GetComponent<SpriteRenderer>();
-            
+            if (sprite.tag == "UI_Inventory")
+                GameObject.Destroy(sprite.gameObject);
         }
 
-        if (oldInventorylist != weaponInventory.inventoryList)
+        int i = 0;
+
+        foreach (GameObject weapon in weaponInventory.inventoryList)
         {
-           
-            spritePos = 0;
+            GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
 
-            foreach(Transform sprite in canvas.transform)
-            {
-                if(sprite.tag=="UI_Inventory")
-                    GameObject.Destroy(sprite.gameObject);
-            }
+            var.transform.parent = canvas.transform;
 
-            foreach(GameObject weapon in weaponInventory.inventoryList)
-            {
-                spritePos += distance;
-                Debug.Log("Dabadapda");
-                GameObject var = Instantiate(spriteGO, new Vector3(0, 0, 0), Quaternion.identity);
+            var.gameObject.transform.localPosition = new Vector3(displayObjectStartPos.x + distance * i, displayObjectStartPos.y, displayObjectStartPos.z);
 
-                var.transform.parent = canvas.transform;
+            SpriteRenderer weaponSR = weapon.gameObject.GetComponent<SpriteRenderer>();
 
-                var.gameObject.transform.localPosition = new Vector3(spritePos, 0, 0);
+            Image displayObjectSR = var.GetComponent<Image>();
 
-                sr = weapon.gameObject.GetComponent<SpriteRenderer>();
+            displayObjectSR.sprite = weaponSR.sprite;
 
-                Sprite sprite = spriteGO.GetComponent<Sprite>();
-
-                sprite = sr.sprite;
-            }
-
+            i++;
         }
-
 
     }
 }
