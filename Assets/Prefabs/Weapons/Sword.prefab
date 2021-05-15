@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8292722271073666376}
   - component: {fileID: 3899287241369381342}
   - component: {fileID: 7860126249545626754}
-  - component: {fileID: -3258689124059739208}
   - component: {fileID: 8200781464997257497}
   - component: {fileID: 5516016324573368152}
   - component: {fileID: 998398360124663206}
@@ -30,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5606953097432869481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3380439, y: -1.8800899, z: -0.1}
+  m_LocalPosition: {x: -1.3, y: -1.8800899, z: -0.1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,51 +102,6 @@ MonoBehaviour:
   outOfAttacksSoundSrc: {fileID: 998398360124663206}
   damageAmount: 12
   meleeAudioSrc: {fileID: 8200781464997257497}
---- !u!60 &-3258689124059739208
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5606953097432869481}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.36, y: 0.13}
-    newSize: {x: 0.92, y: 0.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.22999999, y: -0.089999996}
-      - {x: 0.42, y: -0.19}
-      - {x: 0.45999998, y: -0.16}
-      - {x: 0.45999998, y: 0.14999999}
-      - {x: 0.44, y: 0.17999999}
-      - {x: 0.14, y: 0.08}
-      - {x: 0.04, y: 0.19999999}
-      - {x: -0.06, y: 0.19999999}
-      - {x: -0.08, y: 0.19}
-      - {x: -0.22, y: 0.11}
-      - {x: -0.44, y: 0.049999997}
-      - {x: -0.45999998, y: 0.01}
-      - {x: -0.45999998, y: -0.12}
-      - {x: -0.42999998, y: -0.14}
-      - {x: -0.16, y: -0.17999999}
-      - {x: -0.099999994, y: -0.19999999}
-      - {x: 0.02, y: -0.19999999}
-      - {x: 0.049999997, y: -0.14999999}
-      - {x: 0.099999994, y: -0.19999999}
-      - {x: 0.14999999, y: -0.19999999}
 --- !u!82 &8200781464997257497
 AudioSource:
   m_ObjectHideFlags: 0
@@ -257,7 +211,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0007005036, y: -0.00019007921}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -268,7 +222,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.25}
+  m_Size: {x: 0.3725112, y: 0.14591575}
   m_EdgeRadius: 0
 --- !u!82 &998398360124663206
 AudioSource:
