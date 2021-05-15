@@ -8,8 +8,12 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
     public AudioSource playerAudioSrc;
+    public AudioSource deathAudioSrc;
+
     public Camera MainCamera;
     private Vector2 screenBounds;
+
+    private float destructionTimer;
     private float objectWidth;
     private float objectHeight;
 
@@ -17,6 +21,7 @@ public class PlayerScript : MonoBehaviour
 
     public bool onSpawn;
     private bool isMoving;
+    private bool madeSound;
 
     //A classic
     private bool isDead;
@@ -41,6 +46,7 @@ public class PlayerScript : MonoBehaviour
         onSpawn = true;
         currentHealth = maxHealth;
         isDead = false;
+        madeSound = false;
     }
 
     private void ManageHealth()
@@ -81,6 +87,22 @@ public class PlayerScript : MonoBehaviour
             }
         }
 
+        if (currentHealth <= 0f)
+        {
+            destructionTimer += Time.fixedDeltaTime;
+
+            if (!madeSound)
+            {
+                deathAudioSrc.Play();
+                madeSound = true;
+            }
+
+            if (destructionTimer >= 2.5f)
+            {
+                Die();
+            }
+        }
+
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             isMoving = true;
@@ -100,10 +122,6 @@ public class PlayerScript : MonoBehaviour
     private void DecreaseHealth(float damageTaken)
     {
         currentHealth -= damageTaken;
-        if (currentHealth <= 0f)
-        {
-            Die();
-        }
     }
 
     private void FixedUpdate()
@@ -125,7 +143,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "BasicProjectiles")
         {
-            DecreaseHealth(5);
+            DecreaseHealth(50);
         }
     }
 
@@ -149,8 +167,8 @@ public class PlayerScript : MonoBehaviour
 
     private void Die()
     {
-        SceneManager.LoadScene("LoseMenu");
         isDead = true;
+        SceneManager.LoadScene("LoseMenu");
         Destroy(gameObject);
     }
 }

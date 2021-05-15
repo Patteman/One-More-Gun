@@ -573,6 +573,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8645225046737465358, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: playerHand
+      value: 
+      objectReference: {fileID: 1840910826}
+    - target: {fileID: 8645225046737465358, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: dropLocation
+      value: 
+      objectReference: {fileID: 1077678593}
     m_RemovedComponents:
     - {fileID: 796092515071658176, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35, type: 3}
@@ -1219,6 +1229,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1077678593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4776886780354274289, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+    type: 3}
+  m_PrefabInstance: {fileID: 449866293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1102834096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,6 +1735,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1840910826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7921958950901473726, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+    type: 3}
+  m_PrefabInstance: {fileID: 449866293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1982110545
 GameObject:
   m_ObjectHideFlags: 0
