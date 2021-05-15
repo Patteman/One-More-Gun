@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryDisplay : MonoBehaviour
 {
@@ -11,27 +10,35 @@ public class InventoryDisplay : MonoBehaviour
     private WeaponInventory weaponInventory;
 
 
-    public GameObject displayObjectGameObject;
+    public GameObject spriteGO;
     public Canvas canvas;
 
     public float distance;
-    public Vector3 displayObjectStartPos;
-
     private float spritePos;
+
+    private SpriteRenderer sr;
+
 
     void Start()
     {
         weaponInventory = this.transform.GetComponent<WeaponInventory>();
-        Debug.Log(displayObjectStartPos);
     }
 
     void Update()
     {
 
+        newInventoryList = weaponInventory.inventoryList;
+        UpdateDisplay();
+        //Debug.Log(weaponInventory.inventoryList.Count + "||" + newInventoryList.Count + "||" + oldInventorylist.Count);
+        oldInventorylist =weaponInventory.inventoryList;
+
+        //Debug.Log(weaponInventory.inventoryList.Count+"||"+newInventoryList.Count+"||"+oldInventorylist.Count);
+
     }
 
-    public void UpdateDisplay()
+    private void UpdateDisplay()
     {
+
         foreach(GameObject weapon in weaponInventory.inventoryList)
         {
             sr = weapon.gameObject.GetComponent<SpriteRenderer>();
@@ -39,31 +46,35 @@ public class InventoryDisplay : MonoBehaviour
         }
 
         if (oldInventorylist != weaponInventory.inventoryList)
-        spritePos = distance;
-
-        foreach (Transform sprite in canvas.transform)
         {
-            if (sprite.tag == "UI_Inventory")
-                GameObject.Destroy(sprite.gameObject);
+           
+            spritePos = 0;
+
+            foreach(Transform sprite in canvas.transform)
+            {
+                if(sprite.tag=="UI_Inventory")
+                    GameObject.Destroy(sprite.gameObject);
+            }
+
+            foreach(GameObject weapon in weaponInventory.inventoryList)
+            {
+                spritePos += distance;
+                Debug.Log("Dabadapda");
+                GameObject var = Instantiate(spriteGO, new Vector3(0, 0, 0), Quaternion.identity);
+
+                var.transform.parent = canvas.transform;
+
+                var.gameObject.transform.localPosition = new Vector3(spritePos, 0, 0);
+
+                sr = weapon.gameObject.GetComponent<SpriteRenderer>();
+
+                Sprite sprite = spriteGO.GetComponent<Sprite>();
+
+                sprite = sr.sprite;
+            }
+
         }
 
-        int i = 0;
 
-        foreach (GameObject weapon in weaponInventory.inventoryList)
-        {
-            GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
-
-            var.transform.parent = canvas.transform;
-
-            var.gameObject.transform.localPosition = new Vector3(displayObjectStartPos.x+distance*i, displayObjectStartPos.y, displayObjectStartPos.z);
-
-            SpriteRenderer weaponSR = weapon.gameObject.GetComponent<SpriteRenderer>();
-
-            Image displayObjectSR = var.GetComponent<Image>();
-
-            displayObjectSR.sprite = weaponSR.sprite;
-
-            i++;
-        }
     }
 }
