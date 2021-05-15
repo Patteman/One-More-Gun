@@ -12,49 +12,49 @@ public class InventoryDisplay : MonoBehaviour
 
     public GameObject displayObjectGameObject;
     public Canvas canvas;
-    
+
+    public Vector3 displayObjectStartPos;
     public float distance;
     private float spritePos;
 
     void Start()
     {
         weaponInventory = this.transform.GetComponent<WeaponInventory>();
-        
     }
 
     void Update()
     {
-        newInventoryList = weaponInventory.inventoryList;
-
-        oldInventorylist =weaponInventory.inventoryList;
 
     }
 
     public void UpdateDisplay()
     {
-            spritePos = distance;
+        spritePos = distance;
 
-            foreach (Transform sprite in canvas.transform)
-            {
-                if(sprite.tag=="UI_Inventory")
-                    GameObject.Destroy(sprite.gameObject);
-            }
+        foreach (Transform sprite in canvas.transform)
+        {
+            if (sprite.tag == "UI_Inventory")
+                GameObject.Destroy(sprite.gameObject);
+        }
 
-            foreach(GameObject weapon in weaponInventory.inventoryList)
-            {
-                spritePos += distance*(-1);
-                
-                GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
+        int i = 0;
 
-                var.transform.parent = canvas.transform;
+        foreach (GameObject weapon in weaponInventory.inventoryList)
+        {
+            GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
 
-                var.gameObject.transform.localPosition = new Vector3(spritePos, -5, 0);
+            var.transform.parent = canvas.transform;
 
-                SpriteRenderer weaponSR = weapon.gameObject.GetComponent<SpriteRenderer>();
+            var.gameObject.transform.localPosition = new Vector3(displayObjectStartPos.x + distance * i, displayObjectStartPos.y, displayObjectStartPos.z);
 
-                Image displayObjectSR = var.GetComponent<Image>();
+            SpriteRenderer weaponSR = weapon.gameObject.GetComponent<SpriteRenderer>();
 
-                displayObjectSR.sprite = weaponSR.sprite;
-            }
+            Image displayObjectSR = var.GetComponent<Image>();
+
+            displayObjectSR.sprite = weaponSR.sprite;
+
+            i++;
+        }
+
     }
 }

@@ -88,8 +88,9 @@ public class WeaponInventory : MonoBehaviour
             else if (weapon.gameObject.activeSelf == true)
             {
                 weapon.parent = null;
-                weapon.position = entityHand.transform.position;// dropLocation.transform.position;
+                weapon.position = entityHand.transform.position;
                 inventoryList.Remove(weapon.gameObject);
+                inventoryDisplay.UpdateDisplay();
                 break;
             }
             i++;

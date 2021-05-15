@@ -692,6 +692,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1505906501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1016602996466354923, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275263849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1505906502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505906501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66024505347c4d74c8db7b9f991d6479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayObjectGameObject: {fileID: 2851107219591568896, guid: 9a6b42025e1eedc4cbca06f21bdec678,
+    type: 3}
+  canvas: {fileID: 2032462199}
+  displayObjectStartPos: {x: -120, y: 175, z: -1}
+  distance: 50
 --- !u!1 &1507283930
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,12 +870,12 @@ PrefabInstance:
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.1925998
+      value: -0.538
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8683178
+      value: 2.446
       objectReference: {fileID: 0}
     - target: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
         type: 3}
@@ -899,5 +922,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 2527535997836823214, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
+        type: 3}
+      propertyPath: m_TagString
+      value: WEAPON
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
+--- !u!223 &2032462199 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 122724011, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275263849}
+  m_PrefabAsset: {fileID: 0}
