@@ -339,7 +339,7 @@ public class EnemyAgentTest : MonoBehaviour
         {
             currentPatrolWaitTime += Time.deltaTime; //Doesn't work as intented for some reason. Need help later.
             FindTarget();
-            Debug.Log(currentPatrolWaitTime);
+            //Debug.Log(currentPatrolWaitTime);
         }
         moveToPointA = !moveToPointA;
     }
