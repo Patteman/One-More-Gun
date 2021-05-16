@@ -17,6 +17,18 @@ public class PlayerScript : MonoBehaviour
     public bool onSpawn;
 
 
+    public bool IsDead
+    {
+        get
+        {
+            return isDead;
+        }
+        set
+        {
+            isDead = value;
+        }
+    }
+
     [Header("Movement")]
     public float movementSpeed;
 

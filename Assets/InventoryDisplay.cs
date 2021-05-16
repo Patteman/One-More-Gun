@@ -13,9 +13,14 @@ public class InventoryDisplay : MonoBehaviour
     public GameObject displayObjectGameObject;
     public Canvas canvas;
 
+    public Text maxAmmoText;
+    public Text currentAmmoText;
+
     public Vector3 displayObjectStartPos;
     public float distance;
     private float spritePos;
+
+    private Weapon weapon;
 
     void Start()
     {
@@ -24,6 +29,17 @@ public class InventoryDisplay : MonoBehaviour
 
     void Update()
     {
+        if (weaponInventory.inventoryList.Count >= 1)
+        {
+            DisplayAmmoCount();
+        }
+    }
+
+    private void DisplayAmmoCount()
+    {
+        int selectedWeapon = weaponInventory.selectedWeapon;
+
+        //maxAmmoText.text = weaponInventory.inventoryList[selectedWeapon].
 
     }
 
