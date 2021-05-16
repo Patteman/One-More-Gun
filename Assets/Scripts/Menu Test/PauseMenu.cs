@@ -6,15 +6,21 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseUI;
+    public GameObject player;
 
     public string menuSceneName = "MainMenu";
 
     public SceneFader sceneFader;
 
+    private void Start()
+    {
+        pauseUI.SetActive(false);
+    }
+
     void Update()
     {
         //Toggles the pause menu when pressing the escape or p key
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape)/* || Input.GetKeyDown(KeyCode.P)*/)
         {
             ToggleMenu();
         }
@@ -30,10 +36,12 @@ public class PauseMenu : MonoBehaviour
         if (pauseUI.activeSelf) //(If self was activated)
         {
             Time.timeScale = 0f;
+            player.GetComponent<PlayerScript>().enabled = false;
         }
         else //Set it to 1, i.e. normal time
         {
             Time.timeScale = 1f;
+            player.GetComponent<PlayerScript>().enabled = true;
         }
     }
 
