@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nrOfAttacks: 0
-  maxNrOfAttacks: 5
+  maxNrOfAttacks: 50
   outOfAttacksSoundSrc: {fileID: -1916531367755463048}
   damageAmount: 5
   meleeAudioSrc: {fileID: 2174482164795843256}

@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nrOfAttacks: 0
-  maxNrOfAttacks: 50
+  maxNrOfAttacks: 30
   outOfAttacksSoundSrc: {fileID: 6185886622307452903}
   bullet: {fileID: 8211641499035916651, guid: 338d58a739fbc01489a3939ce5c22284, type: 3}
   bulletSpawnPoint: {fileID: 5631789731404632620}

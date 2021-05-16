@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nrOfAttacks: 0
-  maxNrOfAttacks: 5
+  maxNrOfAttacks: 40
   outOfAttacksSoundSrc: {fileID: 998398360124663206}
   damageAmount: 12
   meleeAudioSrc: {fileID: 8200781464997257497}
@@ -214,7 +214,7 @@ BoxCollider2D:
   m_Offset: {x: 0.0007005036, y: -0.00019007921}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0.5}
     oldSize: {x: 0.36, y: 0.13}
     newSize: {x: 0.92, y: 0.4}
     adaptiveTilingThreshold: 0.5

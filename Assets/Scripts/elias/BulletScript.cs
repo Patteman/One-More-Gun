@@ -39,10 +39,6 @@ public class BulletScript : MonoBehaviour
     {
         rb.velocity = direction * speed;
 
-        Debug.Log($"Velocity: {rb.velocity}");
-        Debug.Log($"Design: {direction}");
-        Debug.Log($"Comfort: {speed}");
-
         lifetime += Time.deltaTime;
         if (lifetime >= maxLifeTime)
         {
