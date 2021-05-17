@@ -30,7 +30,18 @@ public class Shotgun2 : Weapon
     {
         base.Attack();
         shotgunAudioSrc.Play();
+        ÍnstantiateBullets();
+    }
 
+    public override void EnemyAttack(Transform target)
+    {
+        base.EnemyAttack(target);
+        shotgunAudioSrc.Play();
+        ÍnstantiateBullets();
+    }
+
+    private void ÍnstantiateBullets()
+    {
         for (int i = 0; i < bullets.Length; i++)
         {
             bullets[i] = Instantiate(bullet, bulletSpawnPoint);
@@ -41,15 +52,11 @@ public class Shotgun2 : Weapon
         direction.z = 0;
         direction.Normalize();
 
-        //Quaternion angle1 = Quaternion.AngleAxis(-15, new Vector3(0, 1, 0));
-        //Quaternion angle2 = Quaternion.AngleAxis(15, new Vector3(0, 1, 0));
-
         Quaternion angle1 = Quaternion.Euler(new Vector3(0, -15, 0));
         Quaternion angle2 = Quaternion.Euler(new Vector3(15, 15, 0));
 
         bullets[0].GetComponent<BulletScript>().Setup(direction);
         bullets[1].GetComponent<BulletScript>().Setup(angle1 * direction);
         bullets[2].GetComponent<BulletScript>().Setup(angle2 * direction);
-
     }
 }

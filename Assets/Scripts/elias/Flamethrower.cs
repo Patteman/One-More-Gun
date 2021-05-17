@@ -23,9 +23,9 @@ public class Flamethrower : Weapon
         base.Start();
 
         //The main camera is needed to get the world position of the mouse.
-        mainCam = Camera.main; 
+        mainCam = Camera.main;
     }
-    
+
     protected override void Update()
     {
         //inherits Update method from Weapon.cs
@@ -39,18 +39,31 @@ public class Flamethrower : Weapon
             SetFlamePos();
         }
     }
+
     public override void Attack()
     {
         //Inherits Attack method from Weapon.cs
         base.Attack();
         flamethrowerAudioSrc.Play();
-        
+
+        InstantiateFlame();
+    }
+
+    public override void EnemyAttack(Transform target)
+    {
+        base.EnemyAttack(target);
+        flamethrowerAudioSrc.Play();
+
+        InstantiateFlame();
+    }
+
+    private void InstantiateFlame()
+    {
         //Instantiates a flame effect, and tells it to "look at" the mouse position.
         flame = Instantiate(flameEffect.gameObject, flameStartPos.position, Quaternion.identity);
-
         isActive = true;
-
     }
+
     public void SetFlamePos()
     {
         flame.transform.position = flameStartPos.position;

@@ -48,4 +48,10 @@ public class Weapon : MonoBehaviour
         //Increases the current number of attacks each time you attack.
         nrOfAttacks++;
     }
+
+    //Enemy characters use this method
+    public virtual void EnemyAttack(Transform target)
+    {
+        nrOfAttacks++;
+    }
 }
