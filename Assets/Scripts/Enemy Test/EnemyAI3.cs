@@ -6,7 +6,7 @@ using UnityEngine.AI;
 //Comments should not be after code but above
 //messy
 
-public class EnemyAgentTest : MonoBehaviour
+public class EnemyAI3 : MonoBehaviour
 {
     //States for enemy behavior
     private enum State
@@ -31,6 +31,7 @@ public class EnemyAgentTest : MonoBehaviour
     public Transform target;
     public Transform firePoint;
     public EnemyGunScript enemyGunScript;
+    public GameObject hand;
 
     [Header("Watch and Patrol Points")]
     [Tooltip("The point where enemy looks when stading guard")]
@@ -220,13 +221,7 @@ public class EnemyAgentTest : MonoBehaviour
             case State.AttackTarget:
                 lookAt = target.transform.position;
 
-                //Shoots every second
-                if (fireCooldown <= 0f)
-                {
-                    enemyGunScript.Shoot(target, firePoint);
-                    fireCooldown = 1f / fireRate;
-                }
-                fireCooldown -= Time.deltaTime;
+                Attack();
 
                 //Checks if player is out of shooting range, then chases again
                 float shootRange = 4.5f;
@@ -240,7 +235,25 @@ public class EnemyAgentTest : MonoBehaviour
         fieldOfView.SetAimDirection(dir);  //Makes fov aim where the enemy is aiming
         fieldOfView.SetOrigin(transform.position);  //Makes fov follow enemy
     }
-    
+
+    private void Attack()
+    {
+        Weapon weaponScript = hand.GetComponentInChildren<Weapon>();
+        if(fireCooldown <= 0f)
+        {
+            try
+            {
+                weaponScript.Attack();
+                fireCooldown = 1f / fireRate;
+            }
+            catch
+            {
+                Debug.Log("Weapon script not found");
+            }
+        }
+        fireCooldown -= Time.deltaTime;
+    }
+
     private Vector3 GetRoamingPosition() //Gets random position to roam to
     {
         return startingPosition + GetRandomDir() * Random.Range(5f, 5f);
