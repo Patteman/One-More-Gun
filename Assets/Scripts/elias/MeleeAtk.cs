@@ -47,6 +47,13 @@ public class MeleeAtk : Weapon
         isAttacking = true;
     }
 
+    public override void EnemyAttack(Transform target)
+    {
+        base.EnemyAttack(target);
+        meleeAudioSrc.Play();
+        isAttacking = true;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isAttacking == true && collision.gameObject.tag == "Enemies")

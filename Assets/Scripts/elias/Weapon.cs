@@ -35,17 +35,17 @@ public class Weapon : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-        //remove this code when the weapon test scene is obsolete
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    Attack();
-        //}
     }
 
     public virtual void Attack()
     {
         //Increases the current number of attacks each time you attack.
+        nrOfAttacks++;
+    }
+
+    //Enemy characters use this method. The differences will be in the separate scripts for weapons.
+    public virtual void EnemyAttack(Transform target)
+    {
         nrOfAttacks++;
     }
 }

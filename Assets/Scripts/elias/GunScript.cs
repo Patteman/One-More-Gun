@@ -48,4 +48,19 @@ public class GunScript : Weapon
             bs.Setup(direction);
         }
     }
+
+    public override void EnemyAttack(Transform target)
+    {
+        base.EnemyAttack(target);
+        GameObject tempBullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+        BulletScript bs = tempBullet.GetComponent<BulletScript>();
+        Vector3 direction = target.position - bulletSpawnPoint.position;
+
+        gunSoundSrc.Play();
+
+        if (bs != null)
+        {
+            bs.Setup(direction);
+        }
+    }
 }
