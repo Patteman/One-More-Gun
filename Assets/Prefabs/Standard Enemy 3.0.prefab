@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 8194736356064689701}
   - component: {fileID: 8194736356064689706}
   - component: {fileID: 8194736356064689707}
-  - component: {fileID: 8194736356064689704}
   - component: {fileID: 8194736356064689705}
   - component: {fileID: 8194736356064689710}
   m_Layer: 10
@@ -121,8 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AIBehavior: 0
   target: {fileID: 0}
-  firePoint: {fileID: 8194736354809293910}
-  enemyGunScript: {fileID: 8194736356064689704}
   hand: {fileID: 8194736354809293911}
   guardPoint: {fileID: 0}
   patrolPointA: {fileID: 0}
@@ -132,8 +129,8 @@ MonoBehaviour:
   patrolWaitTime: 3
   fovPrefab: {fileID: 5775167233331644988, guid: 701291643719d4340a4bba6ef4a050d7,
     type: 3}
-  fov: 0
-  viewDistance: 0
+  fov: 90
+  viewDistance: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 768
@@ -142,20 +139,6 @@ MonoBehaviour:
   fireRate: 1
   walkSpeed: 1
   runSpeed: 3.5
---- !u!114 &8194736356064689704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8194736356064689708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57802bbce51ba05419c581aa7157602b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 8211641499035916651, guid: 338d58a739fbc01489a3939ce5c22284, type: 3}
-  ammunitionAmount: 20
 --- !u!114 &8194736356064689705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +154,8 @@ MonoBehaviour:
   isPlayer: 0
   entityHand: {fileID: 8194736354809293911}
   weaponTag: 
-  inventoryList: []
+  inventoryList:
+  - {fileID: 5956593064258203998}
   selectedWeapon: 0
   floatingText: {fileID: 0}
 --- !u!195 &8194736356064689710
@@ -391,6 +375,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
+--- !u!1 &5956593064258203998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2527535997836823214, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8194736355049864176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5956593064258203985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,

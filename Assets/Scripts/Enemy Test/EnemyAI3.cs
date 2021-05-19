@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//Comments should not be after code but above
-//messy
-
 public class EnemyAI3 : MonoBehaviour
 {
     //States for enemy behavior
@@ -19,18 +16,18 @@ public class EnemyAI3 : MonoBehaviour
     }
     private State currentState;
 
+    //States for enemy orders
     private enum Behavior
     {
         StandGuard,
         Patrol,
         Roam,
     }
+
     [Header("Pre-start Settings")]
     [SerializeField] private Behavior AIBehavior;
     
     public Transform target;
-    public Transform firePoint;
-    public EnemyGunScript enemyGunScript;
     public GameObject hand;
 
     [Header("Watch and Patrol Points")]
@@ -55,10 +52,10 @@ public class EnemyAI3 : MonoBehaviour
 
     private float currentSpeed;
     private float currentPatrolWaitTime;
+    private float reachedPositionDistance = 1f;
+    private float turnSpeed; //Not yet implemented
 
     private bool moveToPointA;
-
-    private float reachedPositionDistance = 1f;
 
     [Header("FOV Settings")]
     [SerializeField] private Transform fovPrefab;
@@ -78,40 +75,36 @@ public class EnemyAI3 : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    private float turnSpeed;                //New
-
     private void Start()
     {
         startingPosition = transform.position;
+        guardPosition = transform.position;
         roamPosition = GetRoamingPosition();
 
         walkSpeed = 1f;
         runSpeed = 3.5f;
         currentSpeed = walkSpeed;
         currentPatrolWaitTime = patrolWaitTime;
-
+        turnSpeed = 150f; //Not yet implmented
+        
         health = maxHealth;
 
+        fov = 90f; //Will be replaced by weapon values in the future
+        viewDistance = 5f; //Will be replaced by weapon values in the future
+
         moveToPointA = true;
-
-        guardPosition = transform.position;
-
-        //Should not be present if you wonna use inspector to set
-        fov = 90f;
-        viewDistance = 5f;
 
         //Instansiates the field of view, with fov and view distance
         fieldOfView = Instantiate(fovPrefab, null).GetComponent<FieldOfView>();
         fieldOfView.SetFOV(fov);
         fieldOfView.SetViewDistance(viewDistance);
 
+        //Default code needed for agent script to work
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        //Rotation
-        turnSpeed = 150f;     //NEW
-
+        //Switch to set behavior at start depending on order given
         switch (AIBehavior)
         {
             default:
@@ -131,20 +124,22 @@ public class EnemyAI3 : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerController.isDead) //Stop update if player is dead (stops errors/exceptions)
+        //Stop update if player is dead (stops errors/exceptions)
+        if (PlayerController.isDead)
         {
             return;
         }
 
+        //Keeps the agent script's own speed viariable updated with the speed given in this script
         agent.speed = currentSpeed;
 
-        //Turns so enemy looks as target
+        //Rotates enemy to look at the "lookAt" position
         var dir = lookAt - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;                //NEW COMMETNED
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);    //NEW COMMENTED
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-
-        //Dette virker for modellen, men FOV'en er independent               //NEW
+        //-----------------| Non-implemented test code that will be used or deleted in the future |------------------//
+        //Dette virker for modellen, men FOV'en er independent
         //Vector3 myLocation = transform.position;
         //Vector3 targetLocation = roamPosition;
         //targetLocation.z = myLocation.z;
@@ -163,6 +158,8 @@ public class EnemyAI3 : MonoBehaviour
             default:
             case State.StandingGuard:
                 FindTarget();
+                
+                //If enemy is at the guard postition then look at guard point else move to that position first
                 if(Vector3.Distance(transform.position, guardPosition) < reachedPositionDistance)
                 {
                     lookAt = guardPoint.position;
@@ -186,33 +183,30 @@ public class EnemyAI3 : MonoBehaviour
                 break;
             
             case State.Roaming:
-                //Move to target using the agent component(roamPos)
+                //Move to and look at the roam position
                 agent.SetDestination(roamPosition);
-
                 lookAt = roamPosition;    
-                //lookAt = agent.nextPosition;   //NEW
+                //lookAt = agent.nextPosition; //Not yet implemented
 
-                //Checks if player is in range
                 FindTarget();
 
-                if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) //target hit, find next roam pos
+                //Roam position reached, find new position
+                if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance)
                 {
-                    Debug.Log("Target hit");
                     roamPosition = GetRoamingPosition();
                 }
                 break;
 
             case State.ChaseTarget:
-                //Move to target (player)
+                //Move to and look at the target (player)
                 agent.SetDestination(target.position);
-
                 lookAt = target.transform.position;
 
-                //Check if target is out of range
                 DropTarget();
 
-                float attackRange = 3f; //use weapon range here
-                if (Vector3.Distance(transform.position, target.transform.position) < attackRange) //Player in weapon range, switch state
+                //If target (player) is within attack range, start attacking
+                float attackRange = 3f; //Will be replaced by weapon values in the future
+                if (Vector3.Distance(transform.position, target.transform.position) < attackRange)
                 {
                     currentState = State.AttackTarget;
                 }
@@ -225,17 +219,19 @@ public class EnemyAI3 : MonoBehaviour
 
                 //Checks if player is out of shooting range, then chases again
                 float shootRange = 4.5f;
-                if (Vector3.Distance(transform.position, target.transform.position) > shootRange) //Player outside weapon range, chase again
+                if (Vector3.Distance(transform.position, target.transform.position) > shootRange)
                 {
                     currentState = State.ChaseTarget;
                 }
                 break;
         }
 
-        fieldOfView.SetAimDirection(dir);  //Makes fov aim where the enemy is aiming
-        fieldOfView.SetOrigin(transform.position);  //Makes fov follow enemy
+        //Makes FOV cone follow the enemy and aim in the direction the enemy is looking
+        fieldOfView.SetAimDirection(dir);
+        fieldOfView.SetOrigin(transform.position);
     }
 
+    //Calls equipped weapon's attack method
     private void Attack()
     {
         Weapon weaponScript = hand.GetComponentInChildren<Weapon>();
@@ -244,7 +240,7 @@ public class EnemyAI3 : MonoBehaviour
             try
             {
                 weaponScript.Attack();
-                fireCooldown = 1f / fireRate;
+                fireCooldown = 1f / fireRate; //Will be replaced by weapon values in the future
             }
             catch
             {
@@ -254,17 +250,20 @@ public class EnemyAI3 : MonoBehaviour
         fireCooldown -= Time.deltaTime;
     }
 
-    private Vector3 GetRoamingPosition() //Gets random position to roam to
+    //Gets a random position from the enemys current position, for it to roam to
+    private Vector3 GetRoamingPosition() 
     {
         return startingPosition + GetRandomDir() * Random.Range(5f, 5f);
     }
 
-    private Vector3 GetRandomDir() //Gets a random x and a random y and normalized the vector
+    //Gets a random x and a random y and normalized the vector
+    private Vector3 GetRandomDir()
     {
         return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
     }
 
-    private void FindTarget() //Checks if it's target (player) is within range, switches state
+    //Checks if it's target (player) is within range, switches state
+    private void FindTarget()
     {
         //-----------------------  USE ONLY THIS IF YOU DO NOT WANT VISIBLE FOV ----------------------//
         if (Vector3.Distance(transform.position, target.transform.position) < viewDistance)
@@ -274,11 +273,13 @@ public class EnemyAI3 : MonoBehaviour
             var dir = lookAt - transform.position;
             if (Vector3.Angle(dir, dirToPlayer) < fov / 2f)
             {
+                //Player is inside angle, check if enemy can see the player (not behind wall)
                 RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, dirToPlayer, viewDistance, layerMask);
                 if(raycastHit2D.collider != null)
                 {
                     Debug.Log(raycastHit2D.collider.tag);
 
+                    //If the object seen in the player, then switch state, if not, then it is a wall
                     if (raycastHit2D.collider.tag == "Player")
                     {
                         //Player hit
@@ -290,13 +291,15 @@ public class EnemyAI3 : MonoBehaviour
         }
     }
 
-    private void DropTarget() //Checks if it's target (player) is within range, switches state
+    //Checks if it's target (player) is out-of-range, switches state
+    private void DropTarget()
     {
         float dropRange = 10f;
         if (Vector3.Distance(transform.position, target.transform.position) > dropRange)
         {
             currentSpeed = walkSpeed;
 
+            //Return to original behavior depending on the start order
             switch (AIBehavior)
             {
                 case Behavior.Roam:
@@ -307,15 +310,15 @@ public class EnemyAI3 : MonoBehaviour
                     currentState = State.Patrolling;
                     break;
                 case Behavior.StandGuard:
-                    currentState = State.StandingGuard; //Currently just stops the enemy and makes it look in the direction of watchpoint.
-                    //needs function for returning to guardpoint.
+                    currentState = State.StandingGuard;
                     break;
             }
 
         }
     }
 
-    public void TakeDamage(float dmg) //Method gets called when enemy is hit by attack
+    //Method gets called when enemy is hit by an attack
+    public void TakeDamage(float dmg)
     {
         health -= dmg;
         if (health <= 0)
@@ -323,27 +326,34 @@ public class EnemyAI3 : MonoBehaviour
             health = 0;
             Die();
         }
+
+        //If hit, enemy will start chasing the target (player)
         currentState = State.ChaseTarget;
         currentSpeed = runSpeed;
     }
 
-    private void Die() //Method gets called when the enemy has to die
+    //Destroys enemy object as well as its FOV cone.
+    private void Die()
     {
         Destroy(gameObject);
         fieldOfView.DestroyFOV();
     }
 
+    //Method to make a patrolling enemy move to the next position
     private void PatrolTo(Vector3 patrolPosition, Vector3 watchPosition)
     {
         lookAt = patrolPosition;
         agent.SetDestination(patrolPosition);
         FindTarget();
+
+        //If enemy reaches that position, start standing guard
         if (Vector3.Distance(transform.position, patrolPosition) < reachedPositionDistance)
         {
             PatrolWatch(watchPosition);
         }
     }
 
+    //Enemy looks at a specific point for a certain amount of time, before moving to next patrol point.
     private void PatrolWatch(Vector3 patrolWatchPoint)
     {
         lookAt = patrolWatchPoint;

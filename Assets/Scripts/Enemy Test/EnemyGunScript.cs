@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyGunScript : MonoBehaviour
 {
-    //Maybe use standard gun script in future so the weapons can be different.
-    
+    //As of the implementation of the EnemyAI3 script, this script is not used anymore. Only old models and scripts still use this.
+
     public GameObject bullet;
     int bulletCounter;
     public int ammunitionAmount;
@@ -13,20 +13,16 @@ public class EnemyGunScript : MonoBehaviour
 
     public void Shoot(Transform target, Transform pointToShoot)
     {
-        GameObject tempBullet = (GameObject)Instantiate(bullet, pointToShoot.position, Quaternion.identity); //spawns a bullet
-        BulletScript bs = tempBullet.GetComponent<BulletScript>(); //obtains the script from the spawned bullet
-        Vector3 direction = target.position - pointToShoot.position; //SHOULD BE the direction the gun is pointed in
+        //Instaciates the bullet, gets the scripts and calculates the direction for the bullet.
+        GameObject tempBullet = (GameObject)Instantiate(bullet, pointToShoot.position, Quaternion.identity);
+        BulletScript bs = tempBullet.GetComponent<BulletScript>();
+        Vector3 direction = target.position - pointToShoot.position;
         direction.Normalize();
 
+        //Sends the direction vector to the bullet script
         if (bs != null)
         {
             bs.Setup(direction);
-            //bulletCounter++;
-            //if (bulletCounter >= ammunitionAmount)
-            //{
-            //    Destroy(gameObject);
-            //    bulletCounter = 0;
-            //}
         }
     }
 }

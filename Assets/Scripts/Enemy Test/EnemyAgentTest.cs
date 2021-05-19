@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//Comments should not be after code but above
-//messy
+//This script is out-of-date, and only old objects may use the script. See EnemyAI3 for most up-to-date script.
 
 public class EnemyAgentTest : MonoBehaviour
 {

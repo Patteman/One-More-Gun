@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script is out-of-date, and only old objects may use the script. See EnemyAI3 for most up-to-date script.
+
 public class EnemyAI : MonoBehaviour
 {
     //States for enemy behavior
