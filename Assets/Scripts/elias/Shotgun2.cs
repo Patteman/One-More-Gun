@@ -30,13 +30,24 @@ public class Shotgun2 : Weapon
     {
         base.Attack();
         shotgunAudioSrc.Play();
+
+        direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        direction.z = 0;
+        direction.Normalize();
+
         ÍnstantiateBullets();
+
     }
 
     public override void EnemyAttack(Transform target)
     {
         base.EnemyAttack(target);
         shotgunAudioSrc.Play();
+
+        direction = target.position - transform.position;
+        direction.z = 0;
+        direction.Normalize();
+
         ÍnstantiateBullets();
     }
 
@@ -48,10 +59,7 @@ public class Shotgun2 : Weapon
         }
 
         //Converts the mouse position to a world position and thus allows you to aim.
-        direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        direction.z = 0;
-        direction.Normalize();
-
+        
         Quaternion angle1 = Quaternion.Euler(new Vector3(0, -15, 0));
         Quaternion angle2 = Quaternion.Euler(new Vector3(15, 15, 0));
 

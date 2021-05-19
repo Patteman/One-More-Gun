@@ -51,10 +51,7 @@ public class Flamethrower : Weapon
 
     public override void EnemyAttack(Transform target)
     {
-        base.EnemyAttack(target);
-        flamethrowerAudioSrc.Play();
-
-        InstantiateFlame();
+        Debug.Log("Nothing to see here yet...");
     }
 
     private void InstantiateFlame()
