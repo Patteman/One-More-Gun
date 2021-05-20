@@ -126,6 +126,7 @@ public class EnemyAI3 : MonoBehaviour
         StartCoroutine(LateStart(0.05f));
     }
 
+    //Coroutine to make sure the inventory script's start method is complete before method is called.
     IEnumerator LateStart(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
