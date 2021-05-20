@@ -34,6 +34,11 @@ public class WeaponInventory : MonoBehaviour
 
     void Update()
     {
+        if (!isPlayer)
+        {
+            return;
+        }
+
         int previousSelectedWeapon = selectedWeapon;
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -76,7 +81,7 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
-    private void DropWeapon()
+    public void DropWeapon()
     {
         int i = 0;
         foreach (Transform weapon in entityHand.transform)

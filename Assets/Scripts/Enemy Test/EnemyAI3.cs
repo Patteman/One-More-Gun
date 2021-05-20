@@ -29,6 +29,7 @@ public class EnemyAI3 : MonoBehaviour
     
     public Transform target;
     public GameObject hand;
+    private WeaponInventory inventory;
 
     [Header("Watch and Patrol Points")]
     [Tooltip("The point where enemy looks when stading guard")]
@@ -53,7 +54,7 @@ public class EnemyAI3 : MonoBehaviour
     private float currentSpeed;
     private float currentPatrolWaitTime;
     private float reachedPositionDistance = 1f;
-    private float turnSpeed; //Not yet implemented
+    //private float turnSpeed; //Not yet implemented
 
     private bool moveToPointA;
 
@@ -85,7 +86,7 @@ public class EnemyAI3 : MonoBehaviour
         runSpeed = 3.5f;
         currentSpeed = walkSpeed;
         currentPatrolWaitTime = patrolWaitTime;
-        turnSpeed = 150f; //Not yet implmented
+        //turnSpeed = 150f; //Not yet implmented
         
         health = maxHealth;
 
@@ -120,7 +121,10 @@ public class EnemyAI3 : MonoBehaviour
                 currentState = State.StandingGuard;
                 break;
         }
+        inventory = gameObject.GetComponent<WeaponInventory>();
+        chooseRandomWeapon();
     }
+
 
     private void Update()
     {
@@ -335,6 +339,7 @@ public class EnemyAI3 : MonoBehaviour
     //Destroys enemy object as well as its FOV cone.
     private void Die()
     {
+        inventory.DropWeapon();
         Destroy(gameObject);
         fieldOfView.DestroyFOV();
     }
@@ -364,6 +369,15 @@ public class EnemyAI3 : MonoBehaviour
             currentPatrolWaitTime = patrolWaitTime;
         }
         currentPatrolWaitTime -= Time.deltaTime;
+    }
+
+    //Chooses a random weapon in the enemy weapon list
+    private void chooseRandomWeapon()
+    {
+        int weaponNumber = Random.Range(0, inventory.inventoryList.Count);
+        inventory.selectedWeapon = weaponNumber;
+        Debug.Log(weaponNumber);
+        Debug.Log(inventory.selectedWeapon);
     }
 
 }

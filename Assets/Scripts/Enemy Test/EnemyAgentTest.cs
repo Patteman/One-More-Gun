@@ -76,7 +76,7 @@ public class EnemyAgentTest : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    private float turnSpeed;                //New
+    //private float turnSpeed;                //New
 
     private void Start()
     {
@@ -108,7 +108,7 @@ public class EnemyAgentTest : MonoBehaviour
         agent.updateUpAxis = false;
 
         //Rotation
-        turnSpeed = 150f;     //NEW
+        //turnSpeed = 150f;     //NEW
 
         switch (AIBehavior)
         {
