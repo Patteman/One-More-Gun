@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryDisplay : MonoBehaviour
+public class PlayerUIscript2 : MonoBehaviour
 {
 
     private List<GameObject> newInventoryList, oldInventorylist;
@@ -13,8 +13,7 @@ public class InventoryDisplay : MonoBehaviour
     public GameObject displayObjectGameObject;
     public Canvas canvas;
 
-    public Text maxAmmoText;
-    public Text currentAmmoText;
+    public Text ammoText;
 
     public Vector3 displayObjectStartPos;
     public float distance;
@@ -38,9 +37,24 @@ public class InventoryDisplay : MonoBehaviour
     private void DisplayAmmoCount()
     {
         int selectedWeapon = weaponInventory.selectedWeapon;
+        try
+        {
+            weapon = weaponInventory.inventoryList[selectedWeapon].GetComponent<Weapon>();
 
-        //maxAmmoText.text = weaponInventory.inventoryList[selectedWeapon].
+            string ammoCounterMessage = "{0}/{1}";
 
+            string maxAmmo = weapon.maxNrOfAttacks.ToString();
+
+            string currentAmmo = (weapon.maxNrOfAttacks - weapon.nrOfAttacks).ToString();
+
+            ammoCounterMessage = string.Format(ammoCounterMessage, currentAmmo, maxAmmo);
+
+            ammoText.text = ammoCounterMessage;
+        }
+        catch
+        {
+
+        }
     }
 
     public void UpdateDisplay()

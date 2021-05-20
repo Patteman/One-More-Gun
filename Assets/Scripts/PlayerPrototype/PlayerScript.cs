@@ -12,11 +12,9 @@ public class PlayerScript : MonoBehaviour
     private float objectWidth;
     private float objectHeight;
 
-    //public float movementSpeed;
-
     public bool onSpawn;
 
-
+    public bool isDead;
     public bool IsDead
     {
         get
@@ -44,11 +42,15 @@ public class PlayerScript : MonoBehaviour
 
     private Vector2 movement;
 
+    private PlayerUserInterFace playerUserInterFace;
+
     void Start()
     {
-        //CalculateScreenSize();
         onSpawn = true;
         currentHealth = maxHealth;
+
+        playerUserInterFace = this.transform.GetComponent<PlayerUserInterFace>();
+
     }
 
     private void ManageHealth()
@@ -78,6 +80,7 @@ public class PlayerScript : MonoBehaviour
             try
             {
                 gunScript.Attack();
+                playerUserInterFace.DisplayAmmoCount();
             }
             catch
             {
