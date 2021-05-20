@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryDisplay : MonoBehaviour
+public class PlayerUIscript2 : MonoBehaviour
 {
 
     private List<GameObject> newInventoryList, oldInventorylist;
@@ -13,9 +13,13 @@ public class InventoryDisplay : MonoBehaviour
     public GameObject displayObjectGameObject;
     public Canvas canvas;
 
+    public Text ammoText;
+
     public Vector3 displayObjectStartPos;
     public float distance;
     private float spritePos;
+
+    private Weapon weapon;
 
     void Start()
     {
@@ -24,7 +28,33 @@ public class InventoryDisplay : MonoBehaviour
 
     void Update()
     {
+        if (weaponInventory.inventoryList.Count >= 1)
+        {
+            DisplayAmmoCount();
+        }
+    }
 
+    private void DisplayAmmoCount()
+    {
+        int selectedWeapon = weaponInventory.selectedWeapon;
+        try
+        {
+            weapon = weaponInventory.inventoryList[selectedWeapon].GetComponent<Weapon>();
+
+            string ammoCounterMessage = "{0}/{1}";
+
+            string maxAmmo = weapon.maxNrOfAttacks.ToString();
+
+            string currentAmmo = (weapon.maxNrOfAttacks - weapon.nrOfAttacks).ToString();
+
+            ammoCounterMessage = string.Format(ammoCounterMessage, currentAmmo, maxAmmo);
+
+            ammoText.text = ammoCounterMessage;
+        }
+        catch
+        {
+
+        }
     }
 
     public void UpdateDisplay()

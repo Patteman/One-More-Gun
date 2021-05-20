@@ -17,14 +17,22 @@ public class PlayerScript : MonoBehaviour
     private float objectWidth;
     private float objectHeight;
 
-    //public float movementSpeed;
-
     public bool onSpawn;
     private bool isMoving;
     private bool madeSound;
 
-    //A classic
-    private bool isDead;
+    public bool isDead;
+    public bool IsDead
+    {
+        get
+        {
+            return isDead;
+        }
+        set
+        {
+            isDead = value;
+        }
+    }
 
     [Header("Movement")]
     public float movementSpeed;
@@ -41,12 +49,17 @@ public class PlayerScript : MonoBehaviour
 
     private Vector2 movement;
 
+    private PlayerUserInterFace playerUserInterFace;
+
     void Start()
     {
         onSpawn = true;
         currentHealth = maxHealth;
+
         isDead = false;
         madeSound = false;
+
+        playerUserInterFace = this.transform.GetComponent<PlayerUserInterFace>();        
     }
 
     private void ManageHealth()
@@ -80,6 +93,7 @@ public class PlayerScript : MonoBehaviour
             try
             {
                 weaponScript.Attack();
+                playerUserInterFace.DisplayAmmoCount();
             }
             catch
             {
