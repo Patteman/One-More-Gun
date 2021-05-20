@@ -95,12 +95,12 @@ public class WeaponInventory : MonoBehaviour
 
         if (inventoryList.Count != entityHand.transform.childCount)
         {
+            UpdateInventoryList();
             CycleInventoryRight();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            inventoryList.Remove(inventoryList[selectedWeapon]);
             EquipWeapon();
         }
     }
@@ -142,6 +142,7 @@ public class WeaponInventory : MonoBehaviour
 
     public void SelectWeapon()
     {
+        bool aWeaponIsActive = false;
         int i = 0;
         foreach (Transform weapon in entityHand.transform)
         {
@@ -149,6 +150,7 @@ public class WeaponInventory : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 SetWeaponPosition(weapon);
+                aWeaponIsActive = true;
             }
             else
             {
@@ -156,6 +158,13 @@ public class WeaponInventory : MonoBehaviour
             }
 
             i++;
+        }
+
+        if(aWeaponIsActive == false && entityHand.transform.childCount>=1)
+        {        
+            selectedWeapon = 0;
+            entityHand.transform.GetChild(selectedWeapon).gameObject.SetActive(true);
+            SetWeaponPosition(entityHand.transform.GetChild(selectedWeapon));
         }
     }
 
