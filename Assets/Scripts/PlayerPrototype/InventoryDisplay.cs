@@ -30,7 +30,7 @@ public class PlayerUserInterFace : MonoBehaviour
     {
         if (weaponInventory.inventoryList.Count >= 1)
         {
-            DisplayAmmoCount();
+            //DisplayAmmoCount();
         }
     }
 

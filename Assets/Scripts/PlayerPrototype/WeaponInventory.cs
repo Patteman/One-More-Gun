@@ -20,7 +20,7 @@ public class WeaponInventory : MonoBehaviour
     public FloatingText floatingText;
 
     private GameObject weaponYouCanEquip;
-    private InventoryDisplay inventoryDisplay;
+    private PlayerUserInterFace inventoryDisplay;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class WeaponInventory : MonoBehaviour
 
         if (isPlayer)
         {
-            inventoryDisplay = this.gameObject.GetComponent<InventoryDisplay>();
+            inventoryDisplay = this.gameObject.GetComponent<PlayerUserInterFace>();
         }
         else
         {
@@ -44,7 +44,7 @@ public class WeaponInventory : MonoBehaviour
 
     public void CycleInventoryRight()
     {
-
+        Debug.Log("Right");
         if (selectedWeapon >= entityHand.transform.childCount - 1)
         {
             selectedWeapon = 0;
@@ -57,6 +57,7 @@ public class WeaponInventory : MonoBehaviour
 
     public void CycleInventoryLeft()
     {
+        Debug.Log("Left");
         if (selectedWeapon <= 0)
         {
             selectedWeapon = entityHand.transform.childCount - 1;
@@ -73,6 +74,7 @@ public class WeaponInventory : MonoBehaviour
     {
         if (!isPlayer)
         {
+            CheckInventory();
             return;
         }
 
@@ -87,16 +89,15 @@ public class WeaponInventory : MonoBehaviour
             CycleInventoryLeft();
         }
 
+        if (previousSelectedWeapon != selectedWeapon)
+        {
+            SelectWeapon();
+        }
+
 
         if (Input.GetKeyDown(KeyCode.F))
         {
             DropWeapon();
-        }
-
-        if (inventoryList.Count != entityHand.transform.childCount)
-        {
-            UpdateInventoryList();
-            CycleInventoryRight();
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -105,19 +106,41 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
-    public void UpdateInventoryList()
+    public void CheckInventory()
     {
-        inventoryList.Clear();
-
-        foreach (Transform weapon in entityHand.transform)
+        if (!isPlayer)
         {
-            inventoryList.Add(weapon.gameObject);
-        }
+            foreach (Transform weapon in entityHand.transform)
+            {
+                
+                if (weapon.transform.gameObject.activeSelf == true)
+                {
+                    return;
+                }
+            }
 
-        SelectWeapon();
+            inventoryList.Clear();
+
+            foreach (Transform weapon in entityHand.transform)
+            {
+                inventoryList.Add(weapon.gameObject);
+            }
+            selectedWeapon = 0;
+
+            try
+            {
+                entityHand.transform.GetChild(selectedWeapon).gameObject.SetActive(true);
+                SelectWeapon();
+            }
+            catch
+            {
+
+            }
+        }
+        
     }
 
-    private void DropWeapon()
+    public void DropWeapon()
     {
         int i = 0;
         foreach (Transform weapon in entityHand.transform)
@@ -142,7 +165,6 @@ public class WeaponInventory : MonoBehaviour
 
     public void SelectWeapon()
     {
-        bool aWeaponIsActive = false;
         int i = 0;
         foreach (Transform weapon in entityHand.transform)
         {
@@ -150,7 +172,6 @@ public class WeaponInventory : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 SetWeaponPosition(weapon);
-                aWeaponIsActive = true;
             }
             else
             {
@@ -159,13 +180,7 @@ public class WeaponInventory : MonoBehaviour
 
             i++;
         }
-
-        if(aWeaponIsActive == false && entityHand.transform.childCount>=1)
-        {        
-            selectedWeapon = 0;
-            entityHand.transform.GetChild(selectedWeapon).gameObject.SetActive(true);
-            SetWeaponPosition(entityHand.transform.GetChild(selectedWeapon));
-        }
+        
     }
 
     private void EquipWeapon()
