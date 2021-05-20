@@ -125,7 +125,17 @@ public class WeaponInventory : MonoBehaviour
                 weapon.parent = null;
                 weapon.position = entityHand.transform.position;
                 inventoryList.Remove(weapon.gameObject);
-                inventoryDisplay.UpdateDisplay();
+
+                try
+                {
+                    inventoryDisplay.UpdateDisplay();
+                }
+                catch
+                {
+                    Debug.Log("Not a player character");
+                }
+                
+
                 break;
             }
             i++;

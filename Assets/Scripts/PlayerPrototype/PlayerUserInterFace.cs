@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryDisplay : MonoBehaviour
+public class PlayerUserInterFace : MonoBehaviour
 {
 
     private List<GameObject> newInventoryList, oldInventorylist;
@@ -11,6 +11,7 @@ public class InventoryDisplay : MonoBehaviour
 
 
     public GameObject displayObjectGameObject;
+    public GameObject inventoryDisplay;
     public Canvas canvas;
 
     public Text ammoText;
@@ -30,11 +31,11 @@ public class InventoryDisplay : MonoBehaviour
     {
         if (weaponInventory.inventoryList.Count >= 1)
         {
-            DisplayAmmoCount();
+            //DisplayAmmoCount();
         }
     }
 
-    private void DisplayAmmoCount()
+    public void DisplayAmmoCount()
     {
         int selectedWeapon = weaponInventory.selectedWeapon;
         try
@@ -74,6 +75,7 @@ public class InventoryDisplay : MonoBehaviour
             GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
 
             var.transform.parent = canvas.transform;
+            var.transform.parent = inventoryDisplay.transform;
 
             var.gameObject.transform.localPosition = new Vector3(displayObjectStartPos.x + distance * i, displayObjectStartPos.y, displayObjectStartPos.z);
 

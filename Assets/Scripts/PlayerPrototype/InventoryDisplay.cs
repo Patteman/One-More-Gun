@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUserInterFace : MonoBehaviour
+public class InventoryDisplay: MonoBehaviour
 {
-
+    [Header("Please dont use this, use PlayerUserInterFace instead")]
     private List<GameObject> newInventoryList, oldInventorylist;
     private WeaponInventory weaponInventory;
 
