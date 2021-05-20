@@ -142,6 +142,8 @@ public class WeaponInventory : MonoBehaviour
             SetWeaponPosition(weaponYouCanEquip.transform);
             SelectWeapon();
 
+            floatingText.HideFloatingText();
+
             if (isPlayer)
                 inventoryDisplay.UpdateDisplay();
         }
