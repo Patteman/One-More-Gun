@@ -156,10 +156,7 @@ MonoBehaviour:
   isPlayer: 0
   entityHand: {fileID: 8194736354809293911}
   weaponTag: 
-  inventoryList:
-  - {fileID: 5956593064258203998}
-  - {fileID: 428664423315968564}
-  - {fileID: 4770444243976207903}
+  inventoryList: []
   selectedWeapon: 0
   floatingText: {fileID: 0}
 --- !u!195 &8194736356064689710
@@ -374,12 +371,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a43f1ee68af742d4da1e35d152cc773b, type: 3}
---- !u!1 &428664423315968564 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 29865436204410495, guid: a43f1ee68af742d4da1e35d152cc773b,
-    type: 3}
-  m_PrefabInstance: {fileID: 403343132573185099}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4785742329243892839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5184392195326593068, guid: a43f1ee68af742d4da1e35d152cc773b,
@@ -465,12 +456,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e3704af53bac4c4098cf2ad17579b22, type: 3}
---- !u!1 &4770444243976207903 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2671860496830171444, guid: 5e3704af53bac4c4098cf2ad17579b22,
-    type: 3}
-  m_PrefabInstance: {fileID: 7431044066096461611}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4770444243976207900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2671860496830171447, guid: 5e3704af53bac4c4098cf2ad17579b22,
@@ -561,12 +546,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f78c866dcc9ed1942b4ac459bc13e6e6, type: 3}
---- !u!1 &5956593064258203998 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2527535997836823214, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8194736355049864176}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5956593064258203985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2527535997836823201, guid: f78c866dcc9ed1942b4ac459bc13e6e6,
