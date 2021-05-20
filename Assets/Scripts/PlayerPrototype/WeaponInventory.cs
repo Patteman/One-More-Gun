@@ -29,11 +29,25 @@ public class WeaponInventory : MonoBehaviour
         SelectWeapon();
 
         if (isPlayer)
-            inventoryDisplay = this.gameObject.GetComponent<InventoryDisplay>();            
+        {
+            inventoryDisplay = this.gameObject.GetComponent<InventoryDisplay>();  
+        }
+        else
+        {
+            foreach (Transform weapon in entityHand.transform)
+            {
+                inventoryList.Add(weapon.gameObject);
+            }
+        }
     }
 
     void Update()
     {
+        if (!isPlayer)
+        {
+            return;
+        }
+
         int previousSelectedWeapon = selectedWeapon;
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -76,7 +90,7 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
-    private void DropWeapon()
+    public void DropWeapon()
     {
         int i = 0;
         foreach (Transform weapon in entityHand.transform)
@@ -99,7 +113,7 @@ public class WeaponInventory : MonoBehaviour
         SelectWeapon();
     }
 
-    private void SelectWeapon()
+    public void SelectWeapon()
     {
         int i = 0;
         foreach (Transform weapon in entityHand.transform)

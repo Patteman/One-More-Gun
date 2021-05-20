@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Comment more
-
 public class FieldOfView : MonoBehaviour
 {
     [SerializeField] private LayerMask layerMask;
@@ -24,6 +22,7 @@ public class FieldOfView : MonoBehaviour
 
     private void LateUpdate()
     {
+        //The smoothness of the FOV cone (the "quality")
         int rayCount = 50;
         float angle = startingAngle;
         float angleIncrease = fov / rayCount;
@@ -42,12 +41,12 @@ public class FieldOfView : MonoBehaviour
             RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, layerMask);
             if (raycastHit2D.collider == null)
             {
-                //No hit
+                //No hit, vertex will be the length of the view distance
                 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
             }
             else
             {
-                //Hit object
+                //Hit object, vertex will stop at the point where it hit the object
                 vertex = raycastHit2D.point;
             }
             
@@ -81,11 +80,13 @@ public class FieldOfView : MonoBehaviour
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
 
+    //Used by enemy script so the FOV cone follows the enemy
     public void SetOrigin(Vector3 origin)
     {
         this.origin = origin;
     }
 
+    //Used by enemy script so the FOV cone aims in the correct direction
     public void SetAimDirection(Vector3 aimDirection)
     {
         startingAngle = GetAngleFromVectorFloat(aimDirection) + fov / 2f;
@@ -115,6 +116,7 @@ public class FieldOfView : MonoBehaviour
         this.viewDistance = viewDistance;
     }
 
+    //Called when enemy dies, so the FOV cone also gets destroyed
     public void DestroyFOV()
     {
         Destroy(gameObject);
