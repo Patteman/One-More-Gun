@@ -100,6 +100,7 @@ public class WeaponInventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
+            inventoryList.Remove(inventoryList[selectedWeapon]);
             EquipWeapon();
         }
     }
