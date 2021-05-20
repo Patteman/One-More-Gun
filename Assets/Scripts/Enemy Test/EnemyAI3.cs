@@ -122,6 +122,13 @@ public class EnemyAI3 : MonoBehaviour
                 break;
         }
         inventory = gameObject.GetComponent<WeaponInventory>();
+
+        StartCoroutine(LateStart(0.05f));
+    }
+
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
         chooseRandomWeapon();
     }
 
@@ -376,8 +383,7 @@ public class EnemyAI3 : MonoBehaviour
     {
         int weaponNumber = Random.Range(0, inventory.inventoryList.Count);
         inventory.selectedWeapon = weaponNumber;
-        Debug.Log(weaponNumber);
-        Debug.Log(inventory.selectedWeapon);
+        inventory.SelectWeapon();
     }
 
 }
