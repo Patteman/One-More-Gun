@@ -251,7 +251,7 @@ public class EnemyAI3 : MonoBehaviour
         {
             try
             {
-                weaponScript.Attack();
+                weaponScript.EnemyAttack(target);
                 fireCooldown = 1f / fireRate; //Will be replaced by weapon values in the future
             }
             catch
