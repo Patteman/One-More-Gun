@@ -8,6 +8,7 @@ public class GunScript : Weapon
     public Transform bulletSpawnPoint;
     Camera maincam;
 
+    public GameObject gunfireAnim;
     public AudioSource gunSoundSrc;
 
     protected override void Start()
@@ -39,6 +40,7 @@ public class GunScript : Weapon
         direction.z = 0;
         direction.Normalize();
 
+        Instantiate(gunfireAnim, bulletSpawnPoint.position, Quaternion.identity);
         gunSoundSrc.Play();
 
         //If the script exists...
