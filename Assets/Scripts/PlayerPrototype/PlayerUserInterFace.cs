@@ -11,7 +11,7 @@ public class PlayerUserInterFace : MonoBehaviour
 
 
     public GameObject displayObjectGameObject;
-    public GameObject inventoryDisplay;
+    public GameObject inventoryDisplayParent;
     public Canvas canvas;
 
     public Text ammoText;
@@ -31,7 +31,7 @@ public class PlayerUserInterFace : MonoBehaviour
     {
         if (weaponInventory.inventoryList.Count >= 1)
         {
-            //DisplayAmmoCount();
+            DisplayAmmoCount();
         }
     }
 
@@ -67,7 +67,7 @@ public class PlayerUserInterFace : MonoBehaviour
             if (sprite.tag == "UI_Inventory")
                 GameObject.Destroy(sprite.gameObject);
         }
-
+        Debug.Log("dffgfsgg");
         int i = 0;
 
         foreach (GameObject weapon in weaponInventory.inventoryList)
@@ -75,7 +75,7 @@ public class PlayerUserInterFace : MonoBehaviour
             GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
 
             var.transform.parent = canvas.transform;
-            var.transform.parent = inventoryDisplay.transform;
+            var.transform.parent = inventoryDisplayParent.transform;
 
             var.gameObject.transform.localPosition = new Vector3(displayObjectStartPos.x + distance * i, displayObjectStartPos.y, displayObjectStartPos.z);
 

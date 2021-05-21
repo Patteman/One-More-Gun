@@ -20,7 +20,7 @@ public class WeaponInventory : MonoBehaviour
     public FloatingText floatingText;
 
     private GameObject weaponYouCanEquip;
-    private InventoryDisplay inventoryDisplay;
+    private PlayerUserInterFace playerUserInterface;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class WeaponInventory : MonoBehaviour
 
         if (isPlayer)
         {
-            inventoryDisplay = this.gameObject.GetComponent<InventoryDisplay>();
+            playerUserInterface = this.gameObject.GetComponent<PlayerUserInterFace>();
         }
         else
         {
@@ -128,7 +128,7 @@ public class WeaponInventory : MonoBehaviour
 
                 try
                 {
-                    inventoryDisplay.UpdateDisplay();
+                    playerUserInterface.UpdateDisplay();
                 }
                 catch
                 {
@@ -172,9 +172,9 @@ public class WeaponInventory : MonoBehaviour
 
             SetWeaponPosition(weaponYouCanEquip.transform);
             SelectWeapon();
-
+            Debug.Log("Equipped weapon");
             if (isPlayer)
-                inventoryDisplay.UpdateDisplay();
+                playerUserInterface.UpdateDisplay();
         }
         catch
         {
