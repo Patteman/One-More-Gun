@@ -46,8 +46,19 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject); 
         }
     }
+
+    void Explode()
+    {
+        if (type == TypeOfBullet.rocket)
+        {
+            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Explode();
+
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
@@ -56,12 +67,6 @@ public class BulletScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemies")
         {
             collision.gameObject.SendMessage("TakeDamage", damageAmount); 
-            Destroy(gameObject);
-        }
-
-        if (type == TypeOfBullet.rocket)
-        {
-            GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

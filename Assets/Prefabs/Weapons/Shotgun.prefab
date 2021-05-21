@@ -103,6 +103,8 @@ MonoBehaviour:
   outOfAttacksSoundSrc: {fileID: 3470927418559020505}
   bullet: {fileID: 3418903882150104918, guid: c5cfb308f6eb8664bb805bec79374bc2, type: 3}
   bulletSpawnPoint: {fileID: 5367111250507046424}
+  gunfireAnim: {fileID: 3102959012203672453, guid: c63b5ffed17fa4040bf6b8c5d144dd6c,
+    type: 3}
   shotgunAudioSrc: {fileID: 1289160698633071488}
 --- !u!61 &4641737667965730641
 BoxCollider2D:

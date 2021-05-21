@@ -10,6 +10,8 @@ public class Shotgun2 : Weapon
 
     public GameObject bullet;
     public Transform bulletSpawnPoint;
+    public GameObject gunfireAnim;
+    float timer;
 
     public AudioSource shotgunAudioSrc;
 
@@ -35,6 +37,7 @@ public class Shotgun2 : Weapon
         direction.z = 0;
         direction.Normalize();
 
+        Instantiate(gunfireAnim, bulletSpawnPoint.position, Quaternion.identity);
         ÍnstantiateBullets();
 
     }
