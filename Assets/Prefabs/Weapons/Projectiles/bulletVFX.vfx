@@ -18,10 +18,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 783
+    x: 723
     y: -133
-    width: 584
-    height: 1710
+    width: 644
+    height: 1966
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -833,13 +833,13 @@ VisualEffectResource:
         - m_ExpressionIndex: 21
           m_Value: 0
         - m_ExpressionIndex: 22
-          m_Value: 12
+          m_Value: 48
         - m_ExpressionIndex: 23
           m_Value: -0.333
         - m_ExpressionIndex: 24
           m_Value: 0
         - m_ExpressionIndex: 31
-          m_Value: 3
+          m_Value: 1
       m_Vector2f:
         m_Array: []
       m_Vector3f:
@@ -1281,7 +1281,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 12
+      m_SerializableObject: 48
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614599}
   - {fileID: 8926484042661614604}
   - {fileID: 8926484042661614610}
-  m_UIPosition: {x: 941.3827, y: 114.57214}
+  m_UIPosition: {x: 941, y: 192}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 942, y: 884}
+  m_UIPosition: {x: 942, y: 1035}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -2131,7 +2131,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614589}
   - {fileID: 8926484042661614591}
   - {fileID: 8926484042661614593}
-  m_UIPosition: {x: 943, y: 1034}
+  m_UIPosition: {x: 943, y: 1290}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2391,7 +2391,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614596}
       inputSlot: {fileID: 8926484042661614586}
-    position: {x: 783, y: 1185}
+    position: {x: 723, y: 1445}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614596
@@ -2479,7 +2479,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 3
+      m_SerializableObject: 1
     m_Space: 2147483647
   m_Property:
     name: Lifetime
