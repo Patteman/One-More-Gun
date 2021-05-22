@@ -56,6 +56,7 @@ public class MeleeAtk : Weapon
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Enemies take damage upon being hit.
         if (isAttacking == true && collision.gameObject.tag == "Enemies")
         {
             collision.gameObject.SendMessage("TakeDamage", damageAmount);

@@ -342,4 +342,14 @@ public class EnemyAgentTest : MonoBehaviour
         currentPatrolWaitTime -= Time.deltaTime;
     }
 
+    // Elias: added this for potential flamethrower damage
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log(other.tag);
+        if (other.tag == "Flame")
+        {
+            TakeDamage(50);
+        }
+    }
+
 }

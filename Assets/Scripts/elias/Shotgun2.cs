@@ -19,6 +19,8 @@ public class Shotgun2 : Weapon
     {
         base.Start();
         mainCam = Camera.main;
+
+        //This should contain the projectiles fired
         bullets = new GameObject[3];
     }
 
@@ -33,10 +35,12 @@ public class Shotgun2 : Weapon
         base.Attack();
         shotgunAudioSrc.Play();
 
+        //Converts the mouse position to a world position and thus allows you to aim.
         direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         direction.z = 0;
         direction.Normalize();
 
+        //Instantiates the animation and bullets.
         Instantiate(gunfireAnim, bulletSpawnPoint.position, Quaternion.identity);
         ÍnstantiateBullets();
 
@@ -47,6 +51,7 @@ public class Shotgun2 : Weapon
         base.EnemyAttack(target);
         shotgunAudioSrc.Play();
 
+        //Enemy should aim at player, not the mouse
         direction = target.position - transform.position;
         direction.z = 0;
         direction.Normalize();
@@ -61,11 +66,10 @@ public class Shotgun2 : Weapon
             bullets[i] = Instantiate(bullet, bulletSpawnPoint);
         }
 
-        //Converts the mouse position to a world position and thus allows you to aim.
-        
         Quaternion angle1 = Quaternion.Euler(new Vector3(0, -15, 0));
         Quaternion angle2 = Quaternion.Euler(new Vector3(15, 15, 0));
 
+        //They should ideally fire in different directions. Hence why the angles exist
         bullets[0].GetComponent<BulletScript>().Setup(direction);
         bullets[1].GetComponent<BulletScript>().Setup(angle1 * direction);
         bullets[2].GetComponent<BulletScript>().Setup(angle2 * direction);

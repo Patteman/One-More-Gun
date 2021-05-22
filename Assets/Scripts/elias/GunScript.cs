@@ -56,6 +56,8 @@ public class GunScript : Weapon
         base.EnemyAttack(target);
         GameObject tempBullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
         BulletScript bs = tempBullet.GetComponent<BulletScript>();
+
+        //Enemy should aim at the player, not the mouse.
         Vector3 direction = target.position - bulletSpawnPoint.position;
 
         gunSoundSrc.Play();
