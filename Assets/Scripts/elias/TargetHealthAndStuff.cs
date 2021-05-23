@@ -48,9 +48,10 @@ public class TargetHealthAndStuff : MonoBehaviour
             poisoned = false;
         }
     }
-    private void OnParticleTrigger()
+    private void OnParticleCollision(GameObject other)
     {
-        health -= 50;
+        Debug.Log(other.tag);
+        Destroy(gameObject);
     }
 
 }//Thanks to David Täljsten for helping me figure out the health drainage system
