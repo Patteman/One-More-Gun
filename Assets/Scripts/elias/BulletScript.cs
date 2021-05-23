@@ -49,6 +49,7 @@ public class BulletScript : MonoBehaviour
 
     void Explode()
     {
+        //There should be an explosion effect if a rocket is fired.
         if (type == TypeOfBullet.rocket)
         {
             GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
