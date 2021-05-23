@@ -30,6 +30,7 @@ public class EnemyAgentTest : MonoBehaviour
     public Transform target;
     public Transform firePoint;
     public EnemyGunScript enemyGunScript;
+    public AudioSource enemyAudioSrc;
 
     [Header("Watch and Patrol Points")]
     [Tooltip("The point where enemy looks when stading guard")]
@@ -53,8 +54,10 @@ public class EnemyAgentTest : MonoBehaviour
 
     private float currentSpeed;
     private float currentPatrolWaitTime;
+    private float destructionTimer;
 
     private bool moveToPointA;
+    private bool madeSound;
 
     private float reachedPositionDistance = 1f;
 
@@ -236,6 +239,25 @@ public class EnemyAgentTest : MonoBehaviour
                 break;
         }
 
+
+        if (health <= 0)
+        {
+            health = 0;
+
+            destructionTimer += Time.fixedDeltaTime;
+
+            if (!madeSound)
+            {
+                enemyAudioSrc.Play();
+                madeSound = true;
+            }
+
+            if (destructionTimer >= 0.9)
+            {
+                Die();
+            }
+        }
+
         fieldOfView.SetAimDirection(dir);  //Makes fov aim where the enemy is aiming
         fieldOfView.SetOrigin(transform.position);  //Makes fov follow enemy
     }
@@ -304,11 +326,7 @@ public class EnemyAgentTest : MonoBehaviour
     public void TakeDamage(float dmg) //Method gets called when enemy is hit by attack
     {
         health -= dmg;
-        if (health <= 0)
-        {
-            health = 0;
-            Die();
-        }
+
         currentState = State.ChaseTarget;
         currentSpeed = runSpeed;
     }

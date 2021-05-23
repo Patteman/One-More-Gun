@@ -30,6 +30,7 @@ public class EnemyAI3 : MonoBehaviour
     public Transform target;
     public GameObject hand;
     private WeaponInventory inventory;
+    public AudioSource enemyAudioSrc;
 
     [Header("Watch and Patrol Points")]
     [Tooltip("The point where enemy looks when stading guard")]
@@ -54,9 +55,11 @@ public class EnemyAI3 : MonoBehaviour
     private float currentSpeed;
     private float currentPatrolWaitTime;
     private float reachedPositionDistance = 1f;
+    private float destructionTimer;
     //private float turnSpeed; //Not yet implemented
 
     private bool moveToPointA;
+    private bool madeSound;
 
     [Header("FOV Settings")]
     [SerializeField] private Transform fovPrefab;
@@ -238,6 +241,25 @@ public class EnemyAI3 : MonoBehaviour
                 break;
         }
 
+
+        if (health <= 0)
+        {
+            health = 0;
+
+            destructionTimer += Time.fixedDeltaTime;
+
+            if (!madeSound)
+            {
+                enemyAudioSrc.Play();
+                madeSound = true;
+            }
+
+            if (destructionTimer >= 0.9)
+            {
+                Die();
+            }
+        }
+
         //Makes FOV cone follow the enemy and aim in the direction the enemy is looking
         fieldOfView.SetAimDirection(dir);
         fieldOfView.SetOrigin(transform.position);
@@ -333,11 +355,6 @@ public class EnemyAI3 : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         health -= dmg;
-        if (health <= 0)
-        {
-            health = 0;
-            Die();
-        }
 
         //If hit, enemy will start chasing the target (player)
         currentState = State.ChaseTarget;
