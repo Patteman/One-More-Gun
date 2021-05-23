@@ -755,6 +755,11 @@ PrefabInstance:
       propertyPath: MainCamera
       value: 
       objectReference: {fileID: 962556722}
+    - target: {fileID: 1016602996466354933, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: cameraShake
+      value: 
+      objectReference: {fileID: 962556725}
     - target: {fileID: 1016602996466354935, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
       propertyPath: m_RootOrder
@@ -2009,6 +2014,7 @@ GameObject:
   - component: {fileID: 962556722}
   - component: {fileID: 962556721}
   - component: {fileID: 962556724}
+  - component: {fileID: 962556725}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2177,6 +2183,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &962556725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962556720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104bca80157e8384a9c7859ae5988ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &978328111
 PrefabInstance:
   m_ObjectHideFlags: 0

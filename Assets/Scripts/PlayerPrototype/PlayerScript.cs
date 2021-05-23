@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     public AudioSource deathAudioSrc;
 
     public Camera MainCamera;
+    public CameraShake cameraShake;
     private Vector2 screenBounds;
 
     private float destructionTimer;
@@ -135,6 +136,7 @@ public class PlayerScript : MonoBehaviour
 
     private void DecreaseHealth(float damageTaken)
     {
+        StartCoroutine(cameraShake.Shake(.15f, .30f));
         currentHealth -= damageTaken;
     }
 
