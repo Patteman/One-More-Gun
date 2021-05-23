@@ -44,12 +44,18 @@ public class PlayerScript : MonoBehaviour
 
     private PlayerUserInterFace playerUserInterFace;
 
+    [Header("Settings")]
+    public bool enable60fps;
+
     void Start()
     {
         onSpawn = true;
         currentHealth = maxHealth;
 
         playerUserInterFace = this.transform.GetComponent<PlayerUserInterFace>();
+
+
+        //if(enable60fps)
 
     }
 

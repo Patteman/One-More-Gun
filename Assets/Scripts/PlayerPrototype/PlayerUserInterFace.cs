@@ -29,9 +29,14 @@ public class PlayerUserInterFace : MonoBehaviour
 
     void Update()
     {
-        if (weaponInventory.inventoryList.Count >= 1)
+        if (weaponInventory.inventoryList.Count >= 1 && weaponInventory.inventoryList.Count != 0)
         {
+            ammoText.gameObject.SetActive(true);
             DisplayAmmoCount();
+        }
+        else if(weaponInventory.inventoryList.Count == 0)
+        {
+            ammoText.gameObject.SetActive(false);
         }
     }
 
@@ -67,7 +72,7 @@ public class PlayerUserInterFace : MonoBehaviour
             if (sprite.tag == "UI_Inventory")
                 GameObject.Destroy(sprite.gameObject);
         }
-        Debug.Log("dffgfsgg");
+
         int i = 0;
 
         foreach (GameObject weapon in weaponInventory.inventoryList)
