@@ -48,5 +48,9 @@ public class TargetHealthAndStuff : MonoBehaviour
             poisoned = false;
         }
     }
-    
+    private void OnParticleTrigger()
+    {
+        health -= 50;
+    }
+
 }//Thanks to David Täljsten for helping me figure out the health drainage system
