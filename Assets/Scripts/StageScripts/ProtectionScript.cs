@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class ProtectionScript : MonoBehaviour
 {
@@ -8,13 +9,14 @@ public class ProtectionScript : MonoBehaviour
     public float maxHealth;
     private float destructionTimer;
     public AudioSource protectionAudioSrc;
+    public VisualEffect protectionVFX;
 
-    private bool madeSound;
+    private bool playedEffects;
 
     void Start()
     {
         coverHealth = maxHealth;
-        madeSound = false;
+        playedEffects = false;
     }
     
     void Update()
@@ -23,10 +25,11 @@ public class ProtectionScript : MonoBehaviour
         {
             destructionTimer += Time.fixedDeltaTime;
 
-            if (!madeSound)
+            if (!playedEffects)
             {
                 protectionAudioSrc.Play();
-                madeSound = true;
+                protectionVFX.Play();
+                playedEffects = true;
             }
 
             if (destructionTimer >= 1.1f)
