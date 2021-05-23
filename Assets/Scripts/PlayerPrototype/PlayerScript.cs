@@ -55,7 +55,8 @@ public class PlayerScript : MonoBehaviour
         playerUserInterFace = this.transform.GetComponent<PlayerUserInterFace>();
 
 
-        //if(enable60fps)
+        if(enable60fps)
+            Application.targetFrameRate = 60;
 
     }
 
