@@ -9,11 +9,11 @@ public class MainMenu : MonoBehaviour
 
     public SceneFader sceneFader;
     public GameObject mainMenuObject;
-    public GameObject settingsObject;
+    public GameObject settingsMenuObject;
 
     void Start()
     {
-        settingsObject.SetActive(false);
+        SwapMenu(false);
     }
 
     //Loads the main scene when called, and unpauses the game, incase it was paused
@@ -23,22 +23,26 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Settings()
-    {
-        settingsObject.SetActive(true);
-        mainMenuObject.SetActive(false);
-    }
-
-    public void BackToMainMenu()
-    {
-        settingsObject.SetActive(false);
-        mainMenuObject.SetActive(true);
-    }
 
     public void Quit()
     {
         Debug.Log("Exiting game...");
         //Closes the application
         Application.Quit();
+    }
+
+    public void SwapMenu(bool enableSettingsMenu)
+    {
+        if (enableSettingsMenu)
+        {
+            settingsMenuObject.SetActive(true);
+            mainMenuObject.SetActive(false);
+        }
+        else if (!enableSettingsMenu)
+        {
+            settingsMenuObject.SetActive(false);
+            mainMenuObject.SetActive(true);
+        }
+
     }
 }
