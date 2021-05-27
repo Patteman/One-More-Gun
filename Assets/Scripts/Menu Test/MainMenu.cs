@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,9 +13,23 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuObject;
     public GameObject settingsMenuObject;
 
+    [Header("Resolutions")]
+    public Resolution[] resolutionsArray;
+
     void Start()
     {
-        SwapMenu(false);
+       resolutionsArray = Screen.resolutions;
+       SwapMenu(false);
+
+        foreach(var res in resolutionsArray)
+        {
+            Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
+        }
+    }
+
+    private void SetDropDownContents()
+    {
+       
     }
 
     //Loads the main scene when called, and unpauses the game, incase it was paused
