@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: CollisionModule.enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2108957995540456880, guid: ffae58218877f4a408267de69f88d57d,
+        type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8577028768968120540, guid: ffae58218877f4a408267de69f88d57d,
         type: 3}
       propertyPath: m_RootOrder
