@@ -104,7 +104,7 @@ public class PlayerScript : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
-            destructionTimer += Time.fixedDeltaTime;
+            destructionTimer += Time.deltaTime;
 
             if (!madeSound)
             {
@@ -112,7 +112,7 @@ public class PlayerScript : MonoBehaviour
                 madeSound = true;
             }
 
-            if (destructionTimer >= 2.5f)
+            if (destructionTimer >= 2.3f)
             {
                 Die();
             }
