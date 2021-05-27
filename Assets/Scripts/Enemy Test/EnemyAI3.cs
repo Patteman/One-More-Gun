@@ -72,7 +72,7 @@ public class EnemyAI3 : MonoBehaviour
     [Header("Stats")]
     public float maxHealth = 100;
     public float health;
-    public float fireRate = 1f;
+    public float fireRate = 3f;
     [SerializeField] private float walkSpeed = 1f;
     [SerializeField] private float runSpeed = 3.5f;
     private float fireCooldown = 0f;
@@ -274,7 +274,7 @@ public class EnemyAI3 : MonoBehaviour
             try
             {
                 weaponScript.EnemyAttack(target);
-                fireCooldown = 1f / fireRate; //Will be replaced by weapon values in the future
+                fireCooldown = 0.75f; //Will be replaced by weapon values in the future
             }
             catch
             {
