@@ -206,7 +206,7 @@ public class WeaponInventory : MonoBehaviour
 
     private void SetWeaponPosition(Transform weaponTransform)
     {
-        weaponTransform.position = new Vector3(entityHand.transform.position.x, entityHand.transform.position.y, entityHand.transform.position.z);
+        weaponTransform.position = new Vector3(entityHand.transform.position.x, entityHand.transform.position.y, -1);
         weaponTransform.rotation = entityHand.transform.rotation;
     }
 

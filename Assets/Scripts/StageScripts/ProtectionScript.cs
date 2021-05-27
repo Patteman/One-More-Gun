@@ -23,7 +23,7 @@ public class ProtectionScript : MonoBehaviour
     {
         if (coverHealth <= 0)
         {
-            destructionTimer += Time.fixedDeltaTime;
+            destructionTimer += Time.deltaTime;
 
             if (!playedEffects)
             {

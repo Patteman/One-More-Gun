@@ -256,7 +256,7 @@ public class EnemyAI3 : MonoBehaviour
 
             if (destructionTimer >= 0.9)
             {
-                Die();
+               // Die();
             }
         }
 
@@ -355,6 +355,11 @@ public class EnemyAI3 : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         health -= dmg;
+
+        if (health <= 0)
+        {
+            Die();
+        }
 
         //If hit, enemy will start chasing the target (player)
         currentState = State.ChaseTarget;

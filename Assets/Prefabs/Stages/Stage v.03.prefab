@@ -7720,6 +7720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   protectionAudioSrc: {fileID: 869363764880019642}
+  protectionVFX: {fileID: 1109915808296523833}
 --- !u!82 &869363764880019642
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7824,9 +7825,9 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3763322126162227508}
   m_Enabled: 1
-  m_Asset: {fileID: 0}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_Asset: {fileID: 8926484042661614526, guid: 61e68680bb8ff1648ae9fadc1c83ba12, type: 3}
+  m_InitialEventName: OnDestruction
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_PropertySheet:
@@ -7849,7 +7850,10 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 2800000, guid: de0fae515169ff246a20d58a8a440ed0, type: 3}
+        m_Name: setTexture2D
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &5785933187398718551
@@ -7869,7 +7873,8 @@ VFXRenderer:
   m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
