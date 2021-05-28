@@ -159,7 +159,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "BasicProjectiles")
         {
-            DecreaseHealth(50);
+            BulletScript bs = other.gameObject.GetComponent<BulletScript>();
+            DecreaseHealth(bs.damageAmount);
         }
     }
 
