@@ -13,25 +13,18 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuObject;
     public GameObject settingsMenuObject;
 
-    public bool isMenuScene; //Hotfix for another issue
-
     [Header("Resolutions")]
     public Resolution[] resolutionsArray;
 
     void Start()
     {
-        /*
-        if (isMenuScene)
-        {
-            resolutionsArray = Screen.resolutions;
-            SwapMenu(false);
-        }
-       //Something is up here that I will need to fix
+       resolutionsArray = Screen.resolutions;
+       SwapMenu(false);
 
         foreach(var res in resolutionsArray)
         {
             Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
-        }*/
+        }
     }
 
     private void SetDropDownContents()
