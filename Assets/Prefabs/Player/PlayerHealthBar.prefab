@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 5219372812409209688}
   - component: {fileID: 5230945906675216552}
   - component: {fileID: 7027406668578878218}
+  - component: {fileID: 8169336094305075255}
   m_Layer: 5
   m_Name: AmmoCounterText
   m_TagString: Untagged
@@ -319,6 +320,21 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
+--- !u!114 &8169336094305075255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183302346524932719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &6325282877286733196
 GameObject:
   m_ObjectHideFlags: 0

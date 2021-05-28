@@ -77,6 +77,8 @@ public class PlayerScript : MonoBehaviour
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
 
+
+
         ManageHealth();
         
         
@@ -103,6 +105,11 @@ public class PlayerScript : MonoBehaviour
 
     private void DecreaseHealth(float damageTaken)
     {
+<<<<<<< Updated upstream
+=======
+        Debug.Log(damageTaken);
+        StartCoroutine(cameraShake.Shake(.15f, .30f));
+>>>>>>> Stashed changes
         currentHealth -= damageTaken;
     }
 
