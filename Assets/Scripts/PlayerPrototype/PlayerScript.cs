@@ -52,6 +52,9 @@ public class PlayerScript : MonoBehaviour
 
     private PlayerUserInterFace playerUserInterFace;
 
+    [Header("Settings")]
+    public bool enable60fps;
+
     void Start()
     {
         onSpawn = true;
@@ -59,8 +62,11 @@ public class PlayerScript : MonoBehaviour
 
         isDead = false;
         madeSound = false;
+        playerUserInterFace = this.transform.GetComponent<PlayerUserInterFace>();  
 
-        playerUserInterFace = this.transform.GetComponent<PlayerUserInterFace>();        
+
+        if(enable60fps)
+            Application.targetFrameRate = 60;
     }
 
     private void ManageHealth()
