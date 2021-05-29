@@ -15,8 +15,7 @@ public class PlayerUserInterFace : MonoBehaviour
     public Canvas canvas;
 
     public Text ammoText;
-
-    public Vector3 displayObjectStartPos;
+        
     public float distance;
     private float spritePos;
 
@@ -67,28 +66,37 @@ public class PlayerUserInterFace : MonoBehaviour
     {
         spritePos = distance;
 
-        foreach (Transform sprite in canvas.transform)
+        foreach (Transform sprite in inventoryDisplayParent.transform)
         {
             if (sprite.tag == "UI_Inventory")
+            {
+                Debug.Log("sdf");
                 GameObject.Destroy(sprite.gameObject);
+            }
+                
         }
 
         int i = 0;
-
+        
         foreach (GameObject weapon in weaponInventory.inventoryList)
         {
-            GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject weaponImage = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
 
-            var.transform.parent = canvas.transform;
-            var.transform.parent = inventoryDisplayParent.transform;
+            weaponImage.transform.parent = canvas.transform;
+            weaponImage.transform.parent = inventoryDisplayParent.transform;
 
-            var.gameObject.transform.localPosition = new Vector3(displayObjectStartPos.x + distance * i, displayObjectStartPos.y, displayObjectStartPos.z);
+            weaponImage.gameObject.transform.localPosition = new Vector3(distance * i, 0, -1);
 
             SpriteRenderer weaponSR = weapon.gameObject.GetComponent<SpriteRenderer>();
 
-            Image displayObjectSR = var.GetComponent<Image>();
+            Image displayObjectSR = weaponImage.GetComponent<Image>();
 
             displayObjectSR.sprite = weaponSR.sprite;
+
+            if (i == weaponInventory.selectedWeapon)
+            {
+                displayObjectSR.rectTransform.localScale = new Vector3(displayObjectSR.rectTransform.localScale.x+0.5f, displayObjectSR.rectTransform.localScale.y + 0.5f, displayObjectSR.rectTransform.localScale.z + 0.5f);
+            }
 
             i++;
         }

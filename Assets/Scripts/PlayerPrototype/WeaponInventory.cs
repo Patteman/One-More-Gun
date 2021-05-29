@@ -96,12 +96,12 @@ public class WeaponInventory : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             DropWeapon();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             EquipWeapon();
         }
@@ -183,6 +183,14 @@ public class WeaponInventory : MonoBehaviour
             {
                 weapon.gameObject.SetActive(true);
                 SetWeaponPosition(weapon);
+                try
+                {
+                    playerUserInterface.UpdateDisplay();
+                }
+                catch
+                {
+                    Debug.Log("Not the player");
+                }
             }
             else
             {
@@ -225,7 +233,7 @@ public class WeaponInventory : MonoBehaviour
     {
         if (col.transform.tag == weaponTag && !inventoryList.Contains(col.transform.gameObject) && isPlayer)
         {
-            string message = "Press X to equip {0}";
+            string message = "Press F to equip {0}";
             string weapon = col.transform.name;
             message = string.Format(message, weapon);
 
