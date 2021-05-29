@@ -409,10 +409,9 @@ public class EnemyAI3 : MonoBehaviour
         inventory.SelectWeapon();
     }
 
-    // Elias: added this for flamethrower damage. Amount of damage is not final, but it works now, at least.
+    // This allows the enemy to get hurt by the flamethrower effect.
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log(other.tag);
         if (other.tag == "Flame")
         {
             TakeDamage(0.5f);

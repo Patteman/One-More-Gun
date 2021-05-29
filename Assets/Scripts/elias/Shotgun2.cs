@@ -20,7 +20,7 @@ public class Shotgun2 : Weapon
         base.Start();
         mainCam = Camera.main;
 
-        //This should contain the projectiles fired
+        // This should contain the projectiles fired
         bullets = new GameObject[3];
     }
 
@@ -35,12 +35,12 @@ public class Shotgun2 : Weapon
         base.Attack();
         shotgunAudioSrc.Play();
 
-        //Converts the mouse position to a world position and thus allows you to aim.
+        // Converts the mouse position to a world position and thus allows you to aim.
         direction = mainCam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         direction.z = 0;
         direction.Normalize();
 
-        //Instantiates the animation and bullets.
+        // Instantiates the animation and bullets.
         Instantiate(gunfireAnim, bulletSpawnPoint.position, Quaternion.identity);
         ÍnstantiateBullets();
 
@@ -51,25 +51,28 @@ public class Shotgun2 : Weapon
         base.EnemyAttack(target);
         shotgunAudioSrc.Play();
 
-        //Enemy should aim at player, not the mouse
+        // Enemy should aim at player, not the mouse.
         direction = target.position - transform.position;
         direction.z = 0;
         direction.Normalize();
 
+        // Calls on a method to instantiate a bullet.
         ÍnstantiateBullets();
     }
 
     private void ÍnstantiateBullets()
     {
+        // Will create a bullet for each place in the array.
         for (int i = 0; i < bullets.Length; i++)
         {
             bullets[i] = Instantiate(bullet, bulletSpawnPoint);
         }
 
+        // The bullets should ideally go in different directions. 
         Quaternion angle1 = Quaternion.Euler(new Vector3(0, -15, 0));
         Quaternion angle2 = Quaternion.Euler(new Vector3(15, 15, 0));
 
-        //They should ideally fire in different directions. Hence why the angles exist
+        //Sets up the bullets.
         bullets[0].GetComponent<BulletScript>().Setup(direction);
         bullets[1].GetComponent<BulletScript>().Setup(angle1 * direction);
         bullets[2].GetComponent<BulletScript>().Setup(angle2 * direction);
