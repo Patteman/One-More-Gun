@@ -85,7 +85,7 @@ public class EnemyAI3 : MonoBehaviour
         guardPosition = transform.position;
         roamPosition = GetRoamingPosition();
 
-        walkSpeed = 1f;
+        walkSpeed = 1f; //Dont set twice
         runSpeed = 3.5f;
         currentSpeed = walkSpeed;
         currentPatrolWaitTime = patrolWaitTime;
