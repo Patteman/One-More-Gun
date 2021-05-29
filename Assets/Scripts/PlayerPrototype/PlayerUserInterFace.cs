@@ -79,8 +79,8 @@ public class PlayerUserInterFace : MonoBehaviour
         {
             GameObject var = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
 
-            var.transform.parent = canvas.transform;
-            var.transform.parent = inventoryDisplayParent.transform;
+            //var.transform.parent = canvas.transform;
+            var.transform.parent = inventoryDisplayParent.transform;//use set parent
 
             var.gameObject.transform.localPosition = new Vector3(displayObjectStartPos.x + distance * i, displayObjectStartPos.y, displayObjectStartPos.z);
 

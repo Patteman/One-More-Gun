@@ -106,6 +106,23 @@ public class WeaponInventory : MonoBehaviour
         foreach (Transform weapon in entityHand.transform)
         {
             inventoryList.Add(weapon.gameObject);
+            inventoryList.Clear();
+            /*
+            foreach (Transform weapon in entityHand.transform)
+            {
+                inventoryList.Add(weapon.gameObject);
+            }*/
+            selectedWeapon = 0;
+
+            try
+            {
+                entityHand.transform.GetChild(selectedWeapon).gameObject.SetActive(true);
+                SelectWeapon();
+            }
+            catch
+            {
+                //Addd something
+            }
         }
 
         SelectWeapon();
