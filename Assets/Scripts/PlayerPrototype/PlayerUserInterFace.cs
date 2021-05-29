@@ -12,7 +12,6 @@ public class PlayerUserInterFace : MonoBehaviour
 
     public GameObject displayObjectGameObject;
     public GameObject inventoryDisplayParent;
-    public Canvas canvas;
 
     public Text ammoText;
         
@@ -28,6 +27,7 @@ public class PlayerUserInterFace : MonoBehaviour
 
     void Update()
     {
+        //Checks if the player has any weapons eqiped to determine if it should show ammo counter
         if (weaponInventory.inventoryList.Count >= 1 && weaponInventory.inventoryList.Count != 0)
         {
             ammoText.gameObject.SetActive(true);
@@ -39,6 +39,7 @@ public class PlayerUserInterFace : MonoBehaviour
         }
     }
 
+    //Aquires current and max ammo of equiped weapon and shows it on screen
     public void DisplayAmmoCount()
     {
         int selectedWeapon = weaponInventory.selectedWeapon;
@@ -62,15 +63,16 @@ public class PlayerUserInterFace : MonoBehaviour
         }
     }
 
+    //Shows inventory on screen
     public void UpdateDisplay()
     {
         spritePos = distance;
 
+        //clears current images on screen
         foreach (Transform sprite in inventoryDisplayParent.transform)
         {
             if (sprite.tag == "UI_Inventory")
             {
-                Debug.Log("sdf");
                 GameObject.Destroy(sprite.gameObject);
             }
                 
@@ -78,12 +80,12 @@ public class PlayerUserInterFace : MonoBehaviour
 
         int i = 0;
         
+        //loops through inventory and adds it sprite to the screen
         foreach (GameObject weapon in weaponInventory.inventoryList)
         {
             GameObject weaponImage = Instantiate(displayObjectGameObject, new Vector3(0, 0, 0), Quaternion.identity);
 
-            weaponImage.transform.parent = canvas.transform;
-            weaponImage.transform.parent = inventoryDisplayParent.transform;
+            weaponImage.transform.SetParent(inventoryDisplayParent.transform);
 
             weaponImage.gameObject.transform.localPosition = new Vector3(distance * i, 0, -1);
 
