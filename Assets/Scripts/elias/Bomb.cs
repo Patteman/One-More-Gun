@@ -29,13 +29,4 @@ public class Bomb : Weapon
         eScript = explosive.GetComponent<Explosive>();
         eScript.setOff = true;
     }
-
-    public override void EnemyAttack(Transform target)
-    {
-        base.EnemyAttack(target);
-        GameObject explosive = Instantiate(objectToDropOrThrow, transform.position, Quaternion.identity);
-        eScript = explosive.GetComponent<Explosive>();
-        eScript.setOff = true;
-
-    }
 }

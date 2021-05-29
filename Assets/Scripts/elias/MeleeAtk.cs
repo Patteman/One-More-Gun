@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//I am very unsure on what to do here. I just have a simple thing that flips the "knife" and says to attack. 
-// I think ideally this should be done with animation and colliders in final product.
 public class MeleeAtk : Weapon
 {
     bool isAttacking;
@@ -28,9 +26,7 @@ public class MeleeAtk : Weapon
         if (Input.GetMouseButtonUp(0))
             isAttacking = false;
 
-        //Flips the sprite to simulate an attack (for the time being).
-        //In the future this should be replaced by an animation,
-        //or a more appropriate visual representation of the player character using the sword or knife to attack an enemy.
+        //Flips the sprite to simulate an attack.
         if (isAttacking == false)
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         if (isAttacking == true)

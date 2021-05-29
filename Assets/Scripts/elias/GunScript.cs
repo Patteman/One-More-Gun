@@ -13,29 +13,29 @@ public class GunScript : Weapon
 
     protected override void Start()
     {
-        //inherits Start method from Weapon.cs
+        // inherits Start method from Weapon.cs.
         base.Start();
 
-        //Sets the camera
+        // Sets the camera.
         maincam = Camera.main;
     }
 
     protected override void Update()
     {
-        //Inherits Update method from Weapon.cs
+        // Inherits Update method from Weapon.cs
         base.Update();
     }
 
     public override void Attack()
     {
-        //Inherits Attack method from Weapon.cs
+        // Inherits Attack method from Weapon.cs
         
         base.Attack();
-        //Instantiates a bullet and obtains its script.
+        // Instantiates a bullet and obtains its script.
         GameObject tempBullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
         BulletScript bs = tempBullet.GetComponent<BulletScript>();
 
-        //The direction of the bullet is towards where you click.
+        // The direction of the bullet is towards where you click.
         Vector3 direction = maincam.ScreenToWorldPoint(Input.mousePosition)-transform.position;
         direction.z = 0;
         direction.Normalize();
@@ -43,10 +43,10 @@ public class GunScript : Weapon
         Instantiate(gunfireAnim, bulletSpawnPoint.position, Quaternion.identity);
         gunSoundSrc.Play();
 
-        //If the script exists...
+        // If the script exists...
         if (bs != null)
         {
-            //...bullet aims at mouse position upon click
+            // ...bullet aims at mouse position upon click.
             bs.Setup(direction);
         }
     }

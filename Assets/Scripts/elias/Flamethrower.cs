@@ -66,7 +66,10 @@ public class Flamethrower : Weapon
         //Updates the effect of the flame. It should always be aiming towards a target.
         //Not yet decided how this will work if the enemy is to use it.
         flame.transform.position = flameStartPos.position;
-        flame.transform.LookAt(mouseCameraPos);
+        if (Time.timeScale == 1f)
+        {
+            flame.transform.LookAt(mouseCameraPos);
+        }
     }
 }
 //Special thanks to David Täljsten and Fat Pug Studio
