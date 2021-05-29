@@ -71,13 +71,16 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         if (!isPlayer)
         {
             CheckInventory();
-            return;
+            //return;
+        }
+        else if (entityHand.transform.childCount!=inventoryList.Count && isPlayer)
+        {
+            CheckInventory();
         }
 
         int previousSelectedWeapon = selectedWeapon;
@@ -112,8 +115,6 @@ public class WeaponInventory : MonoBehaviour
 
     public void CheckInventory()
     {
-        if (!isPlayer)
-        {
             foreach (Transform weapon in entityHand.transform)
             {
                 //Determines if the enemy has a weapon equiped
@@ -142,8 +143,6 @@ public class WeaponInventory : MonoBehaviour
             {
                 Debug.Log("Weapon already equiped");
             }
-        }
-        
     }
 
     //Cycles through the weapons an deparents the active weapon
@@ -214,7 +213,6 @@ public class WeaponInventory : MonoBehaviour
     {
         try
         {
-
             weaponYouCanEquip.gameObject.transform.SetParent(entityHand.transform);
             inventoryList.Add(weaponYouCanEquip);
 

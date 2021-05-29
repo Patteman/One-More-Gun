@@ -30,11 +30,13 @@ public class PlayerUserInterFace : MonoBehaviour
         //Checks if the player has any weapons eqiped to determine if it should show ammo counter
         if (weaponInventory.inventoryList.Count >= 1 && weaponInventory.inventoryList.Count != 0)
         {
+            inventoryDisplayParent.SetActive(true);
             ammoText.gameObject.SetActive(true);
             DisplayAmmoCount();
         }
         else if(weaponInventory.inventoryList.Count == 0)
         {
+            inventoryDisplayParent.SetActive(false);
             ammoText.gameObject.SetActive(false);
         }
     }
