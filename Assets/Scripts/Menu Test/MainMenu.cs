@@ -17,14 +17,14 @@ public class MainMenu : MonoBehaviour
     public Resolution[] resolutionsArray;
 
     void Start()
-    {
+    {/*
        resolutionsArray = Screen.resolutions;
        SwapMenu(false);
 
         foreach(var res in resolutionsArray)
         {
             Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
-        }
+        }*/
     }
 
     private void SetDropDownContents()
