@@ -43,6 +43,7 @@ public class WeaponInventory : MonoBehaviour
 
     }
 
+    //Cycles to the "right" weapon in inventory
     public void CycleInventoryRight()
     {
         Debug.Log("Right");
@@ -56,6 +57,7 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
+    //Cycles to the "left" weapon in inventory
     public void CycleInventoryLeft()
     {
         Debug.Log("Left");
@@ -68,7 +70,6 @@ public class WeaponInventory : MonoBehaviour
             selectedWeapon--;
         }
     }
-
 
 
     void Update()
@@ -95,7 +96,7 @@ public class WeaponInventory : MonoBehaviour
             SelectWeapon();
         }
 
-
+        
         if (Input.GetKeyDown(KeyCode.X))
         {
             DropWeapon();
@@ -107,19 +108,22 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
+    //Used by enemy to determine if they have a weapon in their inventory and if they have one equipped and if not, equip one
+
     public void CheckInventory()
     {
         if (!isPlayer)
         {
             foreach (Transform weapon in entityHand.transform)
             {
-                
+                //Determines if the enemy has a weapon equiped
                 if (weapon.transform.gameObject.activeSelf == true)
                 {
                     return;
                 }
             }
 
+            //Resets inventory
             inventoryList.Clear();
 
             foreach (Transform weapon in entityHand.transform)
@@ -128,6 +132,7 @@ public class WeaponInventory : MonoBehaviour
             }
             selectedWeapon = 0;
 
+            //enables a weapon
             try
             {
                 entityHand.transform.GetChild(selectedWeapon).gameObject.SetActive(true);
@@ -135,12 +140,13 @@ public class WeaponInventory : MonoBehaviour
             }
             catch
             {
-
+                Debug.Log("Weapon already equiped");
             }
         }
         
     }
 
+    //Cycles through the weapons an deparents the active weapon
     public void DropWeapon()
     {
         int i = 0;
@@ -174,6 +180,7 @@ public class WeaponInventory : MonoBehaviour
         SelectWeapon();
     }
 
+    //Sets the weapon matching the SelectedWeapon int to active
     public void SelectWeapon()
     {
         int i = 0;
@@ -202,11 +209,13 @@ public class WeaponInventory : MonoBehaviour
         
     }
 
+    //Adds the weaponYouCanEquip to the inventory list and sets it parent to the entity hand
     private void EquipWeapon()
     {
         try
         {
-            weaponYouCanEquip.gameObject.transform.parent = entityHand.transform;
+
+            weaponYouCanEquip.gameObject.transform.SetParent(entityHand.transform);
             inventoryList.Add(weaponYouCanEquip);
 
             SetWeaponPosition(weaponYouCanEquip.transform);
@@ -223,12 +232,14 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
+    //Sets to rotation and position of the weapon so it matches the entity hand
     private void SetWeaponPosition(Transform weaponTransform)
     {
         weaponTransform.position = new Vector3(entityHand.transform.position.x, entityHand.transform.position.y, -1);
         weaponTransform.rotation = entityHand.transform.rotation;
     }
 
+    //Checks if the collider is a weapon that the player an pick up, if so, sets the weapon to weaponYouCanEquip
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.transform.tag == weaponTag && !inventoryList.Contains(col.transform.gameObject) && isPlayer)
@@ -240,9 +251,9 @@ public class WeaponInventory : MonoBehaviour
             floatingText.ShowFloatingtext(message);
             weaponYouCanEquip = col.gameObject;
         }
-        //Debug.Log(col.gameObject.name);
     }
 
+    //Nulls the weaponYouCanEquip when collision ends
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.transform.tag == weaponTag && isPlayer)
