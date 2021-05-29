@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour
     public float maxHealth;
     private float currentHealth;
     public Slider hpSlider;
-    public Text testText;
+    public Text healthText;
 
     public GameObject playerHand;
 
@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         hpSlider.value = currentHealth;
 
-        testText.text = currentHealth.ToString();
+        healthText.text = currentHealth.ToString();
     }
     
     void Update()
