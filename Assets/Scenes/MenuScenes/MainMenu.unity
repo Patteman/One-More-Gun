@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.18867922, g: 0.18600923, b: 0.18600923, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1675,17 +1675,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Move with wasd
+  m_Text: 'Move with WASD
 
     Fire your weapon with Mouse 1
 
-    Pich up weapon
+    Pick up weapon
     with F
 
     Drop weapon with X
 
-
-'
+    Switch weapon with Q and E'
 --- !u!222 &1444979708
 CanvasRenderer:
   m_ObjectHideFlags: 0

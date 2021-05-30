@@ -13,27 +13,27 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuObject;
     public GameObject settingsMenuObject;
 
-    //public bool isMainMenu;
+    public bool isMainMenu;
 
     [Header("Resolutions")]
     public Resolution[] resolutionsArray;
 
     void Start()
     {
-        //May or may not be readded based on available time
-        /*if (isMainMenu)
+        if (isMainMenu)
         {
             resolutionsArray = Screen.resolutions;
             SwapMenu(false);
-
-            foreach (var res in resolutionsArray)
-            {
-                Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
-            }
-        }*/
+            //May or may not be readded based on available time
+            /*
+                foreach (var res in resolutionsArray)
+                {
+                    Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
+                }*/
+        }
     }
 
-    private void SetDropDownContents()
+        private void SetDropDownContents()
     {
        
     }
