@@ -85,11 +85,11 @@ public class WeaponInventory : MonoBehaviour
 
         int previousSelectedWeapon = selectedWeapon;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && isPlayer)
         {
             CycleInventoryRight();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q)&&isPlayer)
         {
             CycleInventoryLeft();
         }
@@ -100,12 +100,12 @@ public class WeaponInventory : MonoBehaviour
         }
 
         
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && isPlayer)
         {
             DropWeapon();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && isPlayer)
         {
             EquipWeapon();
         }
