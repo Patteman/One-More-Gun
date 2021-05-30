@@ -56,7 +56,6 @@ public class EnemyAI3 : MonoBehaviour
     private float currentPatrolWaitTime;
     private float reachedPositionDistance = 1f;
     private float destructionTimer;
-    //private float turnSpeed; //Not yet implemented
 
     private bool moveToPointA;
     private bool madeSound;
@@ -73,8 +72,8 @@ public class EnemyAI3 : MonoBehaviour
     public float maxHealth = 100;
     public float health;
     public float fireRate = 3f;
-    [SerializeField] private float walkSpeed = 1f;
-    [SerializeField] private float runSpeed = 3.5f;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
     private float fireCooldown = 0f;
 
     private NavMeshAgent agent;
@@ -85,16 +84,15 @@ public class EnemyAI3 : MonoBehaviour
         guardPosition = transform.position;
         roamPosition = GetRoamingPosition();
 
-        walkSpeed = 1f; //Dont set twice
+        walkSpeed = 1f;
         runSpeed = 3.5f;
         currentSpeed = walkSpeed;
         currentPatrolWaitTime = patrolWaitTime;
-        //turnSpeed = 150f; //Not yet implmented
         
         health = maxHealth;
 
-        fov = 90f; //Will be replaced by weapon values in the future
-        viewDistance = 5f; //Will be replaced by weapon values in the future
+        fov = 90f;
+        viewDistance = 5f;
 
         moveToPointA = true;
 
@@ -153,20 +151,6 @@ public class EnemyAI3 : MonoBehaviour
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        //-----------------| Non-implemented test code that will be used or deleted in the future |------------------//
-        //Dette virker for modellen, men FOV'en er independent
-        //Vector3 myLocation = transform.position;
-        //Vector3 targetLocation = roamPosition;
-        //targetLocation.z = myLocation.z;
-
-        //Vector3 vectorToTarget = targetLocation - myLocation;
-        //Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
-
-        //Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-        //    From                  To                    Speed
-
-
         //State machine
         switch (currentState)
         {
@@ -201,7 +185,6 @@ public class EnemyAI3 : MonoBehaviour
                 //Move to and look at the roam position
                 agent.SetDestination(roamPosition);
                 lookAt = roamPosition;    
-                //lookAt = agent.nextPosition; //Not yet implemented
 
                 FindTarget();
 
@@ -220,7 +203,7 @@ public class EnemyAI3 : MonoBehaviour
                 DropTarget();
 
                 //If target (player) is within attack range, start attacking
-                float attackRange = 3f; //Will be replaced by weapon values in the future
+                float attackRange = 3f;
                 if (Vector3.Distance(transform.position, target.transform.position) < attackRange)
                 {
                     currentState = State.AttackTarget;
@@ -274,7 +257,7 @@ public class EnemyAI3 : MonoBehaviour
             try
             {
                 weaponScript.EnemyAttack(target);
-                fireCooldown = 0.75f; //Will be replaced by weapon values in the future
+                fireCooldown = 0.75f;
             }
             catch
             {
@@ -299,7 +282,6 @@ public class EnemyAI3 : MonoBehaviour
     //Checks if it's target (player) is within range, switches state
     private void FindTarget()
     {
-        //-----------------------  USE ONLY THIS IF YOU DO NOT WANT VISIBLE FOV ----------------------//
         if (Vector3.Distance(transform.position, target.transform.position) < viewDistance)
         {
             //Player is inside view distance, check if inside view angle
