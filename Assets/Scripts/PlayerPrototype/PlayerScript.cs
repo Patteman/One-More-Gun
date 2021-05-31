@@ -138,6 +138,8 @@ public class PlayerScript : MonoBehaviour
     private void IncreaseHealth(int value)
     {
         currentHealth += value;
+
+        //Makes sure the player cannot heal above max health
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
