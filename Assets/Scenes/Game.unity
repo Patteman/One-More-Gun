@@ -1296,8 +1296,7 @@ VFXRenderer:
   m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1352,7 +1351,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: de0fae515169ff246a20d58a8a440ed0, type: 3}
+      - m_Value: {fileID: 0}
         m_Name: setTexture2D
         m_Overridden: 1
     m_Bool:
@@ -2954,8 +2953,7 @@ VFXRenderer:
   m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3010,7 +3008,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: de0fae515169ff246a20d58a8a440ed0, type: 3}
+      - m_Value: {fileID: 0}
         m_Name: setTexture2D
         m_Overridden: 1
     m_Bool:
@@ -5804,3 +5802,83 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 869363764880019642, guid: 7920ede0a209d274fb5b80a4cfd4e366, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7920ede0a209d274fb5b80a4cfd4e366, type: 3}
+--- !u!1 &2144680897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3763322124616324079, guid: 7920ede0a209d274fb5b80a4cfd4e366,
+    type: 3}
+  m_PrefabInstance: {fileID: 2082108349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6480399911455506746
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174602, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6480399911753174612, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 2144680897}
+    - target: {fileID: 6480399911753174615, guid: cdfff666f1eeabd4aa3954f1cd15f70e,
+        type: 3}
+      propertyPath: m_Name
+      value: Keycard
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cdfff666f1eeabd4aa3954f1cd15f70e, type: 3}
