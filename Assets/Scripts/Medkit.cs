@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class Medkit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int healAmount = 30;
+    public float lifeTime = 6f;
+
+    private bool coroutineAllowed;
+    private float despawnTimer;
+    private SpriteRenderer spriteRenderer;
+
+    private void Start()
     {
-        
+        coroutineAllowed = true;
+        despawnTimer = 0f;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        despawnTimer += Time.deltaTime;
+        if (despawnTimer >= 4f && coroutineAllowed)
+        {
+            StartCoroutine("StartFading");
+            if (despawnTimer >= lifeTime)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private IEnumerator StartFading()
+    {
+        coroutineAllowed = false;
+
+        spriteRenderer.material.color = new Color(1f, 1f, 1f, 0.2f);
+        yield return new WaitForSeconds(0.2f);
+
+        spriteRenderer.material.color = new Color(1f, 1f, 1f, 1f);
+        yield return new WaitForSeconds(0.2f);
+
+        coroutineAllowed = true;
+
     }
 }

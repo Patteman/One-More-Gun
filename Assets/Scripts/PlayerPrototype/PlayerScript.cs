@@ -135,9 +135,13 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void IncreaseHealth()
+    private void IncreaseHealth(int value)
     {
-        currentHealth += 10;
+        currentHealth += value;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 
     private void DecreaseHealth(float damageTaken)
@@ -176,6 +180,20 @@ public class PlayerScript : MonoBehaviour
         {
             Debug.Log("You've reached the goal!");
             SceneManager.LoadScene("WinMenu");
+        }
+
+        if (other.gameObject.tag == "Medkit")
+        {
+            if (currentHealth < maxHealth)
+            {
+                Debug.Log("Medkit picked up");
+                IncreaseHealth(other.gameObject.GetComponent<Medkit>().healAmount);
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                Debug.Log("Already at full health");
+            }
         }
     }
 
