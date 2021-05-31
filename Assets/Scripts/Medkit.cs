@@ -42,6 +42,5 @@ public class Medkit : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         coroutineAllowed = true;
-
     }
 }
