@@ -31,6 +31,7 @@ public class EnemyAI3 : MonoBehaviour
     public GameObject hand;
     private WeaponInventory inventory;
     public AudioSource enemyAudioSrc;
+    public GameObject medkitPrefab;
 
     [Header("Watch and Patrol Points")]
     [Tooltip("The point where enemy looks when stading guard")]
@@ -348,10 +349,18 @@ public class EnemyAI3 : MonoBehaviour
         currentSpeed = runSpeed;
     }
 
-    //Destroys enemy object as well as its FOV cone.
+
     private void Die()
     {
+        //Drops the weapon of the enemy, and also has a 15% chance of dropping a medkit.
         inventory.DropWeapon();
+        int dropRoll = Random.Range(1, 100);
+        if (dropRoll > 85)
+        {
+            Instantiate(medkitPrefab, gameObject.transform.position, new Quaternion(0f,0f,0f,0f));
+        }
+
+        //Destroys enemy object as well as its FOV cone.
         Destroy(gameObject);
         fieldOfView.DestroyFOV();
     }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Medkit : MonoBehaviour
 {
     public int healAmount = 30;
-    public float lifeTime = 6f;
+    public float lifeTime = 10f;
+    private float fadePercent;
 
     private bool coroutineAllowed;
     private float despawnTimer;
@@ -15,13 +16,14 @@ public class Medkit : MonoBehaviour
     {
         coroutineAllowed = true;
         despawnTimer = 0f;
+        fadePercent = lifeTime * 0.7f;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         despawnTimer += Time.deltaTime;
-        if (despawnTimer >= 4f && coroutineAllowed)
+        if (despawnTimer >= fadePercent && coroutineAllowed)
         {
             StartCoroutine("StartFading");
             if (despawnTimer >= lifeTime)
