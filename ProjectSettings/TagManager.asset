@@ -12,6 +12,7 @@ TagManager:
   - Enemies
   - UI_Inventory
   - Flame
+  - Medkit
   layers:
   - Default
   - TransparentFX
