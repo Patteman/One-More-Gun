@@ -169,7 +169,6 @@ GameObject:
   - component: {fileID: 3763322124616324064}
   - component: {fileID: 3763322124616324065}
   - component: {fileID: 3763322124616324078}
-  - component: {fileID: 3763322124616324066}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -283,18 +282,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &3763322124616324066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3763322124616324079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6854767c1f82ce428db58c73a066f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3763322125287345366
 GameObject:
   m_ObjectHideFlags: 0
@@ -7851,7 +7838,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: de0fae515169ff246a20d58a8a440ed0, type: 3}
+      - m_Value: {fileID: 0}
         m_Name: setTexture2D
         m_Overridden: 1
     m_Bool:
