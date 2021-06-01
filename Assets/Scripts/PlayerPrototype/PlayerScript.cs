@@ -148,7 +148,7 @@ public class PlayerScript : MonoBehaviour
 
     private void DecreaseHealth(float damageTaken)
     {
-        StartCoroutine(cameraShake.Shake(.15f, .30f));
+        StartCoroutine(cameraShake.Shake(.10f, .25f));
         currentHealth -= damageTaken;
     }
 
