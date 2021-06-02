@@ -3336,10 +3336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: Game
+  isMainMenu: 1
   sceneFader: {fileID: 1005930101}
   mainMenuObject: {fileID: 184059826}
   settingsMenuObject: {fileID: 864149933}
-  isMainMenu: 1
 --- !u!4 &1918399190
 Transform:
   m_ObjectHideFlags: 0

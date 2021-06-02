@@ -11,6 +11,8 @@ public class MainMenu : MonoBehaviour
 
     public string levelToLoad = "MainLevel";
 
+    public bool isMainMenu;
+
     public SceneFader sceneFader;
     public GameObject mainMenuObject;
     public GameObject settingsMenuObject;
@@ -19,14 +21,9 @@ public class MainMenu : MonoBehaviour
     public Resolution[] resolutionsArray;
 
     void Start()
-    {/*
-       resolutionsArray = Screen.resolutions;
-       SwapMenu(false);
-
-        foreach(var res in resolutionsArray)
-        {
-            Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
-        }*/
+    {
+      if(isMainMenu)
+        SwapMenu(false);
     }
 
     private void SetDropDownContents()
