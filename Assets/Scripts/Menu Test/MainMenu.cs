@@ -7,33 +7,29 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public string levelToLoad = "Game";
+    [SerializeField] public static bool lvlOneDone = false;
+
+    public string levelToLoad = "MainLevel";
 
     public SceneFader sceneFader;
     public GameObject mainMenuObject;
     public GameObject settingsMenuObject;
 
-    public bool isMainMenu;
-
     [Header("Resolutions")]
     public Resolution[] resolutionsArray;
 
     void Start()
-    {
-        if (isMainMenu)
+    {/*
+       resolutionsArray = Screen.resolutions;
+       SwapMenu(false);
+
+        foreach(var res in resolutionsArray)
         {
-            resolutionsArray = Screen.resolutions;
-            SwapMenu(false);
-            //May or may not be readded based on available time
-            /*
-                foreach (var res in resolutionsArray)
-                {
-                    Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
-                }*/
-        }
+            Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
+        }*/
     }
 
-        private void SetDropDownContents()
+    private void SetDropDownContents()
     {
        
     }
@@ -41,7 +37,14 @@ public class MainMenu : MonoBehaviour
     //Loads the main scene when called, and unpauses the game, incase it was paused
     public void Play()
     {
-        sceneFader.FadeToScene(levelToLoad);
+        if (!lvlOneDone)
+        {
+            sceneFader.FadeToScene("Game");
+        }
+        else
+        {
+            sceneFader.FadeToScene("Game2");
+        }
         Time.timeScale = 1f;
     }
 
@@ -66,5 +69,10 @@ public class MainMenu : MonoBehaviour
             mainMenuObject.SetActive(true);
         }
 
+    }
+    public void NextLevel()
+    {
+        sceneFader.FadeToScene("Game2");
+        lvlOneDone = true;
     }
 }
