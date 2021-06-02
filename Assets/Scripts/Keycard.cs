@@ -5,11 +5,18 @@ using UnityEngine;
 public class Keycard : MonoBehaviour
 {
     public GameObject door;
+    public AudioSource keycardAudioSrc;
     private bool coroutineAllowed;
+    private bool madeSound;
+    private bool startDestructionTimer;
+
+    private float destructionTimer;
 
     private void Start()
     {
         coroutineAllowed = true;
+        startDestructionTimer = false;
+        madeSound = false;
     }
 
     private void Update()
@@ -18,6 +25,17 @@ public class Keycard : MonoBehaviour
         if (coroutineAllowed)
         {
             StartCoroutine("StartPulsing");
+        }
+
+        if (startDestructionTimer == true)
+        {
+            destructionTimer += Time.deltaTime;
+
+            if (destructionTimer >= 1.9f)
+            {
+                startDestructionTimer = false;
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -28,7 +46,14 @@ public class Keycard : MonoBehaviour
         {
             door.SetActive(false);
             Debug.Log("Keycard picked up");
-            Destroy(gameObject);
+
+            if (!madeSound)
+            {
+                keycardAudioSrc.Play();
+                madeSound = true;
+            }
+
+            startDestructionTimer = true;
         }
     }
 

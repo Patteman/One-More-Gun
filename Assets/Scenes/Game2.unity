@@ -28709,6 +28709,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.04933525
       objectReference: {fileID: 0}
+    - target: {fileID: 902968439850221823, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1016602996466354922, guid: c9cd2f7093ee7fa4e8e75a3182a2ee35,
         type: 3}
       propertyPath: m_Mass

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
     public AudioSource playerAudioSrc;
+    public AudioSource playerHealAudioSrc;
     public AudioSource deathAudioSrc;
 
     public Camera MainCamera;
@@ -112,6 +113,8 @@ public class PlayerScript : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
+            movement.x = 0;
+            movement.y = 0;
             destructionTimer += Time.deltaTime;
 
             if (!madeSound)
@@ -190,6 +193,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (currentHealth < maxHealth)
             {
+                playerHealAudioSrc.Play();
                 Debug.Log("Medkit picked up");
                 IncreaseHealth(other.gameObject.GetComponent<Medkit>().healAmount);
                 Destroy(other.gameObject);
