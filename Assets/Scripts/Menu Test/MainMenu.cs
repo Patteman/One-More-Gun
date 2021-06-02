@@ -7,27 +7,33 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public string levelToLoad = "MainLevel";
+    public string levelToLoad = "Game";
 
     public SceneFader sceneFader;
     public GameObject mainMenuObject;
     public GameObject settingsMenuObject;
 
+    public bool isMainMenu;
+
     [Header("Resolutions")]
     public Resolution[] resolutionsArray;
 
     void Start()
-    {/*
-       resolutionsArray = Screen.resolutions;
-       SwapMenu(false);
-
-        foreach(var res in resolutionsArray)
+    {
+        if (isMainMenu)
         {
-            Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
-        }*/
+            resolutionsArray = Screen.resolutions;
+            SwapMenu(false);
+            //May or may not be readded based on available time
+            /*
+                foreach (var res in resolutionsArray)
+                {
+                    Debug.Log(res.width + "x" + res.height + " : " + res.refreshRate);
+                }*/
+        }
     }
 
-    private void SetDropDownContents()
+        private void SetDropDownContents()
     {
        
     }
