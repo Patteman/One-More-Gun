@@ -10,9 +10,21 @@ public class WinLevel : MonoBehaviour
     public SceneFader sceneFader;
 
     //Restarts the current scene
+
+    private void Start()
+    {
+
+    }
+
     public void TryAgain()
     {
         sceneFader.FadeToScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        sceneFader.FadeToScene("Game2");
+        MainMenu.lvlOneDone = true;
     }
 
     //Returns to the menu scene using the scenefader class

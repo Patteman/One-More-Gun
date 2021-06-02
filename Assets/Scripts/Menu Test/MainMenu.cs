@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] public static bool lvlOneDone = false;
+
     public string levelToLoad = "MainLevel";
 
     public SceneFader sceneFader;
@@ -35,7 +37,14 @@ public class MainMenu : MonoBehaviour
     //Loads the main scene when called, and unpauses the game, incase it was paused
     public void Play()
     {
-        sceneFader.FadeToScene(levelToLoad);
+        if (!lvlOneDone)
+        {
+            sceneFader.FadeToScene("Game");
+        }
+        else
+        {
+            sceneFader.FadeToScene("Game2");
+        }
         Time.timeScale = 1f;
     }
 
@@ -60,5 +69,10 @@ public class MainMenu : MonoBehaviour
             mainMenuObject.SetActive(true);
         }
 
+    }
+    public void NextLevel()
+    {
+        sceneFader.FadeToScene("Game2");
+        lvlOneDone = true;
     }
 }

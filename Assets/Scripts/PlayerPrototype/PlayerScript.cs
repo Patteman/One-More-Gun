@@ -84,6 +84,8 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
+        Debug.Log(MainMenu.lvlOneDone);
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 

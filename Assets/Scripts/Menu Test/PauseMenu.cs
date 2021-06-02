@@ -58,5 +58,6 @@ public class PauseMenu : MonoBehaviour
     {
         ToggleMenu();
         sceneFader.FadeToScene(menuSceneName);
+        MainMenu.lvlOneDone = false;
     }
 }
