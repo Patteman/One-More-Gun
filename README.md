@@ -12,7 +12,7 @@ To start the game, follow these simple steps:
 
 # How to play
 ### Controls:
-You move your character with the ***WASD*** keys and you can aim using the ***mouse***. Use the ***left mouse button*** to attack. To pick up weapons on the ground, press the ***X*** key. To drop it again, press the ***F*** key. If you have multiple weapons picked-up, you can use the ***Q*** and ***E*** key to cykle through them.
+You move your character with the ***WASD*** keys and you can aim using the ***mouse***. Use the ***left mouse button*** to attack. To pick up weapons on the ground, press the ***F*** key. To drop it again, press the ***X*** key. If you have multiple weapons picked-up, you can use the ***Q*** and ***E*** key to cykle through them.
 
 ### Instructions:
 To win the game in its current state, you need to reach the end of the level. If you get shot, you will lose health points and when you run out you will die and have to start over.
