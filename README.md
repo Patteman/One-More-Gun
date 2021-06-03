@@ -7,7 +7,7 @@ Before starting the game you are going to need the 'Unity' game engine, as of ri
 To start the game, follow these simple steps:
 - Download the files or copy them via the GitHub page
 - Open the files in Unity Editor version '2019.4.16'
-- Locate the "Game" scene in the 'Scenes' folder (Assets -> Scenes)
+- Locate the "MainMenu" scene in the 'Scenes' folder (Assets -> Scenes -> MenuScenes)
 - Open the scene and play the scene.
 
 # How to play
